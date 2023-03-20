@@ -1,5 +1,14 @@
 package fr.eni.mahm.projetencheres.bo;
 
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * 
+ * @author Audrey
+ * @version 1.2.0
+ */
+
 public class Utilisateur {
 
 	
@@ -15,6 +24,9 @@ public class Utilisateur {
 	private String motDePasse; 
 	private int credit; 
 	private boolean administrateur = false;
+	
+	//--------lien interclasses---------//
+	private List<ArticleVendu> articles; //liste d'article vendu par l'utilisateur //MFail4562
 	
 	// Constructeur surchargé sans id 
 	
@@ -32,6 +44,7 @@ public class Utilisateur {
 		this.motDePasse = motDePasse;
 		this.credit = credit;
 		this.administrateur = administrateur;
+		this.articles = new ArrayList<>();
 	}
 
 	// Constructeur surchargé sans id et sans admin
@@ -49,14 +62,33 @@ public class Utilisateur {
 		this.ville = ville;
 		this.motDePasse = motDePasse;
 		this.credit = credit;
+		this.articles = new ArrayList<>();
 	}
 
 
 	public Utilisateur() {
-	
+		this.articles = new ArrayList<>();
 	}
+	
+//---------------------------------------METHODE/FUNCTION ZONE---------------------------------------//
+	public void ajoutArticle(ArticleVendu article) {
+		this.articles.add(article);
+	}
+	
 //---------------------------------------------GETTER SETTER ZONE-------------------------------------------------------//
 	
+	public List<ArticleVendu> getArticles() {
+		return articles;
+	}
+
+	/**
+	 /!\ modifie l'intégralité de la liste /!\
+	 * @param articles
+	 */
+	public void setArticles(List<ArticleVendu> articles) {
+		this.articles = articles;
+	}
+
 	public int getNoUtilisateur() {
 		return noUtilisateur;
 	}
