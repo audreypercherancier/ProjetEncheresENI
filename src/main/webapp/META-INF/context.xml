@@ -4,11 +4,11 @@
 			  type="javax.sql.DataSource"
 			  
 			  driverClassName="com.mysql.cj.jdbc.Driver"
-			  url="jdbc:mysql://localhost:3306/Enchere;database=Annuaire;encrypt=false;trustServerCertificate=true"
+			  url="jdbc:mysql://localhost:3306/encheres;database=Annuaire;encrypt=false;trustServerCertificate=true"
 			  username="root"
 			  password="Pa$$W0rd"
 			  
-			  maxActive="5"
+			  maxActive="100"
 			  maxWaitMillis="10000"
 	>
 	</Resource>

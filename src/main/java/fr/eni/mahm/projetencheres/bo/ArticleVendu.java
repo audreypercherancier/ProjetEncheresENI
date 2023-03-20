@@ -3,7 +3,7 @@
  */
 package fr.eni.mahm.projetencheres.bo;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 /**
  * @author           Thoumire Mathieu
@@ -15,8 +15,8 @@ public class ArticleVendu {
 	private int noArticle;
 	private String nomArticle;
 	private String description;
-	private LocalDate dateDebutEncheres;
-	private LocalDate dateFinEncheres;
+	private Date dateDebutEncheres;
+	private Date dateFinEncheres;
 	private int miseAPrix;
 	private int prixVente;
 	private int etatVente;
@@ -33,8 +33,8 @@ public class ArticleVendu {
 	 * @param etatVente
 	 * @description constructeur surchargé avec id 
 	 */
-	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, int miseAPrix, int prixVente, int etatVente) {
+	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
+			Date dateFinEncheres, int miseAPrix, int prixVente, int etatVente) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -55,8 +55,8 @@ public class ArticleVendu {
 	 * @param etatVente
 	 * @description constructeur surchargé sans id 
 	 */
-	public ArticleVendu( String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, int miseAPrix, int prixVente, int etatVente) {
+	public ArticleVendu( String nomArticle, String description, Date dateDebutEncheres,
+			Date dateFinEncheres, int miseAPrix, int prixVente, int etatVente) {
 		super();
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -112,25 +112,25 @@ public class ArticleVendu {
 	/**
 	 * @return the dateDebutEncheres
 	 */
-	public LocalDate getDateDebutEncheres() {
+	public Date getDateDebutEncheres() {
 		return dateDebutEncheres;
 	}
 	/**
 	 * @param dateDebutEncheres the dateDebutEncheres to set
 	 */
-	public void setDateDebutEncheres(LocalDate dateDebutEncheres) {
+	public void setDateDebutEncheres(Date dateDebutEncheres) {
 		this.dateDebutEncheres = dateDebutEncheres;
 	}
 	/**
 	 * @return the dateFinEncheres
 	 */
-	public LocalDate getDateFinEncheres() {
+	public Date getDateFinEncheres() {
 		return dateFinEncheres;
 	}
 	/**
 	 * @param dateFinEncheres the dateFinEncheres to set
 	 */
-	public void setDateFinEncheres(LocalDate dateFinEncheres) {
+	public void setDateFinEncheres(Date dateFinEncheres) {
 		this.dateFinEncheres = dateFinEncheres;
 	}
 	/**
