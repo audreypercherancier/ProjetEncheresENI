@@ -21,6 +21,7 @@ public class ArticleVendu {
 	private int prixVente;
 	private int etatVente;
 	
+	//-------------------- CONSTRUCTOR ZONE --------------------//
 	/**
 	 * @param noArticle
 	 * @param nomArticle
