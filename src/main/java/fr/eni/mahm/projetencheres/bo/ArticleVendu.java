@@ -3,6 +3,8 @@
  */
 package fr.eni.mahm.projetencheres.bo;
 
+import java.time.LocalDate;
+
 /**
  * @author           Thoumire Mathieu
  * @description      Classe modélisant la vente d'un article
@@ -10,5 +12,174 @@ package fr.eni.mahm.projetencheres.bo;
  * @version			 POO - V1.0
  */
 public class ArticleVendu {
+	private int noArticle;
+	private String nomArticle;
+	private String description;
+	private LocalDate dateDebutEncheres;
+	private LocalDate dateFinEncheres;
+	private int miseAPrix;
+	private int prixVente;
+	private int etatVente;
+	
+	/**
+	 * @param noArticle
+	 * @param nomArticle
+	 * @param description
+	 * @param dateDebutEncheres
+	 * @param dateFinEncheres
+	 * @param miseAPrix
+	 * @param prixVente
+	 * @param etatVente
+	 * @description constructeur surchargé avec id 
+	 */
+	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
+			LocalDate dateFinEncheres, int miseAPrix, int prixVente, int etatVente) {
+		super();
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.etatVente = etatVente;
+	}
+	/**
+	 * @param nomArticle
+	 * @param description
+	 * @param dateDebutEncheres
+	 * @param dateFinEncheres
+	 * @param miseAPrix
+	 * @param prixVente
+	 * @param etatVente
+	 * @description constructeur surchargé sans id 
+	 */
+	public ArticleVendu( String nomArticle, String description, LocalDate dateDebutEncheres,
+			LocalDate dateFinEncheres, int miseAPrix, int prixVente, int etatVente) {
+		super();
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.etatVente = etatVente;
+	}
+	/**
+	 * @description constructeur 
+	 */
+	public ArticleVendu() {
+		super();
+	}
+	//---------------------------------------------GETTER SETTER ZONE-------------------------------------------------------//
+	/**
+	 * @return the noArticle
+	 */
+	public int getNoArticle() {
+		return noArticle;
+	}
+	/**
+	 * @param noArticle the noArticle to set
+	 */
+	public void setNoArticle(int noArticle) {
+		this.noArticle = noArticle;
+	}
+	/**
+	 * @return the nomArticle
+	 */
+	public String getNomArticle() {
+		return nomArticle;
+	}
+	/**
+	 * @param nomArticle the nomArticle to set
+	 */
+	public void setNomArticle(String nomArticle) {
+		this.nomArticle = nomArticle;
+	}
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	/**
+	 * @return the dateDebutEncheres
+	 */
+	public LocalDate getDateDebutEncheres() {
+		return dateDebutEncheres;
+	}
+	/**
+	 * @param dateDebutEncheres the dateDebutEncheres to set
+	 */
+	public void setDateDebutEncheres(LocalDate dateDebutEncheres) {
+		this.dateDebutEncheres = dateDebutEncheres;
+	}
+	/**
+	 * @return the dateFinEncheres
+	 */
+	public LocalDate getDateFinEncheres() {
+		return dateFinEncheres;
+	}
+	/**
+	 * @param dateFinEncheres the dateFinEncheres to set
+	 */
+	public void setDateFinEncheres(LocalDate dateFinEncheres) {
+		this.dateFinEncheres = dateFinEncheres;
+	}
+	/**
+	 * @return the miseAPrix
+	 */
+	public int getMiseAPrix() {
+		return miseAPrix;
+	}
+	/**
+	 * @param miseAPrix the miseAPrix to set
+	 */
+	public void setMiseAPrix(int miseAPrix) {
+		this.miseAPrix = miseAPrix;
+	}
+	/**
+	 * @return the prixVente
+	 */
+	public int getPrixVente() {
+		return prixVente;
+	}
+	/**
+	 * @param prixVente the prixVente to set
+	 */
+	public void setPrixVente(int prixVente) {
+		this.prixVente = prixVente;
+	}
+	/**
+	 * @return the etatVente
+	 */
+	public int getEtatVente() {
+		return etatVente;
+	}
+	/**
+	 * @param etatVente the etatVente to set
+	 */
+	public void setEtatVente(int etatVente) {
+		this.etatVente = etatVente;
+	}
+	
+	
+	//--------------------------------------------------------------------------------------------------------------//
+	
+	@Override
+	public String toString() {
+		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
+				+ ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres + ", miseAPrix="
+				+ miseAPrix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + "]";
+	}
+	
+
+
 
 }
