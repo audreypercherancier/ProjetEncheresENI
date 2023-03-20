@@ -2,7 +2,7 @@ package fr.eni.mahm.projetencheres.bo;
 
 /**
  * Classe categorisant une enchere
- * @author mathi
+ * @author Mfail4562
  * @version 1.0.0
  */
 public class Categorie {
