@@ -15,8 +15,8 @@ public class Enchere {
 	
 	//---------lien interclasses---------//
 	
-	private int noArticle;
-	private int noEncherisseur;
+	private ArticleVendu article;
+	private Utilisateur encherisseur;
 
 	//------------------------ CONSTRUCTOR ZONE ------------------------//
 	/**
@@ -26,11 +26,11 @@ public class Enchere {
 	 * @param montantEnchere
 	 */
 	Enchere(Utilisateur encherisseur, ArticleVendu article, int montantEnchere) {
-		this.noArticle = article.getNoArticle();
+		this.article = article;
 		this.dateEnchere = new Date(System.currentTimeMillis());
 		this.montantEnchere = montantEnchere;
-		this.noEncherisseur = encherisseur.getNoUtilisateur();
-		this.setEnchere(article);
+		this.encherisseur = encherisseur;
+		this.setEnchere();
 	}
 	
 	/**
@@ -48,8 +48,8 @@ public class Enchere {
 		return valide;
 	}
 	
-	private void setEnchere(ArticleVendu article) {
-		article.setEnchereGagnante(this);
+	private void setEnchere() {
+		this.article.setEnchereGagnante(this);
 	}
 
 	//------------------------ GETTER/SETTER ZONE------------------------//
@@ -78,15 +78,15 @@ public class Enchere {
 	/**
 	 * @return the article
 	 */
-	public int getNoArticle() {
-		return noArticle;
+	public ArticleVendu getArticle() {
+		return article;
 	}
 
 	/**
 	 * @return the encherisseur
 	 */
-	public int getNoEncherisseur() {
-		return noEncherisseur;
+	public Utilisateur getEncherisseur() {
+		return encherisseur;
 	}
 	
 	
