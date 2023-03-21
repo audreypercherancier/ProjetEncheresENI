@@ -1,5 +1,7 @@
 package fr.eni.mahm.projetencheres.bo;
 
+import java.util.List;
+
 /**
  * Classe categorisant une enchere
  * @author Mfail4562
@@ -8,6 +10,7 @@ package fr.eni.mahm.projetencheres.bo;
 public class Categorie {
 	private int noCategorie ;
 	private String libelle;
+	private List<ArticleVendu> articles;
 	
 	//-------------------- CONSTRUCTOR ZONE --------------------//
 
@@ -15,6 +18,13 @@ public class Categorie {
 	this.noCategorie = noCategorie;
 	this.libelle = libelle;
 }
+	
+	//-------------------- CONSTRUCTOR ZONE --------------------//
+	
+	public void ajouterArticle(ArticleVendu article) {
+		this.articles.add(article);
+	}
+	
 	//-------------------- GETTER/SETTER ZONE --------------------//
 
 	public int getNoCategorie() {
@@ -32,4 +42,19 @@ public class Categorie {
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
+
+	/**
+	 * @return the article
+	 */
+	public List<ArticleVendu> getArticles() {
+		return articles;
+	}
+
+	/**
+	 * @param article the article to set
+	 */
+	public void setArticles(List<ArticleVendu> articles) {
+		this.articles = articles;
+	}
+	
 }
