@@ -150,8 +150,7 @@ public class Utilisateur {
 	 * @param encheresEffectuees
 	 */
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville, int credit, List<ArticleVendu> articlesAVendre,
-			List<ArticleVendu> articleAchete, List<Enchere> encheresEffectuees) {
+			String codePostal, String ville, int credit) {
 		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -162,9 +161,6 @@ public class Utilisateur {
 		this.codePostal = codePostal;
 		this.ville = ville;
 		this.credit = credit;
-		this.articlesAVendre = articlesAVendre;
-		this.articleAchete = articleAchete;
-		this.encheresEffectuees = encheresEffectuees;
 	}
 
 	public Utilisateur() {
