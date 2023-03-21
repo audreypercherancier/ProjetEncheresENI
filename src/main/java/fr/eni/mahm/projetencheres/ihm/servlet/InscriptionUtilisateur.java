@@ -26,7 +26,7 @@ public class InscriptionUtilisateur extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		
-		getServletContext().getRequestDispatcher("/WEB-INF/inscription.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/WEB-INF/jsp/inscription.jsp").forward(request, response);
 		
 		
 	}
