@@ -21,6 +21,9 @@ public class ArticleVendu {
 	private int prixVente;
 	private int etatVente;
 	
+	//-----------------lien interclasses-----------------//
+	private Enchere enchereGagnante;
+	
 	//-------------------- CONSTRUCTOR ZONE --------------------//
 	/**
 	 * @param noArticle
@@ -72,6 +75,12 @@ public class ArticleVendu {
 	public ArticleVendu() {
 		super();
 	}
+	
+	//--------------------------------------------METHOD/FUNCTION ZONE--------------------------------------------//
+	public void finEnchere() {
+		//TODO (void a modifié)
+	}
+	
 	//---------------------------------------------GETTER SETTER ZONE-------------------------------------------------------//
 	/**
 	 * @return the noArticle
@@ -169,6 +178,21 @@ public class ArticleVendu {
 	public void setEtatVente(int etatVente) {
 		this.etatVente = etatVente;
 	}
+	
+	/**
+	 * @return the enchereGagnante
+	 */
+	public Enchere getEnchereGagnante() {
+		return enchereGagnante;
+	}
+	/**
+	 * @param enchereGagnante the enchereGagnante to set
+	 */
+	public void setEnchereGagnante(Enchere enchereGagnante) {
+		this.enchereGagnante = enchereGagnante;
+		this.setPrixVente(enchereGagnante.getMontantEnchere());
+	}
+	
 	
 	
 	//--------------------------------------------------------------------------------------------------------------//

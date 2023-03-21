@@ -26,7 +26,8 @@ public class Utilisateur {
 	private boolean administrateur = false;
 	
 	//--------lien interclasses---------//
-	private List<ArticleVendu> articles; //liste d'article vendu par l'utilisateur //MFail4562
+	private List<ArticleVendu> articles = new ArrayList<>(); //liste d'article vendu par l'utilisateur //MFail4562
+	private List<Enchere> encheresEffectuees = new ArrayList<>();
 	
 	// Constructeur surchargé sans id 
 	
@@ -44,7 +45,6 @@ public class Utilisateur {
 		this.motDePasse = motDePasse;
 		this.credit = credit;
 		this.administrateur = administrateur;
-		this.articles = new ArrayList<>();
 	}
 
 	// Constructeur surchargé sans id et sans admin
@@ -62,17 +62,20 @@ public class Utilisateur {
 		this.ville = ville;
 		this.motDePasse = motDePasse;
 		this.credit = credit;
-		this.articles = new ArrayList<>();
 	}
 
 
-	public Utilisateur() {
-		this.articles = new ArrayList<>();
-	}
+	public Utilisateur() {}
 	
 //---------------------------------------METHODE/FUNCTION ZONE---------------------------------------//
-	public void ajoutArticle(ArticleVendu article) {
+	public void VendArticle(ArticleVendu article) {
 		this.articles.add(article);
+	}
+	
+	public void faitUneEnchere(ArticleVendu article, int montant) {
+		if(Enchere.enchereValide(article, montant)) {
+			encheresEffectuees.add(new Enchere(this, article, montant));
+		}
 	}
 	
 //---------------------------------------------GETTER SETTER ZONE-------------------------------------------------------//
