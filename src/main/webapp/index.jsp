@@ -26,7 +26,7 @@ pageEncoding="UTF-8"%>
                 <input
                   type="email"
                   id="form3Example3"
-                  name="email"
+                  name="login"
                   class="form-control form-control-lg"
                   placeholder="Entrez un Email Valide"
                 />
@@ -67,7 +67,7 @@ pageEncoding="UTF-8"%>
 
               <div class="text-center text-lg-start mt-4 pt-2">
                 <button
-                  type="button"
+                  type="submit"
                   class="btn btn-primary btn-md"
                   style="padding-left: 2.5rem; padding-right: 2.5rem"
                 >

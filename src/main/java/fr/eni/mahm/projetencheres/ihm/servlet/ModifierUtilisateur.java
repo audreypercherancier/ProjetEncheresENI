@@ -1,4 +1,4 @@
-package fr.eni.mahm.projetencheres.ihm;
+package fr.eni.mahm.projetencheres.ihm.servlet;
 
 import java.io.IOException;
 
@@ -11,23 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-
 /**
- * Servlet implementation class AjouterUtilisateur
+ * Servlet implementation class ModifierUtilisateur
  */
-@WebServlet("/inscription")
-public class InscriptionUtilisateur extends HttpServlet {
+@WebServlet("/modifier")
+public class ModifierUtilisateur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
- 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		
-		getServletContext().getRequestDispatcher("/WEB-INF/inscription.jsp").forward(request, response);
-		
+		getServletContext().getRequestDispatcher("/WEB-INF/modifier.jsp").forward(request, response);
 		
 	}
 
@@ -36,7 +32,6 @@ public class InscriptionUtilisateur extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		doGet(request, response);
 		
 	}
 

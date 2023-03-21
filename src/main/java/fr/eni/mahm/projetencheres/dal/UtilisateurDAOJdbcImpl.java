@@ -13,7 +13,7 @@ import fr.eni.mahm.projetencheres.bo.Utilisateur;
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	
 
-	private final String MYSQLLOGIN="select no_utilisateur,pseudo,nom,prenom,email,password,from utilisateurs where email=? and password=?";
+	private final String MYSQLLOGIN="select no_utilisateur,pseudo,nom,prenom,email, mot_de_passe from utilisateurs where email=? and mot_de_passe=?";
 	private final String MYSQLDELETE="delete from utilisateurs where no_utilisateur=";
 	private final String MYSQLINSERT="insert into utilisateurs (pseudo,nom,prenom,email,telephone,rue,codePostal,ville,credit,administrateur)  values(?,?,?,?,?,?,?,?,?,?)";
 	private final String MYSQLUPDATE="update utilisateurs set nom=?,prenom=?,email=?,telephone=? where no_utilisateur=?";
@@ -32,11 +32,11 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	public Utilisateur login(String email,String pwd) 
 	{
 		Utilisateur utilisateur=null;
-		try {
-			Connection con = connectBDD.getConnection();
+		try (Connection con = connectBDD.getConnection()) {
 			PreparedStatement pstmt = con.prepareStatement(MYSQLLOGIN);
 			pstmt.setString(1,email);
 			pstmt.setString(2,pwd);
+			System.out.println(pstmt);
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next()) 
 			{
@@ -280,7 +280,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			Utilisateur u=null;
 			try {
 			
-					u=new Utilisateur(rs.getInt("no_utilisateurs"), rs.getString("pseudo"),rs.getString("nom"),rs.getString("prenom"),rs.getString("email"),rs.getString("password"));
+					u=new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"),rs.getString("nom"),rs.getString("prenom"),rs.getString("email"),rs.getString("mot_de_passe"));
 			}
 			catch (SQLException e) 
 			{

@@ -3,6 +3,7 @@ package fr.eni.mahm.projetencheres.bo;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import fr.eni.mahm.projetencheres.exceptions.CodePostalException;
 import fr.eni.mahm.projetencheres.exceptions.NoRetraitExeption;
 
@@ -60,7 +61,7 @@ public class Utilisateur {
 		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
 		this.nom = nom;
-		this.prenom = prenom;
+		this.setPrenom(prenom);
 		this.email = email;
 		this.telephone = telephone;
 		this.rue = rue;
@@ -92,7 +93,7 @@ public class Utilisateur {
 			String codePostal, String ville, String motDePasse, boolean administrateur) {
 		this.pseudo = pseudo;
 		this.nom = nom;
-		this.prenom = prenom;
+		this.setPrenom(prenom);
 		this.email = email;
 		this.telephone = telephone;
 		this.rue = rue;
@@ -122,7 +123,7 @@ public class Utilisateur {
 		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
-		this.prenom = prenom;
+		this.setPrenom(prenom);
 		this.email = email;
 		this.telephone = telephone;
 		this.rue = rue;
@@ -154,7 +155,7 @@ public class Utilisateur {
 		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
-		this.prenom = prenom;
+		this.setPrenom(prenom);
 		this.email = email;
 		this.telephone = telephone;
 		this.rue = rue;
@@ -183,7 +184,7 @@ public class Utilisateur {
 		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
-		this.prenom = prenom;
+		this.setPrenom(prenom);
 		this.email = email;
 		this.telephone = telephone;
 		this.rue = rue;
@@ -206,7 +207,7 @@ public class Utilisateur {
 		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
 		this.nom = nom;
-		this.prenom = prenom;
+		this.setPrenom(prenom);
 		this.email = email;
 		this.motDePasse = motDePasse;
 	}
@@ -270,7 +271,7 @@ public class Utilisateur {
 	}
 
 	public String getNom() {
-		return nom;
+		return nom.toUpperCase();
 	}
 
 	public void setNom(String nom) {
@@ -282,7 +283,7 @@ public class Utilisateur {
 	}
 
 	public void setPrenom(String prenom) {
-		this.prenom = prenom;
+		this.prenom = prenom.substring(0, 1).toUpperCase() + prenom.substring(1);
 	}
 
 	public String getEmail() {
@@ -349,9 +350,7 @@ public class Utilisateur {
 
 	@Override
 	public String toString() {
-		return "Utilisateur [noUtilisateur=" + noUtilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
-				+ prenom + ", email=" + email + ", telephone=" + telephone + ", rue=" + rue + ", codePostal="
-				+ codePostal + ", ville=" + ville + ", credit=" + credit + ", administrateur=" + administrateur + "]";
+		return this.getPrenom()+" "+this.getNom();
 	}
 
 }
