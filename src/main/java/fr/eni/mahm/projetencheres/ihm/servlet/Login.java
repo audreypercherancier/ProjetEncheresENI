@@ -45,13 +45,15 @@ public class Login extends HttpServlet {
 
 			if(user != null) {
 				request.setAttribute("user", user.toString());
-				user.toString();
+
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/monCompte.jsp");
+				rd.forward(request, response);
+			}else {
+				doGet(request, response);
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/monCompte.jsp");
-		rd.forward(request, response);
 		
 	}
 
