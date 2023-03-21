@@ -6,10 +6,10 @@ package fr.eni.mahm.projetencheres.bo;
 import java.sql.Date;
 
 /**
- * @author           Thoumire Mathieu
+ * @author           Thoumire Mathieu & Mathieu Perin
  * @description      Classe modélisant la vente d'un article
  * @date             20-03-2023
- * @version			 POO - V1.0
+ * @version			 POO - V1.2
  */
 public class ArticleVendu {
 	private int noArticle;
@@ -18,37 +18,19 @@ public class ArticleVendu {
 	private Date dateDebutEncheres;
 	private Date dateFinEncheres;
 	private int miseAPrix;
-	private int prixVente;
+	private int prixVente = 0;
 	private int etatVente;
 	
 	//-----------------lien interclasses-----------------//
 	private Enchere enchereGagnante;
+	private Utilisateur vendeur;
+	private Retrait lieuRetrait;
 	
 	//-------------------- CONSTRUCTOR ZONE --------------------//
+
 	/**
-	 * @param noArticle
-	 * @param nomArticle
-	 * @param description
-	 * @param dateDebutEncheres
-	 * @param dateFinEncheres
-	 * @param miseAPrix
-	 * @param prixVente
-	 * @param etatVente
-	 * @description constructeur surchargé avec id 
-	 */
-	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
-			Date dateFinEncheres, int miseAPrix, int prixVente, int etatVente) {
-		super();
-		this.noArticle = noArticle;
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.miseAPrix = miseAPrix;
-		this.prixVente = prixVente;
-		this.etatVente = etatVente;
-	}
-	/**
+	 * constructeur a appelé lors de la creation d'un article avec lieu retrait 
+	 * IDENTIQUE domicile vendeur
 	 * @param nomArticle
 	 * @param description
 	 * @param dateDebutEncheres
@@ -58,9 +40,49 @@ public class ArticleVendu {
 	 * @param etatVente
 	 * @description constructeur surchargé sans id 
 	 */
-	public ArticleVendu( String nomArticle, String description, Date dateDebutEncheres,
-			Date dateFinEncheres, int miseAPrix, int prixVente, int etatVente) {
+	public ArticleVendu(String nomArticle, String description, Date dateDebutEncheres,
+			Date dateFinEncheres, int miseAPrix, int etatVente) {
 		super();
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.etatVente = etatVente;
+	}
+	
+	/**
+	 * constructeur a appelé lors de la creation d'un article avec lieu retrait 
+	 * DIFFERENT domicile vendeur
+	 * @param nomArticle
+	 * @param description
+	 * @param dateDebutEncheres
+	 * @param dateFinEncheres
+	 * @param miseAPrix
+	 * @param etatVente
+	 * @param enchereGagnante
+	 * @param lieuRetrait
+	 */
+	public ArticleVendu(String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres,
+			int miseAPrix, int etatVente, Enchere enchereGagnante, Retrait lieuRetrait) {
+		super();
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.etatVente = etatVente;
+		this.enchereGagnante = enchereGagnante;
+		this.lieuRetrait = lieuRetrait;
+	}
+
+
+
+	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
+			Date dateFinEncheres, int miseAPrix, int prixVente, int etatVente, Enchere enchereGagnante,
+			Utilisateur vendeur, Retrait lieuRetrait) {
+		super();
+		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
 		this.dateDebutEncheres = dateDebutEncheres;
@@ -68,17 +90,26 @@ public class ArticleVendu {
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
 		this.etatVente = etatVente;
+		this.enchereGagnante = enchereGagnante;
+		this.vendeur = vendeur;
+		this.lieuRetrait = lieuRetrait;
 	}
 	/**
 	 * @description constructeur 
 	 */
-	public ArticleVendu() {
-		super();
-	}
+	public ArticleVendu() {}
 	
 	//--------------------------------------------METHOD/FUNCTION ZONE--------------------------------------------//
 	public void finEnchere() {
-		//TODO (void a modifié)
+		Date now = new Date(System.currentTimeMillis());
+		int creditVendeur = this.getVendeur().getCredit();
+		int creditAcheteur = this.getEnchereGagnante().getEncherisseur().getCredit();
+		if(this.getDateFinEncheres().equals(now) || this.getDateFinEncheres().before(now)) {
+			if(this.getPrixVente() > 0) {
+				this.vendeur.setCredit(creditVendeur += this.prixVente);
+				this.getEnchereGagnante().getEncherisseur().gagneEnchere(this);
+			}
+		}
 	}
 	
 	//---------------------------------------------GETTER SETTER ZONE-------------------------------------------------------//
@@ -193,10 +224,32 @@ public class ArticleVendu {
 		this.setPrixVente(enchereGagnante.getMontantEnchere());
 	}
 	
-	
-	
+	/**
+	 * @return the vendeur
+	 */
+	public Utilisateur getVendeur() {
+		return vendeur;
+	}
+		
+	/**
+	 * @param vendeur the vendeur to set
+	 */
+	public void setVendeur(Utilisateur vendeur) {
+		this.vendeur = vendeur;
+	}
+	/**
+	 * @return the lieuRetrait
+	 */
+	public Retrait getLieuRetrait() {
+		return lieuRetrait;
+	}
+	/**
+	 * @param lieuRetrait the lieuRetrait to set
+	 */
+	public void setLieuRetrait(Retrait lieuRetrait) {
+		this.lieuRetrait = lieuRetrait;
+	}
 	//--------------------------------------------------------------------------------------------------------------//
-	
 	@Override
 	public String toString() {
 		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
