@@ -131,6 +131,41 @@ public class Utilisateur {
 		this.motDePasse = motDePasse;
 		this.credit = 0;
 	}
+	
+	
+
+	/**
+	 * CONSTRUCTEUR SPECIALEMENT CONCU POUR AUDREY
+	 * @param pseudo
+	 * @param nom
+	 * @param prenom
+	 * @param email
+	 * @param telephone
+	 * @param rue
+	 * @param codePostal
+	 * @param ville
+	 * @param credit
+	 * @param articlesAVendre
+	 * @param articleAchete
+	 * @param encheresEffectuees
+	 */
+	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
+			String codePostal, String ville, int credit, List<ArticleVendu> articlesAVendre,
+			List<ArticleVendu> articleAchete, List<Enchere> encheresEffectuees) {
+		super();
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.credit = credit;
+		this.articlesAVendre = articlesAVendre;
+		this.articleAchete = articleAchete;
+		this.encheresEffectuees = encheresEffectuees;
+	}
 
 	public Utilisateur() {
 	}
