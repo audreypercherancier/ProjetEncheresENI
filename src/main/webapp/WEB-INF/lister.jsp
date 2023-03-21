@@ -105,8 +105,8 @@
 </table>
 	
 
-
-	<c:forEach items="${liste}" var="u">
+<%-- logique applicative
+<c:forEach items="${liste}" var="u">
 		<tr>
 		<td>${u.nom}</td>
 		<td>${u.prenom}</td>
@@ -117,7 +117,8 @@
    			<a class="btn btn-danger" href="/ProjetEncheresENI/supprimer" role="button">Supprimer</a>
 	  </td>
 		</tr>
-	</c:forEach>
+	</c:forEach> --%>
+	
 
 	
 
