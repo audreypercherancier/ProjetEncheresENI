@@ -17,12 +17,12 @@ import fr.eni.mahm.projetencheres.bo.Utilisateur;
 public class UtilisateurDAO {
 	
 
-	private final String SQLLOGIN="select pseudo,nom,prenom,email,password,         // from utilisateur where email=? and password=?";
-	private final String MYSQLDELETE="delete from utilisateur where pseudo=";
-	private final String MYSQLINSERT="insert into utilisateur (pseudo,nom,prenom,email,telephone,rue,codePostal,ville)  values(?,?,?,?,?,?,?,?)";
-	private final String MYSQLUPDATE="update utilisateur set nom=?,prenom=?,email=?,password=?,             where pseudo=?";
-	private final String MYSQLSELECTALL="select pseudo,nom,prenom,email,password,               //from utilisateur";
-	private final String MYSQLSELECTBYID="select pseudo,nom,prenom,email,password,        ///from utilisateur where pseudo=?";
+	private final String MYSQLLOGIN="select pseudo,nom,prenom,email,password,from utilisateurs where email=? and password=?";
+	private final String MYSQLDELETE="delete from utilisateurs where no_utilisateur=";
+	private final String MYSQLINSERT="insert into utilisateurs (pseudo,nom,prenom,email,telephone,rue,codePostal,ville,credit,administrateur)  values(?,?,?,?,?,?,?,?,?,?)";
+	private final String MYSQLUPDATE="update utilisateurs set nom=?,prenom=?,email=?,password=?, where pseudo=?";
+	private final String MYSQLSELECTALL="select pseudo,nom,prenom,email,rue,codePostal,ville,credit from utilisateurs";
+	private final String MYSQLSELECTBYID="select pseudo,nom,prenom,email,rue,codePostal,ville,credit from utilisateurs where pseudo=?";
 	
 	
 	//--------------------------------LOGIN---------------------------//
@@ -31,7 +31,7 @@ public class UtilisateurDAO {
 		Utilisateur utilisateur=null;
 		try {
 			Connection con = connectBDD.getConnection();
-			PreparedStatement pstmt = con.prepareStatement(SQLLOGIN);
+			PreparedStatement pstmt = con.prepareStatement(MYSQLLOGIN);
 			pstmt.setString(1,email);
 			pstmt.setString(2,pwd);
 			ResultSet rs = pstmt.executeQuery();
@@ -86,14 +86,13 @@ public class UtilisateurDAO {
 				stmt.setString(7, u.getCodePostal());
 				stmt.setString(8, u.getVille());
 				stmt.setInt(9, u.getCredit());
+				stmt.setBoolean(10, u.isAdministrateur());
 				//stmt.setString(4, u.getPassword());
 				stmt.executeUpdate();
 				ResultSet rs;
 				rs=stmt.getGeneratedKeys();
 				rs.next();
-			
-				//u.getRue().setPseudo(u.getPseudo());
-				//new adresseDAO().insert(u.getAdresse(),cnx);
+				
 				cnx.commit();
 				
 				cnx.close();
@@ -122,25 +121,21 @@ public class UtilisateurDAO {
 			try 
 			{
 				stmt=cnx.prepareStatement(MYSQLUPDATE);
-				stmt.setString(1, u.getNom());
-				if(u.getPrenom()!=null)
-				{
-					stmt.setString(2, u.getPrenom());
-				}
-				else
-				{
-					stmt.setNull(2, Types.VARCHAR);
-				}
-				stmt.setString(3,u.getEmail());
-				//stmt.setString(4, u.getPassword());
-				stmt.setString(7, u.getPseudo());
+				stmt.setString(1, u.getPseudo ());
+				stmt.setString(2, u.getNom());
+				stmt.setString(3, u.getPrenom());
+				stmt.setString(4, u.getEmail());
+				stmt.setString(5, u.getTelephone());
+				stmt.setString(6, u.getRue());
+				stmt.setString(7, u.getCodePostal());
+				stmt.setString(8, u.getVille());
 				stmt.executeUpdate();
 				//new AdresseDao().update(u.getRue(), u.getCodePostal(),u.getVille(), cnx);
 				cnx.close();
 			} 
 			catch (SQLException e) 
 			{
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 		}
@@ -170,23 +165,27 @@ public class UtilisateurDAO {
 			}
 			return lst;
 		}
-		//------------------------SELECTBYPSEUDO-------------------------------//
-		public Utilisateur selectById(int pseudo)
+		//------------------------SELECTBYID-------------------------------//
+		public Utilisateur selectById(int noUtilisateur)
 		{
 			Connection cnx;
 			PreparedStatement stmt;
 			ResultSet rs;
 			cnx=connectBDD.getConnection();
-			Utilisateur u=null;
+			Utilisateur u=new Utilisateur();
 			try 
 			{
 				stmt=cnx.prepareStatement(MYSQLSELECTBYID);
-				stmt.setInt(1, pseudo);
+				stmt.setInt(1, noUtilisateur);
 				rs=stmt.executeQuery();
-				if(rs.next())
-				{
-					u=rsToUtilisateur(rs);
-				}
+				stmt.getString(1,"noUtilisateur" );
+				stmt.setString(2, u.getNom());
+				stmt.setString(3, u.getPrenom());
+				stmt.setString(4, u.getEmail());
+				stmt.setString(5, u.getTelephone());
+				stmt.setString(6, u.getRue());
+				stmt.setString(7, u.getCodePostal());
+				stmt.setString(8, u.getVille());
 				cnx.close();		
 			}
 			catch(Exception e)
@@ -195,6 +194,8 @@ public class UtilisateurDAO {
 			}
 			return u;
 		}
-}
+		
+		}
+		
 		
 		
