@@ -13,7 +13,7 @@ import fr.eni.mahm.projetencheres.bo.Utilisateur;
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	
 
-	private final String MYSQLLOGIN="select no_utilisateur,pseudo,nom,prenom,email, mot_de_passe from utilisateurs where email=? and mot_de_passe=?";
+	private final String MYSQLLOGIN="select no_utilisateur, pseudo, nom, prenom, email, mot_de_passe, telephone, rue, code_postal, ville, credit from utilisateurs where email=? and mot_de_passe=?";
 	private final String MYSQLDELETE="delete from utilisateurs where no_utilisateur=";
 	private final String MYSQLINSERT="insert into utilisateurs (pseudo,nom,prenom,email,telephone,rue,codePostal,ville,credit,administrateur)  values(?,?,?,?,?,?,?,?,?,?)";
 	private final String MYSQLUPDATE="update utilisateurs set nom=?,prenom=?,email=?,telephone=? where no_utilisateur=?";
@@ -280,7 +280,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 			Utilisateur u=null;
 			try {
 			
-					u=new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"),rs.getString("nom"),rs.getString("prenom"),rs.getString("email"),rs.getString("mot_de_passe"));
+					u=new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"),rs.getString("nom"),rs.getString("prenom"),rs.getString("email"),rs.getString("mot_de_passe"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"), rs.getInt("credit"));
 			}
 			catch (SQLException e) 
 			{

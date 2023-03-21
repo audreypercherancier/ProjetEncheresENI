@@ -7,7 +7,16 @@
 <title>Mon compte</title>
 </head>
 <body>
-	<h1>${user}</h1>
+	<p>Pseudo : ${user.getPseudo()}</p>
+	<p>nom : ${user.getNom()}</p>
+	<p>Prénom : ${user.getPrenom()}</p>
+	<p>Email : ${user.getEmail() }</p>
+	<p>Téléphone : ${user.getTelephone()}</p>
+	<p>Rue : ${user.getRue()}</p>
+	<p>Code postal : ${user.getCodePostal() }</p>
+	<p>Ville : ${user.getVille() }</p>
+	<p>Mon credit : ${user.getCredit()}</p>
+	<button type="button">modifier</button>
 
 </body>
 </html>

@@ -44,7 +44,7 @@ public class Login extends HttpServlet {
 			Utilisateur user =  userMgr.connexion(login, password);
 
 			if(user != null) {
-				request.setAttribute("user", user.toString());
+				request.setAttribute("user", user);
 
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/monCompte.jsp");
 				rd.forward(request, response);
