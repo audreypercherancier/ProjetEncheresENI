@@ -14,27 +14,26 @@ import fr.eni.mahm.projetencheres.exceptions.NoRetraitExeption;
 
 public class Utilisateur {
 
-	
-	private int noUtilisateur; 
-	private String pseudo; 
-	private String nom; 
-	private String prenom; 
-	private String email; 
-	private String telephone; 
-	private String rue; 
-	private String codePostal; 
-	private String ville; 
-	private String motDePasse; 
-	private int credit; 
+	private int noUtilisateur;
+	private String pseudo;
+	private String nom;
+	private String prenom;
+	private String email;
+	private String telephone;
+	private String rue;
+	private String codePostal;
+	private String ville;
+	private String motDePasse;
+	private int credit;
 	private boolean administrateur = false;
-	
-	//--------lien interclasses---------//
-	private List<ArticleVendu> articlesAVendre = new ArrayList<>(); //liste d'articles vendu par l'utilisateur 
-	private List<ArticleVendu> articleAchete = new ArrayList<>(); //liste des articles acquéris par l'utilisateur
+
+	// --------lien interclasses---------//
+	private List<ArticleVendu> articlesAVendre = new ArrayList<>(); // liste d'articles vendu par l'utilisateur
+	private List<ArticleVendu> articleAchete = new ArrayList<>(); // liste des articles acquéris par l'utilisateur
 	private List<Enchere> encheresEffectuees = new ArrayList<>();
-	
-	// Constructeur surchargé sans id 
-	
+
+	// Constructeur surchargé sans id
+
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
 		this.pseudo = pseudo;
@@ -51,7 +50,7 @@ public class Utilisateur {
 	}
 
 	// Constructeur surchargé sans id et sans admin
-	
+
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String codePostal, String ville, String motDePasse, int credit) {
 		super();
@@ -67,37 +66,38 @@ public class Utilisateur {
 		this.credit = credit;
 	}
 
+	public Utilisateur() {
+	}
 
-	public Utilisateur() {}
-	
 //---------------------------------------METHODE/FUNCTION ZONE---------------------------------------//
 	public void VendArticle(ArticleVendu article) throws CodePostalException, NoRetraitExeption {
 		article.setVendeur(this);
-			if(article.getLieuRetrait() == null) {
-				article.setLieuRetrait(new Retrait(this.getRue(), this.getCodePostal(), this.getVille()));
-			}
+		if (article.getLieuRetrait() == null) {
+			article.setLieuRetrait(new Retrait(this.getRue(), this.getCodePostal(), this.getVille()));
+		}
 		this.articlesAVendre.add(article);
 	}
-	
+
 	public void faitUneEnchere(ArticleVendu article, int montant) {
-		if(this.getCredit() > montant && Enchere.enchereValide(article, montant)) {
+		if (this.getCredit() > montant && Enchere.enchereValide(article, montant)) {
 			encheresEffectuees.add(new Enchere(this, article, montant));
-			this.setCredit(this.getCredit()-montant);
+			this.setCredit(this.getCredit() - montant);
 		}
 	}
-	
+
 	public void gagneEnchere(ArticleVendu articleAcqueris) {
 		this.articleAchete.add(articleAcqueris);
 	}
-	
+
 //---------------------------------------------GETTER SETTER ZONE-------------------------------------------------------//
-	
+
 	public List<ArticleVendu> getArticlesAVendre() {
 		return articlesAVendre;
 	}
 
 	/**
-	 /!\ modifie l'intégralité de la liste /!\
+	 * /!\ modifie l'intégralité de la liste /!\
+	 * 
 	 * @param articles
 	 */
 	public void setArticlesAVendre(List<ArticleVendu> articles) {
@@ -112,7 +112,6 @@ public class Utilisateur {
 		this.noUtilisateur = noUtilisateur;
 	}
 
-	
 	public String getPseudo() {
 		return pseudo;
 	}
@@ -121,7 +120,6 @@ public class Utilisateur {
 		this.pseudo = pseudo;
 	}
 
-	
 	public String getNom() {
 		return nom;
 	}
@@ -129,8 +127,7 @@ public class Utilisateur {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	
-	
+
 	public String getPrenom() {
 		return prenom;
 	}
@@ -199,25 +196,13 @@ public class Utilisateur {
 		this.motDePasse = motDePasse;
 	}
 
-	
-	//--------------------------------------------------------------------------------------------------------------//
-	
-	
-	
+	// --------------------------------------------------------------------------------------------------------------//
+
 	@Override
 	public String toString() {
 		return "Utilisateur [noUtilisateur=" + noUtilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
 				+ prenom + ", email=" + email + ", telephone=" + telephone + ", rue=" + rue + ", codePostal="
 				+ codePostal + ", ville=" + ville + ", credit=" + credit + ", administrateur=" + administrateur + "]";
-	} 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	}
+
 }

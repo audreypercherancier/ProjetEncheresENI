@@ -12,15 +12,16 @@ import java.sql.Date;
 public class Enchere {
 	private Date dateEnchere;
 	private int montantEnchere;
-	
-	//---------lien interclasses---------//
-	
+
+	// ---------lien interclasses---------//
+
 	private ArticleVendu article;
 	private Utilisateur encherisseur;
 
-	//------------------------ CONSTRUCTOR ZONE ------------------------//
+	// ------------------------ CONSTRUCTOR ZONE ------------------------//
 	/**
 	 * visibilité package, doit faire l'objet d'une validation avant creation
+	 * 
 	 * @param encherisseur
 	 * @param article
 	 * @param montantEnchere
@@ -32,9 +33,10 @@ public class Enchere {
 		this.encherisseur = encherisseur;
 		this.setEnchere();
 	}
-	
+
 	/**
 	 * verifie la validité de l'enchere
+	 * 
 	 * @param article
 	 * @param montant
 	 * @return
@@ -42,20 +44,23 @@ public class Enchere {
 	public static boolean enchereValide(ArticleVendu article, int montant) {
 		Date now = new Date(System.currentTimeMillis());
 		boolean valide = true;
-			if(article.getMiseAPrix() > montant || article.getPrixVente() > montant || article.getDateFinEncheres().before(now) || article.getDateDebutEncheres().after(now)){
-				valide = false;
-			}
+		if (article.getMiseAPrix() > montant || article.getPrixVente() > montant
+				|| article.getDateFinEncheres().before(now) || article.getDateDebutEncheres().after(now)) {
+			valide = false;
+		}
 		return valide;
 	}
-	
+
 	private void setEnchere() {
-		if(this.article.getEnchereGagnante() != null) {
-			
+		if (this.article.getEnchereGagnante() != null) {
+			int montantEncherePerdante = this.article.getEnchereGagnante().getMontantEnchere();
+			this.article.getEnchereGagnante().encherisseur
+					.setCredit(this.article.getEnchereGagnante().encherisseur.getCredit() + montantEncherePerdante);
 		}
 		this.article.setEnchereGagnante(this);
 	}
 
-	//------------------------ GETTER/SETTER ZONE------------------------//
+	// ------------------------ GETTER/SETTER ZONE------------------------//
 
 	/**
 	 * @return the montantEnchere
@@ -91,10 +96,5 @@ public class Enchere {
 	public Utilisateur getEncherisseur() {
 		return encherisseur;
 	}
-	
-	
-	
-	
-	
 
 }
