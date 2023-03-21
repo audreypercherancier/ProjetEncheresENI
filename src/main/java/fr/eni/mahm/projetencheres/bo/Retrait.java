@@ -13,10 +13,8 @@ import fr.eni.mahm.projetencheres.exceptions.NoRetraitExeption;
 		 * @version POO - V1.0
  */
 public class Retrait {
-	
-	private int noRetrait;
 	private String rue;
-	private int codePostal;
+	private String codePostal;
 	private String ville;
 	
 	/**
@@ -25,29 +23,14 @@ public class Retrait {
 	 * @param codePostal
 	 * @param ville
 	 */
-	public Retrait(int noRetrait, String rue, int codePostal, String ville)  throws CodePostalException, NoRetraitExeption {
-		super();
-		this.setNoRetrait (noRetrait);
+	public Retrait(String rue, String codePostal, String ville)  throws CodePostalException, NoRetraitExeption {
 		this.rue = rue;
 		this.setCodePostal (codePostal);
 		this.ville = ville;
 	}
 	
 //--------------------------------------------SETTER ET GETTER-----------------------------------------------//
-	public int getNoRetrait() {
-		return noRetrait;
-	}
 
-	public void setNoRetrait(int noRetrait)  throws NoRetraitExeption {
-		if(noRetrait>0)
-		{
-		this.noRetrait = noRetrait;
-		}
-		else
-		{
-		throw new NoRetraitExeption("erreur sur le numero");
-		}
-	}
 
 	public String getRue() {
 		return rue;
@@ -57,13 +40,13 @@ public class Retrait {
 		this.rue = rue;
 	}
 
-	public int getCodePostal() {
+	public String getCodePostal() {
 		return codePostal;
 	}
 
-	public void setCodePostal(int codePostal) throws CodePostalException
+	public void setCodePostal(String codePostal) throws CodePostalException
 		{
-		if(codePostal>1000 && codePostal<98999)
+		if(Integer.parseInt(codePostal) > 1000 && Integer.parseInt(codePostal)<98999)
 		{
 		this.codePostal = codePostal;
 		}

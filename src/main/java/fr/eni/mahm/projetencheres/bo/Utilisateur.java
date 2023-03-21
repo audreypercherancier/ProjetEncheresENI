@@ -3,9 +3,12 @@ package fr.eni.mahm.projetencheres.bo;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.mahm.projetencheres.exceptions.CodePostalException;
+import fr.eni.mahm.projetencheres.exceptions.NoRetraitExeption;
+
 /**
  * 
- * @author Audrey
+ * @author Audrey & Mathieu Perin
  * @version 1.2.0
  */
 
@@ -26,14 +29,14 @@ public class Utilisateur {
 	private boolean administrateur = false;
 	
 	//--------lien interclasses---------//
-	private List<ArticleVendu> articles = new ArrayList<>(); //liste d'article vendu par l'utilisateur //MFail4562
+	private List<ArticleVendu> articlesAVendre = new ArrayList<>(); //liste d'articles vendu par l'utilisateur 
+	private List<ArticleVendu> articleAchete = new ArrayList<>(); //liste des articles acquéris par l'utilisateur
 	private List<Enchere> encheresEffectuees = new ArrayList<>();
 	
 	// Constructeur surchargé sans id 
 	
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
-		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -68,28 +71,37 @@ public class Utilisateur {
 	public Utilisateur() {}
 	
 //---------------------------------------METHODE/FUNCTION ZONE---------------------------------------//
-	public void VendArticle(ArticleVendu article) {
-		this.articles.add(article);
+	public void VendArticle(ArticleVendu article) throws CodePostalException, NoRetraitExeption {
+		article.setVendeur(this);
+			if(article.getLieuRetrait() == null) {
+				article.setLieuRetrait(new Retrait(this.getRue(), this.getCodePostal(), this.getVille()));
+			}
+		this.articlesAVendre.add(article);
 	}
 	
 	public void faitUneEnchere(ArticleVendu article, int montant) {
-		if(Enchere.enchereValide(article, montant)) {
+		if(this.getCredit() > montant && Enchere.enchereValide(article, montant)) {
 			encheresEffectuees.add(new Enchere(this, article, montant));
+			this.setCredit(this.getCredit()-montant);
 		}
+	}
+	
+	public void gagneEnchere(ArticleVendu articleAcqueris) {
+		this.articleAchete.add(articleAcqueris);
 	}
 	
 //---------------------------------------------GETTER SETTER ZONE-------------------------------------------------------//
 	
-	public List<ArticleVendu> getArticles() {
-		return articles;
+	public List<ArticleVendu> getArticlesAVendre() {
+		return articlesAVendre;
 	}
 
 	/**
 	 /!\ modifie l'intégralité de la liste /!\
 	 * @param articles
 	 */
-	public void setArticles(List<ArticleVendu> articles) {
-		this.articles = articles;
+	public void setArticlesAVendre(List<ArticleVendu> articles) {
+		this.articlesAVendre = articles;
 	}
 
 	public int getNoUtilisateur() {

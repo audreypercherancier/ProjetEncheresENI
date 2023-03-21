@@ -42,13 +42,16 @@ public class Enchere {
 	public static boolean enchereValide(ArticleVendu article, int montant) {
 		Date now = new Date(System.currentTimeMillis());
 		boolean valide = true;
-			if(article.getPrixVente() > montant || article.getDateFinEncheres().before(now) || article.getDateDebutEncheres().after(now)){
+			if(article.getMiseAPrix() > montant || article.getPrixVente() > montant || article.getDateFinEncheres().before(now) || article.getDateDebutEncheres().after(now)){
 				valide = false;
 			}
 		return valide;
 	}
 	
 	private void setEnchere() {
+		if(this.article.getEnchereGagnante() != null) {
+			
+		}
 		this.article.setEnchereGagnante(this);
 	}
 
