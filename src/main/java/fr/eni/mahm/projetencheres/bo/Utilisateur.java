@@ -165,7 +165,10 @@ public class Utilisateur {
 	
 	
 
-	/**
+		
+	
+
+/**   CONSTRUCTEUR ENCORE POUR AUDREY
 	 * @param pseudo
 	 * @param nom
 	 * @param prenom
@@ -187,8 +190,25 @@ public class Utilisateur {
 		this.codePostal = codePostal;
 		this.ville = ville;
 	}
+	
+	
 
-	public Utilisateur() {
+/** 	CONSTRUCTEUR ENCORE ET TOUJOURS POUR AUDREY
+	 * @param noUtilisateur
+	 * @param pseudo
+	 * @param nom
+	 * @param prenom
+	 * @param email
+	 * @param motDePasse
+	 */
+	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String motDePasse) {
+		super();
+		this.noUtilisateur = noUtilisateur;
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.motDePasse = motDePasse;
 	}
 
 //---------------------------------------METHODE/FUNCTION ZONE---------------------------------------//
