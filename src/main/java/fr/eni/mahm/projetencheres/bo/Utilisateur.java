@@ -70,12 +70,19 @@ public class Utilisateur {
 	}
 
 //---------------------------------------METHODE/FUNCTION ZONE---------------------------------------//
-	public void VendArticle(ArticleVendu article) throws CodePostalException, NoRetraitExeption {
+	public void vendArticle(ArticleVendu article) throws CodePostalException, NoRetraitExeption {
 		article.setVendeur(this);
 		if (article.getLieuRetrait() == null) {
 			article.setLieuRetrait(new Retrait(this.getRue(), this.getCodePostal(), this.getVille()));
 		}
 		this.articlesAVendre.add(article);
+	}
+	
+	public void annulerVente(ArticleVendu article) {
+		if (article.getEnchereGagnante() != null) {
+			article.getEnchereGagnante().getEncherisseur().setCredit(article.getEnchereGagnante().getEncherisseur().getCredit()+article.getPrixVente());
+			this.articlesAVendre.remove(article);
+		}
 	}
 
 	public void faitUneEnchere(ArticleVendu article, int montant) {
