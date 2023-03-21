@@ -13,7 +13,7 @@ import fr.eni.mahm.projetencheres.bo.Utilisateur;
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	
 
-	private final String MYSQLLOGIN="select no_utilisateur, pseudo, nom, prenom, email, mot_de_passe, telephone, rue, code_postal, ville, credit from utilisateurs where email=? and mot_de_passe=?";
+	private final String MYSQLLOGIN="select no_utilisateur, pseudo, nom, prenom, email, mot_de_passe, telephone, rue, code_postal, ville, credit from utilisateurs where (email=? or pseudo=?) and mot_de_passe=? ";
 	private final String MYSQLDELETE="delete from utilisateurs where no_utilisateur=";
 	private final String MYSQLINSERT="insert into utilisateurs (pseudo,nom,prenom,email,telephone,rue,codePostal,ville,credit,administrateur)  values(?,?,?,?,?,?,?,?,?,?)";
 	private final String MYSQLUPDATE="update utilisateurs set nom=?,prenom=?,email=?,telephone=? where no_utilisateur=?";
@@ -29,13 +29,19 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
 	}
 	
 	//--------------------------------LOGIN---------------------------//
-	public Utilisateur login(String email,String pwd) 
+	public Utilisateur login(String login,String pwd) 
 	{
 		Utilisateur utilisateur=null;
 		try (Connection con = connectBDD.getConnection()) {
 			PreparedStatement pstmt = con.prepareStatement(MYSQLLOGIN);
-			pstmt.setString(1,email);
-			pstmt.setString(2,pwd);
+			if(login.contains("@")) {
+				pstmt.setString(1,login);
+				pstmt.setString(2, null);
+			}else {
+				pstmt.setString(1, null);
+				pstmt.setString(2, login);
+			}
+			pstmt.setString(3,pwd);
 			System.out.println(pstmt);
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next()) 

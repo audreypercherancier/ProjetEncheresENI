@@ -24,7 +24,7 @@ pageEncoding="UTF-8"%>
               <!-- Email input -->
               <div class="form-outline mb-4">
                 <input
-                  type="email"
+                  type="text"
                   id="form3Example3"
                   name="login"
                   class="form-control form-control-lg"
