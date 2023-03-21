@@ -26,7 +26,7 @@ public class adresseDAO {
 		try 
 		{
 			stmt=cnx.prepareStatement(MYSQLINSERT);
-			stmt.setInt(1, a.getId());
+			stmt.setInt(1, a.noUtilisateur());
 			stmt.setString(3, a.getRue());
 			stmt.setInt(4, a.getCodePostal());
 			stmt.setString(5, a.getVille());
