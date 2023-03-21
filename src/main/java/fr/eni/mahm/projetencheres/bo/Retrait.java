@@ -28,8 +28,23 @@ public class Retrait {
 		this.setCodePostal (codePostal);
 		this.ville = ville;
 	}
-//--------------------------SETTER ET GETTER-----------------------------------//
 	
+//--------------------------------------------SETTER ET GETTER-----------------------------------------------//
+	public int getNoRetrait() {
+		return noRetrait;
+	}
+
+	public void setNoRetrait(int noRetrait)  throws NoRetraitExeption {
+		if(noRetrait>0)
+		{
+		this.noRetrait = noRetrait;
+		}
+		else
+		{
+		throw new NoRetraitExeption("erreur sur le numero");
+		}
+	}
+
 	public String getRue() {
 		return rue;
 	}
