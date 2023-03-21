@@ -7,7 +7,7 @@ import fr.eni.mahm.projetencheres.exceptions.CodePostalException;
 import fr.eni.mahm.projetencheres.exceptions.NoRetraitExeption;
 
 /**
- * 
+ * Classe permettant la création d'un utilisateur
  * @author Audrey & Mathieu Perin
  * @version 1.2.0
  */
@@ -32,10 +32,32 @@ public class Utilisateur {
 	private List<ArticleVendu> articleAchete = new ArrayList<>(); // liste des articles acquéris par l'utilisateur
 	private List<Enchere> encheresEffectuees = new ArrayList<>();
 
-	// Constructeur surchargé sans id
-
-	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
+	//--------------------------CONSTRUCTOR ZONE----------------------------//
+	
+	
+	/**
+	 * Constructeur pour recuperation DATABASE
+	 * @param noUtilisateur
+	 * @param pseudo
+	 * @param nom
+	 * @param prenom
+	 * @param email
+	 * @param telephone
+	 * @param rue
+	 * @param codePostal
+	 * @param ville
+	 * @param motDePasse
+	 * @param credit
+	 * @param administrateur
+	 * @param articlesAVendre
+	 * @param articleAchete
+	 * @param encheresEffectuees
+	 */
+	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
+			String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur,
+			List<ArticleVendu> articlesAVendre, List<ArticleVendu> articleAchete, List<Enchere> encheresEffectuees) {
+		super();
+		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -47,12 +69,56 @@ public class Utilisateur {
 		this.motDePasse = motDePasse;
 		this.credit = credit;
 		this.administrateur = administrateur;
+		this.articlesAVendre = articlesAVendre;
+		this.articleAchete = articleAchete;
+		this.encheresEffectuees = encheresEffectuees;
 	}
-
-	// Constructeur surchargé sans id et sans admin
+	
+	/**
+	 *  Constructeur surchargé sans id
+	 * @param pseudo
+	 * @param nom
+	 * @param prenom
+	 * @param email
+	 * @param telephone
+	 * @param rue
+	 * @param codePostal
+	 * @param ville
+	 * @param motDePasse
+	 * @param administrateur
+	 */
 
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville, String motDePasse, int credit) {
+			String codePostal, String ville, String motDePasse, boolean administrateur) {
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.motDePasse = motDePasse;
+		this.credit = 0;
+		this.administrateur = administrateur;
+	}
+
+
+	/**
+	 *  Constructeur surchargé sans id et sans admin
+	 * @param pseudo
+	 * @param nom
+	 * @param prenom
+	 * @param email
+	 * @param telephone
+	 * @param rue
+	 * @param codePostal
+	 * @param ville
+	 * @param motDePasse
+	 */
+
+	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
+			String codePostal, String ville, String motDePasse) {
 		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -63,7 +129,7 @@ public class Utilisateur {
 		this.codePostal = codePostal;
 		this.ville = ville;
 		this.motDePasse = motDePasse;
-		this.credit = credit;
+		this.credit = 0;
 	}
 
 	public Utilisateur() {
@@ -81,8 +147,8 @@ public class Utilisateur {
 	public void annulerVente(ArticleVendu article) {
 		if (article.getEnchereGagnante() != null) {
 			article.getEnchereGagnante().getEncherisseur().setCredit(article.getEnchereGagnante().getEncherisseur().getCredit()+article.getPrixVente());
-			this.articlesAVendre.remove(article);
 		}
+		this.articlesAVendre.remove(article);
 	}
 
 	public void faitUneEnchere(ArticleVendu article, int montant) {
