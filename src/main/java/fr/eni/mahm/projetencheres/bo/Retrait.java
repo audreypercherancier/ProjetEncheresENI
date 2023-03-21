@@ -32,7 +32,8 @@ public class Retrait {
 		this.setCodePostal (codePostal);
 		this.ville = ville;
 	}
-//--------------------------SETTER ET GETTER-----------------------------------
+	
+//--------------------------------------------SETTER ET GETTER-----------------------------------------------//
 	public int getNoRetrait() {
 		return noRetrait;
 	}
