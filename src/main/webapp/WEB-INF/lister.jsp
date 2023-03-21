@@ -49,7 +49,7 @@
       <td>@mdo</td>
 	  <td>
       		<a class="btn btn-info" href="/ProjetEncheresENI/modifier" role="button">Modifier</a>
-   			<a class="btn btn-danger" href="/ProjetEncheresENI/suoprimer" role="button">Supprimer</a>
+   			<a class="btn btn-danger" href="/ProjetEncheresENI/supprimer" role="button">Supprimer</a>
 	  </td>
       
     </tr>
@@ -66,7 +66,7 @@
       <td>@mdo</td>
 	  <td>
       		<a class="btn btn-info" href="/ProjetEncheresENI/modifier" role="button">Modifier</a>
-   			<a class="btn btn-danger" href="/ProjetEncheresENI/suoprimer" role="button">Supprimer</a>
+   			<a class="btn btn-danger" href="/ProjetEncheresENI/supprimer" role="button">Supprimer</a>
 	  </td>
     </tr>
     <tr>
@@ -82,7 +82,7 @@
       <td>@mdo</td>
 	  <td>
       		<a class="btn btn-info" href="/ProjetEncheresENI/modifier" role="button">Modifier</a>
-   			<a class="btn btn-danger" href="/ProjetEncheresENI/suoprimer" role="button">Supprimer</a>
+   			<a class="btn btn-danger" href="/ProjetEncheresENI/supprimer" role="button">Supprimer</a>
 	  </td>
     </tr>
      <tr>
@@ -98,7 +98,7 @@
       <td>@mdo</td>
 	  <td>
       		<a class="btn btn-info" href="/ProjetEncheresENI/modifier" role="button">Modifier</a>
-   			<a class="btn btn-danger" href="/ProjetEncheresENI/suoprimer" role="button">Supprimer</a>
+   			<a class="btn btn-danger" href="/ProjetEncheresENI/supprimer" role="button">Supprimer</a>
 	  </td>
     </tr>
   </tbody>
@@ -112,7 +112,10 @@
 		<td>${u.prenom}</td>
 		<td>${u.email}</td>
 		<td>${u.adresse.ville}</td>
-	
+		<td>
+      		<a class="btn btn-info" href="/ProjetEncheresENI/modifier" role="button">Modifier</a>
+   			<a class="btn btn-danger" href="/ProjetEncheresENI/supprimer" role="button">Supprimer</a>
+	  </td>
 		</tr>
 	</c:forEach>
 
