@@ -9,7 +9,7 @@
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-	<%@ include file="/WEB-INF/html/entete.html" %>
+	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp" %>
 	<!-- Section: Design Block -->
 	<section class="background-radial-gradient overflow-hidden">
 		<div

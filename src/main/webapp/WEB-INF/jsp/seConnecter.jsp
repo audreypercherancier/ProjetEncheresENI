@@ -9,7 +9,7 @@ pageEncoding="UTF-8"%>
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
   </head>
   <body>
-    <%@ include file="/WEB-INF/html/entete.html" %>
+    <%@ include file="/WEB-INF/jsp/insertion/entete.jsp" %>
     <section class="vh-100">
       <div class="container-fluid h-custom">
         <div class="row d-flex justify-content-center align-items-center h-100">

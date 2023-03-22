@@ -8,7 +8,7 @@
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body style="background-color: #eee;">
-	<%@ include file="/WEB-INF/html/entete.html"%>
+	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
 
 	<section>
 		<div class="container py-5">

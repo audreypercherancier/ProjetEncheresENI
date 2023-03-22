@@ -11,7 +11,7 @@
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-	<%@ include file="/WEB-INF/html/entete.html" %>
+	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp" %>
 	<h1 class="text-center">Modification</h1>
 	<div class="card-body px-4 py-5 px-md-5">
 		<form method="POST" action="modifier"">
