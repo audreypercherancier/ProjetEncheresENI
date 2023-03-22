@@ -22,10 +22,10 @@
 								src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2.webp"
 								alt="avatar" class="rounded-circle img-fluid"
 								style="width: 150px;">
-							<h5 class="my-3">${userConnected.pseudo}</h5>
-							<p class="text-muted mb-1">${userConnected.nom}
-								${userConnected.prenom}</p>
-							<p class="text-muted mb-4">Mon Credit : ${userConnected.credit}</p>
+							<h5 class="my-3">${user.getPseudo()}</h5>
+							<p class="text-muted mb-1">${user.getNom()}
+								${user.getPrenom()}</p>
+							<p class="text-muted mb-4">Mon Credit : ${user.getCredit()}</p>
 							<div class="d-flex justify-content-center mb-2">
 								<a type="button" class="btn btn-secondary my-2 my-sm-0"
 									href="/ProjetEncheresENI/modifier" role="button">modifier</a>
@@ -41,7 +41,7 @@
 									<p class="mb-0">Pseudo :</p>
 								</div>
 								<div class="col-sm-9">
-									<p class="text-muted mb-0">${userConnected.pseudo}</p>
+									<p class="text-muted mb-0">${user.getPseudo()}</p>
 								</div>
 							</div>
 							<hr>
@@ -50,7 +50,7 @@
 									<p class="mb-0">nom :</p>
 								</div>
 								<div class="col-sm-9">
-									<p class="text-muted mb-0">${userConnected.nom}</p>
+									<p class="text-muted mb-0">${user.getNom()}</p>
 								</div>
 							</div>
 							<hr>
@@ -59,7 +59,7 @@
 									<p class="mb-0">Prénom :</p>
 								</div>
 								<div class="col-sm-9">
-									<p class="text-muted mb-0">${userConnected.prenom}</p>
+									<p class="text-muted mb-0">${user.getPrenom()}</p>
 								</div>
 							</div>
 							<hr>
@@ -68,7 +68,7 @@
 									<p class="mb-0">Email :</p>
 								</div>
 								<div class="col-sm-9">
-									<p class="text-muted mb-0">${userConnected.email}</p>
+									<p class="text-muted mb-0">${user.getEmail() }</p>
 								</div>
 							</div>
 							<hr>
@@ -77,7 +77,7 @@
 									<p class="mb-0">Téléphone :</p>
 								</div>
 								<div class="col-sm-9">
-									<p class="text-muted mb-0">${userConnected.telephone}</p>
+									<p class="text-muted mb-0">${user.getTelephone()}</p>
 								</div>
 							</div>
 							<hr>
@@ -86,7 +86,7 @@
 									<p class="mb-0">Rue :</p>
 								</div>
 								<div class="col-sm-9">
-									<p class="text-muted mb-0">${userConnected.rue}</p>
+									<p class="text-muted mb-0">${user.getRue()}</p>
 								</div>
 							</div>
 							<hr>
@@ -95,7 +95,7 @@
 									<p class="mb-0">Code postal :</p>
 								</div>
 								<div class="col-sm-9">
-									<p class="text-muted mb-0">${userConnected.codePostal}</p>
+									<p class="text-muted mb-0">${user.getCodePostal() }</p>
 								</div>
 							</div>
 							<hr>
@@ -104,7 +104,7 @@
 									<p class="mb-0">Ville :</p>
 								</div>
 								<div class="col-sm-9">
-									<p class="text-muted mb-0">${userConnected.ville}</p>
+									<p class="text-muted mb-0">${user.getVille() }</p>
 								</div>
 							</div>
 							<hr>
