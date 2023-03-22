@@ -52,7 +52,7 @@ public class InscriptionUtilisateur extends HttpServlet {
 		
 		userMgr.inscription(new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, mdp));
 		
-		response.sendRedirect("/ProjetEncheresENI/login");
+		response.sendRedirect("/ProjetEncheresENI/index.jsp");
 	}
 
 }
