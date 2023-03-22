@@ -25,7 +25,7 @@ public class Utilisateur {
 	private String codePostal;
 	private String ville;
 	private String motDePasse;
-	private int credit;
+	private int credit = 100;
 	private boolean administrateur = false;
 
 	// --------lien interclasses---------//
@@ -100,13 +100,12 @@ public class Utilisateur {
 		this.codePostal = codePostal;
 		this.ville = ville;
 		this.motDePasse = motDePasse;
-		this.credit = 0;
 		this.administrateur = administrateur;
 	}
 
 
 	/**
-	 *  Constructeur surchargé sans id et sans admin
+	 *  Constructeur surchargé sans id et sans admin pour inscription
 	 * @param pseudo
 	 * @param nom
 	 * @param prenom
@@ -129,7 +128,6 @@ public class Utilisateur {
 		this.codePostal = codePostal;
 		this.ville = ville;
 		this.motDePasse = motDePasse;
-		this.credit = 0;
 	}
 	
 	
