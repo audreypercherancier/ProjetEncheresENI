@@ -18,41 +18,19 @@
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2.webp" alt="avatar"
               class="rounded-circle img-fluid" style="width: 150px;">
-            <h5 class="my-3">John Smith</h5>
-            <p class="text-muted mb-1">Full Stack Developer</p>
-            <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+            <h5 class="my-3">${user.getPseudo()}</h5>
+            <p class="text-muted mb-1">${user.getNom()} ${user.getPrenom()} </p>
+            <p class="text-muted mb-4"> Mon Credit : ${user.getCredit()}</p>
             <div class="d-flex justify-content-center mb-2">
-              <button type="button" class="btn btn-primary">Follow</button>
-              <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+              <a type="button" 
+			        class="btn btn-secondary my-2 my-sm-0"
+			        href="/ProjetEncheresENI/modifier"
+			        role="button"
+        
+        		>modifier</a>
             </div>
-          </div>
-        </div>
-        <div class="card mb-4 mb-lg-0">
-          <div class="card-body p-0">
-            <ul class="list-group list-group-flush rounded-3">
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fas fa-globe fa-lg text-warning"></i>
-                <p class="mb-0">https://mdbootstrap.com</p>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                <p class="mb-0">mdbootstrap</p>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                <p class="mb-0">@mdbootstrap</p>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                <p class="mb-0">mdbootstrap</p>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                <p class="mb-0">mdbootstrap</p>
-              </li>
-            </ul>
           </div>
         </div>
       </div>
@@ -61,87 +39,99 @@
           <div class="card-body">
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Full Name</p>
+                <p class="mb-0">Pseudo :</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">Johnatan Smith</p>
+                <p class="text-muted mb-0">${user.getPseudo()}</p>
               </div>
             </div>
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Email</p>
+                <p class="mb-0">nom :</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">example@example.com</p>
+                <p class="text-muted mb-0"> ${user.getNom()}</p>
               </div>
             </div>
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Phone</p>
+                <p class="mb-0">Prénom :</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">(097) 234-5678</p>
+                <p class="text-muted mb-0"> ${user.getPrenom()}</p>
               </div>
             </div>
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Mobile</p>
+                <p class="mb-0">Email :</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">(098) 765-4321</p>
+                <p class="text-muted mb-0">${user.getEmail() }</p>
               </div>
             </div>
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Address</p>
+                <p class="mb-0">Téléphone :</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                <p class="text-muted mb-0"> ${user.getTelephone()}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Rue :</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"> ${user.getRue()}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Code postal :</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"> ${user.getCodePostal() }</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Ville :</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">  ${user.getVille() }</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Nombres d'article achetés :</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0"></p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">Nombres d'article vendues :</p>
               </div>
             </div>
           </div>
         </div>
-        <div class="row">
-        
-          </div>
-        </div>
+       </div>
       </div>
-    </div>
-  </div>
+   </div>
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-	<p>Pseudo : ${user.getPseudo()}</p>
-	<p>nom : ${user.getNom()}</p>
-	<p>Prénom : ${user.getPrenom()}</p>
-	<p>Email : ${user.getEmail() }</p>
-	<p>Téléphone : ${user.getTelephone()}</p>
-	<p>Rue : ${user.getRue()}</p>
-	<p>Code postal : ${user.getCodePostal() }</p>
-	<p>Ville : ${user.getVille() }</p>
-	<p>Mon credit : ${user.getCredit()}</p>
-	<button type="button"name="action" value="modifier">modifier</button>
-	<a
-        class="btn btn-secondary my-2 my-sm-0"
-        href="/ProjetEncheresENI/modifier"
-        role="button"
-        
-        >modifier</a
-      >
 <%@ include file="/WEB-INF/html/piedDePage.html"%>
 </body>
 </html>
