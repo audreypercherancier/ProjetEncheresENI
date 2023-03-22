@@ -20,7 +20,7 @@
 				<div class="col-md-6 mb-4">
 					<div class="form-outline">
 						<input type="text" name="nom" id="form3Example1"
-							class="form-control"value="${user.getPseudo()}" placeholder="${user.getPseudo()}"/> <label class="form-label"
+							class="form-control"value="${user.getNom()}" placeholder="${user.getNom()}"/> <label class="form-label"
 							for="form3Example1">Nom</label>
 					</div>
 				</div>
