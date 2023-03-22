@@ -78,6 +78,7 @@ public class Login extends HttpServlet {
 		}
 		else
 		{
+			request.setAttribute("alert alert-danger", "Identifiant et / ou mot de passe incorrect(s)");
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/seConnecter.jsp");
 			rd.forward(request, response);
 		}
