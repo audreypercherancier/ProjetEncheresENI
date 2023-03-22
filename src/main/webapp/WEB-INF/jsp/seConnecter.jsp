@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -20,6 +21,9 @@ pageEncoding="UTF-8"%>
             />
           </div>
           <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+          <c:if test="${!empty erreur}">
+          	<p class="text-danger">${erreur}</p>
+          </c:if>
             <form action="login" method="post">
               <!-- Email input -->
               <div class="form-outline mb-4">
