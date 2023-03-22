@@ -37,6 +37,7 @@ public class InscriptionUtilisateur extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+		request.setCharacterEncoding("UTF-8");
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
 		String pseudo = request.getParameter("pseudo");
@@ -51,7 +52,7 @@ public class InscriptionUtilisateur extends HttpServlet {
 		
 		userMgr.inscription(new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, mdp));
 		
-		response.sendRedirect("/ProjetEncheresENI/login");
+		response.sendRedirect("/ProjetEncheresENI/index.jsp");
 	}
 
 }
