@@ -87,6 +87,3 @@
 	</nav>
 
 </c:if>
-</div>
-</div>
-</nav>
