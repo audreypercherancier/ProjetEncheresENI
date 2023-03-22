@@ -64,10 +64,17 @@
 							<p>Mon crédit : ${userConnected.credit}</p>
 						</li>
 						<li class="nav-item">
-							<ul>		
-							<c:forEach items="${userConnected.getEncheresEffectuees()}">
-								${Enchere}
-							</c:forEach>
+							<ul>
+								<c:forEach items="${userConnected.getEncheresEffectuees()}">
+									${Enchere}
+								</c:forEach>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<ul>
+								<c:forEach items="${userConnected.getArticlesAVendre()}">
+									${Article.getNom()}
+								</c:forEach>
 							</ul>
 						</li>
 					</ul>
