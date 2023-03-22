@@ -1,5 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- zone non connectï¿½ -->
+<!-- zone non connecté -->
 <c:if test="${empty userConnected}">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
@@ -49,7 +49,7 @@
   </nav>
 </c:if>
 
-<!-- zone connectï¿½  -->
+<!-- zone connecté  -->
 <c:if test="${!empty userConnected}">
   <nav class="navbar navbar-dark bg-primary">
     <div class="container-fluid">
@@ -100,7 +100,7 @@
               >
             </li>
             <li class="nav-item">
-              <p>Mon crï¿½dit : ${userConnected.credit}</p>
+              <p>Mon crédit : ${userConnected.credit}</p>
             </li>
             <li class="nav-item">
               <ul>
@@ -118,7 +118,7 @@
             </li>
           </ul>
           <form action="logout" method="get" class="d-flex mt-3">
-            <button class="btn btn-danger" type="submit">Dï¿½connexion</button>
+            <button class="btn btn-danger" type="submit">Déconnexion</button>
           </form>
         </div>
       </div>
