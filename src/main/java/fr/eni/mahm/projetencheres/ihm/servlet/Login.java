@@ -41,7 +41,8 @@ public class Login extends HttpServlet {
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/monCompte.jsp");
 				rd.forward(request, response);
 			}else {
-				response.sendRedirect("/ProjetEncheresENI/index.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/seConnecter.jsp");
+				rd.forward(request, response);
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
