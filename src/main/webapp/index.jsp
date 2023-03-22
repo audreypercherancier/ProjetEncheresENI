@@ -7,15 +7,14 @@
 <meta charset="UTF-8" />
 <title>Page de connexion</title>
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  
 </head>
 <body>
 	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
-	  Pseudo : ${userConnected.prenom}
-	  jfgbufdg : 
 	<div class="container">
 		<div class="col-8 offset-2">
 			<div class="row justify-content-evenly">
-				<!-- commencer la boucle <c:foreach> ici -->
+				<!-- commencer la boucle c:foreach ici -->
 				<div class="card text-center col-5 my-3 p-0 shadow">
 					<a href="#" class="card-header text-decoration-none">Nom
 						vendeur</a> <img
@@ -58,15 +57,11 @@
 					</div>
 					<div class="card-footer text-muted">temps restant enchere</div>
 				</div>
-				<!-- terminer boucle <c:foreach> ici -->
+				<!-- terminer boucle /c:foreach> ici -->
 			</div>
 		</div>
 	</div>
 	<%@ include file="/WEB-INF/html/piedDePage.html"%>
 </body>
-
-  
-  
- 
 
 </html>

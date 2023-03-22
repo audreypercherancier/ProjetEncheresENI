@@ -97,4 +97,12 @@ public class Enchere {
 		return encherisseur;
 	}
 
+	@Override
+	public String toString() {
+		return "le :" + dateEnchere +  "pour" + article.getNomArticle()+" : " + montantEnchere + "crédit";
+	}
+	
+	//------------------to string-----------------//
+	
+
 }

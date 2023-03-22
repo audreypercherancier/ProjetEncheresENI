@@ -382,8 +382,16 @@ public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, 
 		return motDePasse;
 	}
 	
+	/**
+	 * @return the encheresEffectuees
+	 */
+	public List<Enchere> getEncheresEffectuees() {
+		return encheresEffectuees;
+	}
+	
 
 	// --------------------------------------------------------------------------------------------------------------//
+
 
 
 	@Override
