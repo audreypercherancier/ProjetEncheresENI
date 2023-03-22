@@ -29,5 +29,10 @@ public class UtilisateurManager {
 	public void modifier(Utilisateur c) {
 		userDAO.update(c);
 	}
+	public void inscription(Utilisateur nouvelUtilisateur) {
+		userDAO.insert(nouvelUtilisateur);
+		
+	}
+	
 
 }

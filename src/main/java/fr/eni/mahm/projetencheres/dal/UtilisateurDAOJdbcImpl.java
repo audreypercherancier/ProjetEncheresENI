@@ -9,291 +9,254 @@ import java.util.ArrayList;
 import java.util.List;
 import fr.eni.mahm.projetencheres.bo.Utilisateur;
 
+public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
-public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{
-	
+	private final String MYSQLLOGIN = "select no_utilisateur, pseudo, nom, prenom, email, mot_de_passe, telephone, rue, code_postal, ville, credit from utilisateurs where (email=? or pseudo=?) and mot_de_passe=? ";
+	private final String MYSQLDELETE = "delete from utilisateurs where no_utilisateur=";
+	private final String MYSQLINSERT = "insert into utilisateurs (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur)  values(?,?,?,?,?,?,?,?,?,?,?)";
+	private final String MYSQLUPDATE = "update utilisateurs set nom=?,prenom=?,email=?,telephone=? where no_utilisateur=?";
+	private final String MYSQLSELECTALL = "select pseudo,nom,prenom,email,telephone,rue,code_postal,ville,credit from utilisateurs";
+	private final String MYSQLSELECTBYID = "select pseudo,nom,prenom,email,mot_de_passe,telephone,rue,code_postal,ville,credit from utilisateurs where no_utilisateur=?";
+	private final String MYSQLSELECTBYIDPUBLIC = "select pseudo,nom,prenom,email,telephone,rue,code_postal,ville from utilisateurs where no_utilisateur=?";
 
-	private final String MYSQLLOGIN="select no_utilisateur, pseudo, nom, prenom, email, mot_de_passe, telephone, rue, code_postal, ville, credit from utilisateurs where (email=? or pseudo=?) and mot_de_passe=? ";
-	private final String MYSQLDELETE="delete from utilisateurs where no_utilisateur=";
-	private final String MYSQLINSERT="insert into utilisateurs (pseudo,nom,prenom,email,telephone,rue,codePostal,ville,credit,administrateur)  values(?,?,?,?,?,?,?,?,?,?)";
-	private final String MYSQLUPDATE="update utilisateurs set nom=?,prenom=?,email=?,telephone=? where no_utilisateur=?";
-	private final String MYSQLSELECTALL="select pseudo,nom,prenom,email,telephone,rue,codePostal,ville,credit from utilisateurs";
-	private final String MYSQLSELECTBYID="select pseudo,nom,prenom,email,password,telephone,rue,codePostal,ville,credit from utilisateurs where no_utilisateur=?";
-	private final String MYSQLSELECTBYIDPUBLIC="select pseudo,nom,prenom,email,telephone,rue,codePostal,ville from utilisateurs where no_utilisateur=?";
+	// --------------------------------------------Constructeur par
+	// défault-------------------------------------------------------------------//
 
-	
-	//--------------------------------------------Constructeur par défault-------------------------------------------------------------------//
-	
 	public UtilisateurDAOJdbcImpl() {
 		super();
 	}
-	
-	//--------------------------------LOGIN---------------------------//
-	public Utilisateur login(String login,String pwd) 
-	{
-		Utilisateur utilisateur=null;
+
+	// --------------------------------LOGIN---------------------------//
+	public Utilisateur login(String login, String pwd) {
+		Utilisateur utilisateur = null;
 		try (Connection con = connectBDD.getConnection()) {
 			PreparedStatement pstmt = con.prepareStatement(MYSQLLOGIN);
-			if(login.contains("@")) {
-				pstmt.setString(1,login);
+			if (login.contains("@")) {
+				pstmt.setString(1, login);
 				pstmt.setString(2, null);
-			}else {
+			} else {
 				pstmt.setString(1, null);
 				pstmt.setString(2, login);
 			}
-			pstmt.setString(3,pwd);
+			pstmt.setString(3, pwd);
 			System.out.println(pstmt);
 			ResultSet rs = pstmt.executeQuery();
-			if(rs.next()) 
-			{
-				 utilisateur = rsToUtilisateur(rs); 
+			if (rs.next()) {
+				utilisateur = rsToUtilisateur(rs);
 			}
 			con.close();
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
-		} 
+		}
 		return utilisateur;
 	}
-	
 
-	//--------------------------------DELET---------------------------//
-	public void delete(int noUtilisateur)
-	{
+	// --------------------------------DELET---------------------------//
+	public void delete(int noUtilisateur) {
 		Connection cnx;
 		Statement stmt;
-		cnx=connectBDD.getConnection();
-		try 
-		{
+		cnx = connectBDD.getConnection();
+		try {
 			cnx.setAutoCommit(false);
-			stmt=cnx.createStatement(); 
-			stmt.executeUpdate(MYSQLDELETE +noUtilisateur);
-			
+			stmt = cnx.createStatement();
+			stmt.executeUpdate(MYSQLDELETE + noUtilisateur);
+
 			cnx.commit();
 			cnx.close();
-		} 
-		catch (SQLException e) 
-		{
-			try 
-			{
-				cnx.rollback();
-				cnx.close();
-			}
-			catch (SQLException e1) 
-			{
-				e1.printStackTrace();
-			}
-				e.printStackTrace();
-		}
-	}	
-	//------------------------INSERT-------------------------------//
-	
-		public void insert(Utilisateur u)
-		{
-			Connection cnx=null;
-			PreparedStatement stmt;
-			cnx=connectBDD.getConnection();
-			
-			try 
-			{
-				cnx.setAutoCommit(false);
-				stmt=cnx.prepareStatement(MYSQLINSERT, PreparedStatement.RETURN_GENERATED_KEYS);
-				stmt.setString(1, u.getPseudo ());
-				stmt.setString(2, u.getNom());
-				stmt.setString(3, u.getPrenom());
-				stmt.setString(4, u.getEmail());
-				stmt.setString(5, u.getTelephone());
-				stmt.setString(6, u.getRue());
-				stmt.setString(7, u.getCodePostal());
-				stmt.setString(8, u.getVille());
-				stmt.setInt(9, u.getCredit());
-				stmt.setBoolean(10, u.isAdministrateur());
-				//stmt.setString(4, u.getPassword());
-				stmt.executeUpdate();
-				ResultSet rs;
-				rs=stmt.getGeneratedKeys();
-				rs.next();
-				
-				cnx.commit();
-				
-				cnx.close();
-			} 
-			catch (SQLException e) 
-			{
-				e.printStackTrace();
-				try 
-				{
-					cnx.rollback();
-					cnx.close();
-				}
-				catch (SQLException e1) 
-				{
-					e1.printStackTrace();
-				}
-					e.printStackTrace();
-			}
-			}
-		//------------------------UPDATE-------------------------------//
-		public void update(Utilisateur u)
-		{
-			Connection cnx;
-			PreparedStatement stmt;
-			cnx=connectBDD.getConnection();
-			try 
-			{
-				cnx.setAutoCommit(false);
-				stmt=cnx.prepareStatement(MYSQLUPDATE);
-				stmt.setString(1, u.getPseudo ());
-				stmt.setString(2, u.getNom());
-				stmt.setString(3, u.getPrenom());
-				stmt.setString(4, u.getEmail());
-				stmt.setString(5, u.getTelephone());
-				stmt.setString(6, u.getRue());
-				stmt.setString(7, u.getCodePostal());
-				stmt.setString(8, u.getVille());
-				stmt.executeUpdate();
-				cnx.commit();
-				cnx.close();
-			} 
-			catch (SQLException e) 
-			{
-				try 
-				{
-					cnx.rollback();
-					cnx.close();
-				}
-				catch (SQLException e1) 
-				{
-					e1.printStackTrace();
-				}
-					e.printStackTrace();
-			}
-			
-		}
-		//------------------------SELECTALL-------------------------------//
-		public List<Utilisateur> selectAll()
-		{
-			Connection cnx;
-			Statement stmt;
-			ResultSet rs;
-			ArrayList<Utilisateur> lst=null;
-			cnx=connectBDD.getConnection();
-			
-			try 
-			{
-				cnx.setAutoCommit(false);
-				stmt=cnx.createStatement();
-				rs=stmt.executeQuery(MYSQLSELECTALL);
-				lst=new ArrayList<>();
-				Utilisateur u =null; 
-				while(rs.next())
-				{
-					lst.add(u = new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("codePostal"), rs.getString("ville")));
-
-				}
-				cnx.commit();
-				cnx.close();		
-			}
-			catch(Exception e)
-			{
-				try 
-				{
-					cnx.rollback();
-					cnx.close();
-				}
-				catch (SQLException e1) 
-				{
-					e1.printStackTrace();
-				}
-					e.printStackTrace();
-			
-			}
-			return lst;
-		}
-		//------------------------SELECTBYID-------------------------------//
-		public Utilisateur selectById(int noUtilisateur)
-		{
-			Connection cnx;
-			PreparedStatement stmt;
-			ResultSet rs;
-			cnx=connectBDD.getConnection();
-			Utilisateur u=null; 
-			try 
-			{
-				cnx.setAutoCommit(false);
-				stmt=cnx.prepareStatement(MYSQLSELECTBYID);
-				stmt.setInt(1, noUtilisateur);
-				rs=stmt.executeQuery();
-				u = new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("codePostal"), rs.getString("ville"), rs.getInt("credit"));
-				cnx.commit();
-				cnx.close();		
-			}
-			catch(Exception e)
-			{
-				try 
-			{
-				cnx.rollback();
-				cnx.close();
-			}
-			catch (SQLException e1) 
-			{
-				e1.printStackTrace();
-			
-		}
-			}
-			return u;
-		}
-		
-		
-		
-		public Utilisateur selectByIdPublic(int noUtilisateur)
-		{
-			Connection cnx;
-			PreparedStatement stmt;
-			ResultSet rs;
-			cnx=connectBDD.getConnection();
-			Utilisateur u=null; 
-
-			try 
-			{
-				cnx.setAutoCommit(false);
-				stmt=cnx.prepareStatement(MYSQLSELECTBYIDPUBLIC);
-				stmt.setInt(1, noUtilisateur);
-				rs=stmt.executeQuery();
-				u= new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("codePostal"), rs.getString("ville"));
-		cnx.commit();
-		cnx.close();		
-		}
-			catch(Exception e)
-			{
-			try 
-			{
-				cnx.rollback();
-				cnx.close();
-			}
-			catch (SQLException e1) 
-			{
-				e1.printStackTrace();
-			}
-				e.printStackTrace();
-		
-			}
-
-			return u;
-}
-		private Utilisateur rsToUtilisateur(ResultSet rs)
-		{
-			Utilisateur u=null;
+		} catch (SQLException e) {
 			try {
+				cnx.rollback();
+				cnx.close();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+	}
+	// ------------------------INSERT-------------------------------//
+
+	public void insert(Utilisateur u) {
+		Connection cnx = connectBDD.getConnection();
+
+		try {
+			PreparedStatement pstmt;
+			cnx.setAutoCommit(false);
+			pstmt = cnx.prepareStatement(MYSQLINSERT);
+			pstmt.setString(1, u.getPseudo());
+			pstmt.setString(2, u.getNom());
+			pstmt.setString(3, u.getPrenom());
+			pstmt.setString(4, u.getEmail());
+			pstmt.setString(5, u.getTelephone());
+			pstmt.setString(6, u.getRue());
+			pstmt.setString(7, u.getCodePostal());
+			pstmt.setString(8, u.getVille());
+			pstmt.setString(9, u.getMotDePasse());
+			pstmt.setInt(10, u.getCredit());
+			pstmt.setBoolean(11, u.isAdministrateur());
+			pstmt.executeUpdate();
+			cnx.commit();
 			
-					u=new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"),rs.getString("nom"),rs.getString("prenom"),rs.getString("email"),rs.getString("mot_de_passe"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"), rs.getInt("credit"));
+			PreparedStatement stmt = cnx.prepareStatement("select no_utilisateur from utilisateurs where pseudo=?");
+			stmt.setString(1, u.getPseudo());
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				u.setNoUtilisateur(rs.getInt("no_utilisateur"));
 			}
-			catch (SQLException e) 
-			{
-				e.printStackTrace();
+
+
+			cnx.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			try {
+				cnx.rollback();
+				cnx.close();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
 			}
-			return u;
+			e.printStackTrace();
+		}
+	}
+
+	// ------------------------UPDATE-------------------------------//
+	public void update(Utilisateur u) {
+		Connection cnx;
+		PreparedStatement stmt;
+		cnx = connectBDD.getConnection();
+		try {
+			cnx.setAutoCommit(false);
+			stmt = cnx.prepareStatement(MYSQLUPDATE);
+			stmt.setString(1, u.getPseudo());
+			stmt.setString(2, u.getNom());
+			stmt.setString(3, u.getPrenom());
+			stmt.setString(4, u.getEmail());
+			stmt.setString(5, u.getTelephone());
+			stmt.setString(6, u.getRue());
+			stmt.setString(7, u.getCodePostal());
+			stmt.setString(8, u.getVille());
+			stmt.executeUpdate();
+			cnx.commit();
+			cnx.close();
+		} catch (SQLException e) {
+			try {
+				cnx.rollback();
+				cnx.close();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
 		}
 
+	}
+
+	// ------------------------SELECTALL-------------------------------//
+	public List<Utilisateur> selectAll() {
+		Connection cnx;
+		Statement stmt;
+		ResultSet rs;
+		ArrayList<Utilisateur> lst = null;
+		cnx = connectBDD.getConnection();
+
+		try {
+			cnx.setAutoCommit(false);
+			stmt = cnx.createStatement();
+			rs = stmt.executeQuery(MYSQLSELECTALL);
+			lst = new ArrayList<>();
+			Utilisateur u = null;
+			while (rs.next()) {
+				lst.add(u = new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
+						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"),
+						rs.getString("codePostal"), rs.getString("ville")));
+
+			}
+			cnx.commit();
+			cnx.close();
+		} catch (Exception e) {
+			try {
+				cnx.rollback();
+				cnx.close();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+
+		}
+		return lst;
+	}
+
+	// ------------------------SELECTBYID-------------------------------//
+	public Utilisateur selectById(int noUtilisateur) {
+		Connection cnx;
+		PreparedStatement stmt;
+		ResultSet rs;
+		cnx = connectBDD.getConnection();
+		Utilisateur u = null;
+		try {
+			cnx.setAutoCommit(false);
+			stmt = cnx.prepareStatement(MYSQLSELECTBYID);
+			stmt.setInt(1, noUtilisateur);
+			rs = stmt.executeQuery();
+			u = new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
+					rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("codePostal"),
+					rs.getString("ville"), rs.getInt("credit"));
+			cnx.commit();
+			cnx.close();
+		} catch (Exception e) {
+			try {
+				cnx.rollback();
+				cnx.close();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+
+			}
+		}
+		return u;
+	}
+
+	public Utilisateur selectByIdPublic(int noUtilisateur) {
+		Connection cnx;
+		PreparedStatement stmt;
+		ResultSet rs;
+		cnx = connectBDD.getConnection();
+		Utilisateur u = null;
+
+		try {
+			cnx.setAutoCommit(false);
+			stmt = cnx.prepareStatement(MYSQLSELECTBYIDPUBLIC);
+			stmt.setInt(1, noUtilisateur);
+			rs = stmt.executeQuery();
+			u = new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
+					rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("codePostal"),
+					rs.getString("ville"));
+			cnx.commit();
+			cnx.close();
+		} catch (Exception e) {
+			try {
+				cnx.rollback();
+				cnx.close();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+
+		}
+
+		return u;
+	}
+
+	private Utilisateur rsToUtilisateur(ResultSet rs) {
+		Utilisateur u = null;
+		try {
+
+			u = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"), rs.getString("nom"),
+					rs.getString("prenom"), rs.getString("email"), rs.getString("mot_de_passe"),
+					rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"),
+					rs.getInt("credit"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return u;
+	}
+
 }
-		

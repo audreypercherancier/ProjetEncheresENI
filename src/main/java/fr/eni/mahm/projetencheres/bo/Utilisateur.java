@@ -120,7 +120,6 @@ public class Utilisateur {
 
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String codePostal, String ville, String motDePasse) {
-		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.setPrenom(prenom);
@@ -377,8 +376,17 @@ public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, 
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
+	
+	/**
+	 * @return the motDePasse
+	 */
+	public String getMotDePasse() {
+		return motDePasse;
+	}
+	
 
 	// --------------------------------------------------------------------------------------------------------------//
+
 
 	@Override
 	public String toString() {
