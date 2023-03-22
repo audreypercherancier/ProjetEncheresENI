@@ -11,15 +11,7 @@
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<a class="navbar-brand" href="index.jsp">ProjetEnchereEni</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-			data-bs-target="#navbarColor01" aria-controls="navbarColor01"
-			aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-	</nav>
+	<%@ include file="/WEB-INF/html/entete.html" %>
 	<h1 class="text-center">Modification</h1>
 	<div class="card-body px-4 py-5 px-md-5">
 		<form method="POST" action="modifier"">

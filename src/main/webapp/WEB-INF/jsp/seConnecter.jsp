@@ -69,6 +69,12 @@ pageEncoding="UTF-8"%>
                 >
                   Login
                 </button>
+                <a
+        class="btn btn-warning my-2 my-sm-0"
+        href="/ProjetEncheresENI/login"
+        role="button"
+        >annuler</a
+      >
               </div>
             </form>
           </div>
