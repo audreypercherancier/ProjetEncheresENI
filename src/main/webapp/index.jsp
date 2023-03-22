@@ -20,7 +20,7 @@ pageEncoding="UTF-8"%>
             />
           </div>
           <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-            <form action="login" method="get">
+            <form action="login" method="post">
               <!-- Email input -->
               <div class="form-outline mb-4">
                 <input

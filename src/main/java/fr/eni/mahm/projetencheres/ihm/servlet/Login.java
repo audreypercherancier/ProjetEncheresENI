@@ -28,6 +28,30 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String login = (String) request.getAttribute("login");
+		String password = (String) request.getAttribute("password");
+		UtilisateurManager userMgr = new UtilisateurManager();
+		
+		try {
+			Utilisateur user =  userMgr.connexion(login, password);
+
+			if(user != null) {
+				request.setAttribute("user", user);
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/monCompte.jsp");
+				rd.forward(request, response);
+			}else {
+				response.sendRedirect("/ProjetEncheresENI/index.jsp");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
 		UtilisateurManager userMgr = new UtilisateurManager();
@@ -40,19 +64,11 @@ public class Login extends HttpServlet {
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/monCompte.jsp");
 				rd.forward(request, response);
 			}else {
-				doGet(request, response);
+				response.sendRedirect("/ProjetEncheresENI/index.jsp");
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-	{
-		doGet(request, response);
 	}
 
 }

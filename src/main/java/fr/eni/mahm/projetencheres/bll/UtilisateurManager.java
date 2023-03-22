@@ -26,6 +26,10 @@ public class UtilisateurManager {
 		return userConnected;
 	}
 	
+	public void inscription(Utilisateur nouvelUtilisateur) {
+		userDAO.insert(nouvelUtilisateur);
+		
+	}
 	
 
 }
