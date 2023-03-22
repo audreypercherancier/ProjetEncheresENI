@@ -11,6 +11,7 @@
 <body>
 	<%@ include file="/WEB-INF/html/entete.html"%>
 	  Pseudo : ${userConnected.prenom}
+	  jfgbufdg : 
 	<div class="container">
 		<div class="col-8 offset-2">
 			<div class="row justify-content-evenly">
