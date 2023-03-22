@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8" />
 <title>Page de connexion</title>
@@ -9,6 +10,7 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/html/entete.html"%>
+	  Pseudo : ${userConnected.prenom}
 	<div class="container">
 		<div class="col-8 offset-2">
 			<div class="row justify-content-evenly">
@@ -61,4 +63,9 @@
 	</div>
 	<%@ include file="/WEB-INF/html/piedDePage.html"%>
 </body>
+
+  
+  
+ 
+
 </html>

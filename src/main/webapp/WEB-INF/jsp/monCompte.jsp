@@ -13,7 +13,7 @@
 	<section>
 		<div class="container py-5">
 
-
+ Pseudo : ${userConnected.prenom}
 			<div class="row">
 				<div class="col-lg-4">
 					<div class="card mb-4">
