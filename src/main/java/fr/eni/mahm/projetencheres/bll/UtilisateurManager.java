@@ -26,6 +26,8 @@ public class UtilisateurManager {
 		return userConnected;
 	}
 	
-	
+	public void modifier(Utilisateur c) {
+		userDAO.update(c);
+	}
 
 }

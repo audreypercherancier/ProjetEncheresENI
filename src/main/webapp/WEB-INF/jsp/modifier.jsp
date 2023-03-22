@@ -28,7 +28,7 @@
 				<div class="col-md-6 mb-4">
 					<div class="form-outline">
 						<input type="text" name="nom" id="form3Example1"
-							class="form-control" /> <label class="form-label"
+							class="form-control"value="${user.getPseudo()}" placeholder="${user.getPseudo()}"/> <label class="form-label"
 							for="form3Example1">Nom</label>
 					</div>
 				</div>
@@ -85,6 +85,7 @@
 							for="form3Example8">Code Postal</label>
 					</div>
 				</div>
+				
 				<div class="col-md-6 mb-4">
 					<div class="form-outline">
 						<input type="text" name="ville" id="form3Example9"
@@ -93,11 +94,14 @@
 					</div>
 				</div>
 			</div>
+			<input type="hidden" name="id" value="${user.id}">
 			<!-- Submit button -->
 			<button type="submit" class="btn btn-primary btn-block mb-4">
 				Modifier</button>
+			<button type="button" class="btn btn-warning btn-block mb-4">Supprimer</button>
 		</form>
 	</div>
+	nom:<input type="text" name="nom" value="${user.nom}">
 	<%-- Logique
       <input type="hidden" name="id" value="${user.id}">
 nom:<input type="text" name="nom" value="${user.nom}"><br/>

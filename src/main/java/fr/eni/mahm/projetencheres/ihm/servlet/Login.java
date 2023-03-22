@@ -1,7 +1,8 @@
 package fr.eni.mahm.projetencheres.ihm.servlet;
 
 import java.io.IOException;
-import java.util.List;
+
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -40,7 +41,8 @@ public class Login extends HttpServlet {
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/monCompte.jsp");
 				rd.forward(request, response);
 			}else {
-				doGet(request, response);
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/seConnecter.jsp");
+				rd.forward(request, response);
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
