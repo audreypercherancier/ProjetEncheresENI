@@ -20,7 +20,7 @@ pageEncoding="UTF-8"%>
             />
           </div>
           <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-            <form action="login" method="post">
+            <form action="login" method="get">
               <!-- Email input -->
               <div class="form-outline mb-4">
                 <input
@@ -28,11 +28,9 @@ pageEncoding="UTF-8"%>
                   id="form3Example3"
                   name="login"
                   class="form-control form-control-lg"
-                  placeholder="Entrez un Email Valide"
+                  placeholder="Pseudo / Adresse email"
                 />
-                <label class="form-label" for="form3Example3"
-                  >Adresse email</label
-                >
+                
               </div>
 
               <!-- Password input -->
@@ -42,11 +40,9 @@ pageEncoding="UTF-8"%>
                   id="form3Example4"
                   name="password"
                   class="form-control form-control-lg"
-                  placeholder="Entrer un mot de passe"
+                  placeholder="Entrer votre mot de passe"
                 />
-                <label class="form-label" for="form3Example4"
-                  >Mot de Passe</label
-                >
+                
               </div>
 
               <div class="d-flex justify-content-between align-items-center">

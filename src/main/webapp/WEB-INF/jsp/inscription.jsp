@@ -43,14 +43,14 @@
 									<div class="col-md-6 mb-4">
 										<div class="form-outline">
 											<input type="text" name="nom" id="form3Example1"
-												class="form-control" /> <label
+												class="form-control" required/> <label
 												class="form-label" for="form3Example1">Nom</label>
 										</div>
 									</div>
 									<div class="col-md-6 mb-4">
 										<div class="form-outline">
 											<input type="text" name="prenom" id="form3Example2"
-												class="form-control" /> <label
+												class="form-control" required/> <label
 												class="form-label" for="form3Example2">Prenom</label>
 										</div>
 									</div>
@@ -59,13 +59,13 @@
 									<div class="col-md-6 mb-4">
 										<div class="form-outline">
 											<input type="text" name="pseudo" id="form3Example3"
-												class="form-control" /> <label
+												class="form-control" required/> <label
 												class="form-label" for="form3Example3">Pseudo</label>
 										</div>
 									</div>
 									<div class="col-md-6 mb-4">
 										<div class="form-outline">
-											<input type="number" name="numero" id="form3Example4"
+											<input type="number" name="telephone" id="form3Example4"
 												class="form-control" /> <label
 												class="form-label" for="form3Example4">Telephone</label>
 										</div>
@@ -75,7 +75,7 @@
 								<!-- Email input -->
 								<div class="form-outline mb-4">
 									<input type="email" name="email" id="form3Example5"
-										class="form-control" /> <label
+										class="form-control" required/> <label
 										class="form-label" for="form3Example5">Adresse
 										Email</label>
 								</div>
@@ -83,7 +83,7 @@
 								<!-- Password input -->
 								<div class="form-outline mb-4">
 									<input type="password" name="motDePasse" id="form3Example6"
-										class="form-control" /> <label
+										class="form-control" required/> <label
 										class="form-label" for="form3Example6">Mot
 										de passe</label>
 								</div>
@@ -91,14 +91,14 @@
 								<!-- Email input -->
 								<div class="form-outline mb-4">
 									<input type="text" name="rue" id="form3Example7"
-										class="form-control" /> <label
+										class="form-control" required/> <label
 										class="form-label" for="form3Example7">Rue</label>
 								</div>
 								<div class="row">
 									<div class="col-md-6 mb-4">
 										<div class="form-outline">
 											<input type="number" name="codePostal" id="form3Example8"
-												class="form-control" /> <label
+												class="form-control" required/> <label
 												class="form-label" for="form3Example8">Code
 												Postal</label>
 										</div>
@@ -106,7 +106,7 @@
 									<div class="col-md-6 mb-4">
 										<div class="form-outline">
 											<input type="text" name="ville" id="form3Example9"
-												class="form-control" /> <label
+												class="form-control" required/> <label
 												class="form-label" for="form3Example9">Ville</label>
 										</div>
 									</div>
