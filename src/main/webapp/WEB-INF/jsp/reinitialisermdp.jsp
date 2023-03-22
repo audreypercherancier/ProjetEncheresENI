@@ -7,8 +7,8 @@
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 <title>Réinitialisez votre mot de passe</title>
 </head>
-<%@ include file="/WEB-INF/html/entete.html" %>
 
+<%@ include file="/WEB-INF/jsp/insertion/entete.jsp" %>
 
 
 <body>
