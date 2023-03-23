@@ -6,10 +6,13 @@ pageEncoding="UTF-8"%>
   <head>
     <meta charset="UTF-8" />
     <title>Page de connexion</title>
+    
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
   </head>
   <body>
+  
     <%@ include file="/WEB-INF/jsp/insertion/entete.jsp" %>
+    		
     <section class="vh-100">
       <div class="container-fluid h-custom">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -23,7 +26,7 @@ pageEncoding="UTF-8"%>
 	          <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
 			         <% if(request.getAttribute("alert alert-danger") != null) {%>             
 			         	<div class="alert alert-danger"> 
-				         	<strong class="icon-remove-sign">
+				         	<strong class="icon-remove-sign">Identifiant et / ou mot de passe incorrect(s)
 					         	<%=request.getAttribute("alert alert-danger")%>
 					         </strong>
 			         	</div>
@@ -80,8 +83,8 @@ pageEncoding="UTF-8"%>
 		        	</div>
 		    	</form>
           	</div>
-        </div>
-      </div>
+          </div>
+        </div>  	
     </section>
     <%@ include file="/WEB-INF/html/piedDePage.html" %>
   </body>

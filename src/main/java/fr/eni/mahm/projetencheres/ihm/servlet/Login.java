@@ -82,9 +82,12 @@ public class Login extends HttpServlet {
 			pims = new Cookie("lastLogin", u.getEmail());
 			pims.setMaxAge(60 * 60 * 24 * 7);
 			response.addCookie(pims);
+
 			response.sendRedirect("index.jsp");
 		} else {
 			request.setAttribute("alert alert-danger", "Identifiant et / ou mot de passe incorrect(s)");
+
+			//response.sendRedirect("index.jsp");
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/seConnecter.jsp");
 			rd.forward(request, response);
 		}
