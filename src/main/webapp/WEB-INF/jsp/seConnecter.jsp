@@ -83,6 +83,7 @@ pageEncoding="UTF-8"%>
 		        	</div>
 		    	</form>
           	</div>
+          </div>
       </div> 	
     </section>
     <%@ include file="/WEB-INF/html/piedDePage.html" %>
