@@ -30,13 +30,19 @@
 					<div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
 
 					<div class="card bg-glass">
-						<div class="card-body px-4 py-5 px-md-5">
+						<div class="card-body px-4 pb-5 pt-3 px-md-5">
+							<c:if test="${!empty erreurPseudo}">
+								<p class="text-danger fs-5">${erreurPseudo}</p>
+							</c:if>
+							<c:if test="${!empty usedPseudo}">
+								<p class="text-danger fs-5">${usedPseudo}</p>
+							</c:if>
+							<c:if test="${!empty usedEmail}">
+								<p class="text-danger fs-5">${usedEmail}</p>
+							</c:if>
 							<form method="POST" action="inscription">
 								<!-- 2 column grid layout with text inputs for the first and last names -->
-								<div class="row">
-									<c:if test="${!empty erreurPseudo}">
-										<p class="text-danger fs-5">${erreurPseudo}</p>
-									</c:if>
+								<div class="row pt-2">
 									<div class="col-md-6 mb-4">
 										<div class="form-outline">
 											<input type="text" name="nom" id="form3Example1"
@@ -55,6 +61,7 @@
 								<div class="row">
 									<div class="col-md-6 mb-4">
 										<div class="form-outline">
+
 											<input type="text" name="pseudo" id="form3Example3"
 												class="form-control" required /> <label class="form-label"
 												for="form3Example3">Pseudo</label>

@@ -152,35 +152,21 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	// ------------------------SELECTALL-------------------------------//
 	public List<Utilisateur> selectAll() {
-		Connection cnx;
 		Statement stmt;
 		ResultSet rs;
-		ArrayList<Utilisateur> lst = null;
-		cnx = connectBDD.getConnection();
-
+		ArrayList<Utilisateur> lst = new ArrayList<>();
+		Connection cnx = connectBDD.getConnection();
 		try {
-			cnx.setAutoCommit(false);
 			stmt = cnx.createStatement();
 			rs = stmt.executeQuery(MYSQLSELECTALL);
-			lst = new ArrayList<>();
-			Utilisateur u = null;
 			while (rs.next()) {
-				lst.add(u = new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
+				lst.add(new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
 						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"),
-						rs.getString("codePostal"), rs.getString("ville")));
-
+						rs.getString("code_postal"), rs.getString("ville")));
 			}
-			cnx.commit();
 			cnx.close();
 		} catch (Exception e) {
-			try {
-				cnx.rollback();
-				cnx.close();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
 			e.printStackTrace();
-
 		}
 		return lst;
 	}
@@ -198,7 +184,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			stmt.setInt(1, noUtilisateur);
 			rs = stmt.executeQuery();
 			u = new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
-					rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("codePostal"),
+					rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"),
 					rs.getString("ville"), rs.getInt("credit"));
 			cnx.commit();
 			cnx.close();
@@ -227,7 +213,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			stmt.setInt(1, noUtilisateur);
 			rs = stmt.executeQuery();
 			u = new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
-					rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("codePostal"),
+					rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"),
 					rs.getString("ville"));
 			cnx.commit();
 			cnx.close();

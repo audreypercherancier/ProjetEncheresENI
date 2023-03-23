@@ -1,5 +1,8 @@
 package fr.eni.mahm.projetencheres.bll;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import fr.eni.mahm.projetencheres.bo.Utilisateur;
 import fr.eni.mahm.projetencheres.dal.DAOFactory;
 import fr.eni.mahm.projetencheres.dal.UtilisateurDAO;
@@ -32,6 +35,12 @@ public class UtilisateurManager {
 	public void inscription(Utilisateur nouvelUtilisateur) {
 		userDAO.insert(nouvelUtilisateur);
 		
+	}
+	public List<Utilisateur> toutLesUtilisateurs(){
+		List<Utilisateur> utilisateurs = new ArrayList<>();
+		utilisateurs = userDAO.selectAll();
+		
+		return utilisateurs;
 	}
 	
 
