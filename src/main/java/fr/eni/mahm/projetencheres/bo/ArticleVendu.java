@@ -20,38 +20,16 @@ public class ArticleVendu {
 	private int miseAPrix;
 	private int prixVente = 0;
 	private int etatVente;
+	private int noVendeur;
 
 	// -----------------lien interclasses-----------------//
 	private Enchere enchereGagnante;
-	private int noVendeur;
+	private Utilisateur vendeur;
 	private Retrait lieuRetrait;
 	private Categorie categorie;
 
 	// -------------------- CONSTRUCTOR ZONE --------------------//
 
-	/**
-	 * constructeur a appelé lors de la creation d'un article avec lieu retrait
-	 * IDENTIQUE domicile vendeur
-	 * 
-	 * @param nomArticle
-	 * @param description
-	 * @param dateDebutEncheres
-	 * @param dateFinEncheres
-	 * @param miseAPrix
-	 * @param prixVente
-	 * @param etatVente
-	 * @description constructeur surchargé sans id
-	 */
-	public ArticleVendu(String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres,
-			int miseAPrix, int etatVente, Categorie categorie) {
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.miseAPrix = miseAPrix;
-		this.etatVente = etatVente;
-		this.categorie = categorie;
-	}
 
 	/**
 	 * constructeur a appelé lors de la creation d'un article avec lieu retrait
@@ -80,7 +58,7 @@ public class ArticleVendu {
 	}
 
 	/**
-	 * pour recuperiation avec objet special AUDREY 
+	 * PIOUPIOU pour recuperiation avec objet special AUDREY 
 	 * constructeur a modifie dans le futur avec les enchere
 	 * @param noArticle
 	 * @param nomArticle
@@ -89,8 +67,6 @@ public class ArticleVendu {
 	 * @param dateFinEncheres
 	 * @param miseAPrix
 	 * @param prixVente
-	 * @param etatVente
-	 * @param enchereGagnante
 	 * @param vendeur
 	 * @param lieuRetrait
 	 */
@@ -106,6 +82,31 @@ public class ArticleVendu {
 		this.prixVente = prixVente;
 		this.noVendeur = noVendeur;
 		this.lieuRetrait = lieuRetrait;
+		this.categorie = categorie;
+	}
+	/**
+	 * PIOUPIOU 2 pour insertion avec objet special AUDREY 
+	 * constructeur a modifie dans le futur avec les enchere
+	 * @param noArticle
+	 * @param nomArticle
+	 * @param description
+	 * @param dateDebutEncheres
+	 * @param dateFinEncheres
+	 * @param miseAPrix
+	 * @param vendeur
+	 * @param lieuRetrait -> pas pour le moment bisou
+	 */
+	public ArticleVendu( String nomArticle, String description, Date dateDebutEncheres,
+			Date dateFinEncheres, int miseAPrix,  
+			int noVendeur, Categorie categorie) {
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = miseAPrix;
+		this.noVendeur = noVendeur;
+		// this.lieuRetrait = lieuRetrait;
 		this.categorie = categorie;
 	}
 

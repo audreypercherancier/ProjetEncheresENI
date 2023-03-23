@@ -1,6 +1,7 @@
 package fr.eni.mahm.projetencheres.ihm.servlet;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import fr.eni.mahm.projetencheres.bll.ArticleManager;
+import fr.eni.mahm.projetencheres.bo.ArticleVendu;
+import fr.eni.mahm.projetencheres.bo.Categorie;
+import fr.eni.mahm.projetencheres.bo.Utilisateur;
 
 /**
  * Servlet implementation class AjoutArticleVente
@@ -28,8 +35,30 @@ private static final long serialVersionUID = 1L;
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		ArticleManager articleMgr = new ArticleManager();
+		
+		Utilisateur utilisateur = (Utilisateur) request.getAttribute("connectedUser");
+		System.out.println(utilisateur);
+		ArticleVendu articleAVendre;
+		
+		String nom = request.getParameter("");
+		String description = request.getParameter("");
+		Categorie categorie = new Categorie(request.getParameter("")); 
+		int prixBase = request.getParameter();
+		Date DebutEnchere = request.getParameter();
+		Date FinArticle = request.getParameter() ;
+		
+		try {
+			
+			articleAVendre = new ArticleVendu(nom, description, DebutEnchere, FinArticle, prixBase, utilisateur.getNoUtilisateur(), categorie);
+			
+			articleMgr.ajouter(articleAVendre);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 }

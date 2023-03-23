@@ -19,6 +19,17 @@ public class Categorie {
 	this.libelle = libelle;
 }
 	
+	
+	/**
+	 * pour inscription article
+	 * @param noCategorie
+	 */
+	public Categorie(int noCategorie) {
+		super();
+		this.noCategorie = noCategorie;
+	}
+
+
 	//-------------------- CONSTRUCTOR ZONE --------------------//
 	
 	public void ajouterArticle(ArticleVendu article) {
