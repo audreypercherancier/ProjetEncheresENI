@@ -20,13 +20,13 @@
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link active" href="#"
+            <a class="nav-link active" href="<%=request.getContextPath()%>"
               >Encheres
               <span class="visually-hidden">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Vendre un article</a>
+            <a class="nav-link" href="<%=request.getContextPath()%>/login">Vendre un article</a>
           </li>
         </ul>
         <form class="d-flex">
@@ -59,10 +59,10 @@
       <ul class="navbar-nav me-auto list-inline">
         <div id="navbarColor01">
           <li class="nav-item list-inline-item me-5 ms-1">
-            <a class="nav-link active" href="#">Encheres</a>
+            <a class="nav-link active" href="<%=request.getContextPath()%>">Encheres</a>
           </li>
           <li class="nav-item list-inline-item">
-            <a class="nav-link" href="#">Vendre un article</a>
+            <a class="nav-link" href="<%=request.getContextPath()%>/VendreUnArticle">Vendre un article</a>
           </li>
         </div>
       </ul>

@@ -71,7 +71,6 @@ public class Login extends HttpServlet {
 		Utilisateur u = null;
 		login = request.getParameter("login");
 		password = Utilisateur.hashagePwd(request.getParameter("password"));
-		System.out.println(password);
 		HttpSession ses;
 		ses = request.getSession();
 		UtilisateurManager userMgr = new UtilisateurManager();
@@ -84,9 +83,6 @@ public class Login extends HttpServlet {
 			pims.setMaxAge(60 * 60 * 24 * 7);
 			response.addCookie(pims);
 			response.sendRedirect("index.jsp");
-			// RequestDispatcher rd =
-			// request.getRequestDispatcher("/WEB-INF/jsp/monCompte.jsp");
-			// rd.forward(request, response);
 		} else {
 			request.setAttribute("alert alert-danger", "Identifiant et / ou mot de passe incorrect(s)");
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/seConnecter.jsp");
