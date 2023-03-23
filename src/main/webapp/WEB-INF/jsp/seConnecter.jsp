@@ -21,9 +21,6 @@ pageEncoding="UTF-8"%>
             />
           </div>
 	          <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-		          <c:if test="${!empty erreur}">
-		          	<p class="text-danger">${erreur}</p>
-		          </c:if>
 			         <% if(request.getAttribute("alert alert-danger") != null) {%>             
 			         	<div class="alert alert-danger"> 
 				         	<strong class="icon-remove-sign">
