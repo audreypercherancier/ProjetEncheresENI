@@ -55,7 +55,7 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="/ProjetEncheresENI/index.jsp"
         >ProjetEnchereEni</a
-      >
+      > 
       <ul class="navbar-nav me-auto list-inline">
         <div id="navbarColor01">
           <li class="nav-item list-inline-item me-5 ms-1">
@@ -95,7 +95,7 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#"
+              <a class="nav-link active" aria-current="page" href="/ProjetEncheresENI/monCompte"
                 >Mon profil</a
               >
             </li>

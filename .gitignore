@@ -1,2 +1,5 @@
 context.xml
 /fr/
+build/classes/fr/eni/mahm/projetencheres/message/MessageErreur$LecteurMessage.class
+build/classes/fr/eni/mahm/projetencheres/message/MessageErreur$LecteurMessage.class
+*.class

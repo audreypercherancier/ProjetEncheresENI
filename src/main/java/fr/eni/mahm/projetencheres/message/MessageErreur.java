@@ -2,21 +2,48 @@ package fr.eni.mahm.projetencheres.message;
 
 import java.util.ResourceBundle;
 
-public class MessageErreur {
-	public abstract class LecteurMessage {
-		private static ResourceBundle rb;
-		
-		static {
-		
-			try
+/**
+ * 
+ * @author Hind
+ *
+ */
+public abstract class MessageErreur {
+	private static ResourceBundle rb;
+	
+	static
+	{
+		try
+		{
+			rb = ResourceBundle.getBundle("fr.eni.mahm.projetencheres.message.messages_erreur");
+		}
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * @param code
+	 * @return
+	 */
+	public static  String getMessageErreur(int code)
+	{
+		String message="";
+		try
+		{
+			if(rb!=null)
 			{
-				rb = ResourceBundle.getBundle("fr.eni.mahm.projetencheres.message.messages_erreur");
+				message = rb.getString(String.valueOf(code));
 			}
-			catch (Exception e) 
+			else
 			{
-				e.printStackTrace();
+				message="Problème à la lecture du fichier contenant les messages";
 			}
 		}
-		
-}
+		catch (Exception e) {
+			e.printStackTrace();
+			message="Une erreur inconnue est survenue";
+		}
+		return message;
+	}
 }
