@@ -11,7 +11,7 @@ INSERT INTO categories (
     ("7","Bricolage"),
     ("8","Mode"),
     ("9","High-Tech"),
-    ("10","vehicules"),
+    ("10","Vehicules"),
     ("11","Autres")
  
  
