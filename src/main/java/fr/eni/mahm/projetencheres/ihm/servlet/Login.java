@@ -59,7 +59,6 @@ public class Login extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-<<<<<<< Updated upstream
 	}
 
 	/**
@@ -71,7 +70,7 @@ public class Login extends HttpServlet {
 		String login, password;
 		Utilisateur u = null;
 		login = request.getParameter("login");
-		password = request.getParameter("password");
+		password = Utilisateur.hashagePwd(request.getParameter("password"));
 		HttpSession ses;
 		ses = request.getSession();
 		UtilisateurManager userMgr = new UtilisateurManager();
@@ -83,17 +82,15 @@ public class Login extends HttpServlet {
 			pims = new Cookie("lastLogin", u.getEmail());
 			pims.setMaxAge(60 * 60 * 24 * 7);
 			response.addCookie(pims);
+
 			response.sendRedirect("index.jsp");
-			// RequestDispatcher rd =
-			// request.getRequestDispatcher("/WEB-INF/jsp/monCompte.jsp");
-			// rd.forward(request, response);
-		} else {
-			request.setAttribute("alert alert-danger", "Identifiant et / ou mot de passe incorrect(s)");
-=======
+		} 
 		else
 		{
 			request.setAttribute("alert alert-danger", "Identifiant et / ou mot de passe incorrect(s)"); 
->>>>>>> Stashed changes
+
+
+			//response.sendRedirect("index.jsp");
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/seConnecter.jsp");
 			rd.forward(request, response);
 		}

@@ -3,7 +3,6 @@ package fr.eni.mahm.projetencheres.ihm.servlet;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,12 +47,9 @@ public class InscriptionUtilisateur extends HttpServlet {
 		String rue = request.getParameter("rue");
 		String codePostal = request.getParameter("codePostal");
 		String ville = request.getParameter("ville");
-		System.out.println(mdp);
 		UtilisateurManager userMgr = new UtilisateurManager();
 		List<Utilisateur> utilisateurs = userMgr.toutLesUtilisateurs();
 		for (Utilisateur utilisateur : utilisateurs) {
-			System.out.println(utilisateur.getPseudo());
-			System.out.println(utilisateur.getEmail());
 			if (utilisateur.getPseudo().equalsIgnoreCase(pseudo)) {
 				request.setAttribute("usedPseudo", "Pseudo deja utilisé");
 				doGet(request, response);

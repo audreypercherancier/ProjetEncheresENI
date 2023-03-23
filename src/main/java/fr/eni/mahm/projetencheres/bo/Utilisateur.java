@@ -1,5 +1,7 @@
 package fr.eni.mahm.projetencheres.bo;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,7 +101,7 @@ public class Utilisateur {
 		this.rue = rue;
 		this.codePostal = codePostal;
 		this.ville = ville;
-		this.motDePasse = motDePasse;
+		this.setMotDePasse(motDePasse);
 		this.administrateur = administrateur;
 	}
 
@@ -127,7 +129,7 @@ public class Utilisateur {
 		this.rue = rue;
 		this.codePostal = codePostal;
 		this.ville = ville;
-		this.motDePasse = motDePasse;
+		this.setMotDePasse(motDePasse);
 	}
 	
 	
@@ -227,7 +229,6 @@ public class Utilisateur {
  */
 public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email,String motDePasse, String telephone,
 		String rue, String codePostal, String ville, int credit) {
-	super();
 	this.noUtilisateur = noUtilisateur;
 	this.pseudo = pseudo;
 	this.nom = nom;
@@ -372,7 +373,7 @@ public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, 
 	}
 
 	public void setMotDePasse(String motDePasse) {
-		this.motDePasse = motDePasse;
+		this.motDePasse = hashagePwd(motDePasse);
 	}
 	
 	/**
@@ -387,6 +388,26 @@ public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, 
 	 */
 	public List<Enchere> getEncheresEffectuees() {
 		return encheresEffectuees;
+	}
+	
+	//--------hashage lachement volé a thierry----------//
+	public static String hashagePwd(String password) {
+		MessageDigest md=null;
+		StringBuffer sb=new StringBuffer();
+		byte[] reponse;
+		try {
+			md=MessageDigest.getInstance("SHA");
+			reponse=md.digest(password.getBytes());
+			for(int i:reponse)
+			{
+				sb.append((Integer.toString((i&0xff)+0x100, 16).substring(1)));
+			}
+			
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return sb.toString();
 	}
 	
 

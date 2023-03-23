@@ -8,8 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class Erreur500 extends HttpServlet {
+private static final long serialVersionUID = 1L;
 
-	 public Erreur500() {
+	public Erreur500() {
 	        super();
 	    }
 
