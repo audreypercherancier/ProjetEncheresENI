@@ -10,8 +10,7 @@ package fr.eni.mahm.projetencheres.dal;
 public abstract class DAOFactory {
 	
 	
-	public static UtilisateurDAO getUtilisateurDAO() {
-		
+	public static UtilisateurDAO getUtilisateurDAO() {		
 		return new UtilisateurDAOJdbcImpl(); 
 	}
 	
