@@ -22,8 +22,10 @@ import fr.eni.mahm.projetencheres.exceptions.NoRetraitExeption;
  * @version 1.0.0
  */
 public class ArticleDAOJdbcImpl implements ArticleDAO {
-	private final String SUPPRIMER = "DELETE FROM articles_vendus WHERE no_article=?";
+	private final String SUPPRIMER = "DELETE FROM articles_vendus, retraits WHERE no_article=?";
 	private final String SELECTION_TOUT_ARTICLES = "SELECT av.*, c.libelle, r.rue, r.code_postal, r.ville FROM articles_vendus av INNER JOIN retraits r ON r.no_article = av.no_article INNER JOIN categories c ON c.no_categorie ";
+	private final String SELECTION_ARTICLE = "SELECT av.*, c.libelle, r.rue, r.code_postal, r.ville FROM articles_vendus av INNER JOIN retraits r ON r.no_article = av.no_article INNER JOIN categories c ON c.no_categorie WHERE no_article=?";
+	private final String AJOUTER = "INSERT INTO articles_vendus (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie VALUES(?,?,?,?,?,?,?,?)";
 
 	@Override
 	public void supprimer(int noArticle) {
@@ -48,12 +50,41 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	@Override
 	public void ajouter(ArticleVendu article) {
-
+			
+		try (Connection cnx = connectBDD.getConnection()){
+			PreparedStatement pstmt = cnx.prepareStatement(AJOUTER, PreparedStatement.RETURN_GENERATED_KEYS);
+			pstmt.setString(1, article.getNomArticle());
+			pstmt.setString(2, article.getDescription());
+			pstmt.setDate(3, article.getDateDebutEncheres()) ;
+			pstmt.setDate(4, article.getDateFinEncheres()) ;
+			pstmt.setInt(5, article.getMiseAPrix()) ;
+			pstmt.setInt(6, article.getPrixVente()) ;
+			pstmt.setInt(7, article.getNoVendeur()) ;
+			pstmt.setInt(8, article.getCategorie().getNoCategorie()) ;
+			pstmt.executeUpdate();
+			
+			ResultSet rs = pstmt.getGeneratedKeys();
+			if(rs.next()) {
+				article.setNoArticle(rs.getInt("no_article"));
+			}
+		/*	a faire
+			try {
+				RetraitManager retraitMgr = new retraitMgr();
+				retraitMgr.ajouter(article.getLieuRetrait(), article.getNoArticle());
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		*/
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Override
 	public void modifier(ArticleVendu article) {
-
+		
 	}
 
 	@Override
@@ -65,18 +96,40 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			ResultSet rs = stmt.executeQuery(SELECTION_TOUT_ARTICLES);
 
 			while (rs.next()) {
-				articlesEnVente.add(new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"), rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_utilisateur"), new Retrait(rs.getString("rue"), rs.getString("code_postal"),  rs.getString("ville")), new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"))));
+				articlesEnVente.add(new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),
+						rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"),
+						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_utilisateur"),
+						new Retrait(rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville")),
+						new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"))));
 			}
 		} catch (SQLException | CodePostalException | NoRetraitExeption e) {
 			e.printStackTrace();
 		}
 
-		return null;
+		return articlesEnVente;
 	}
 
 	@Override
 	public ArticleVendu selectionParNoArticle(int noArticle) {
-		return null;
+		ArticleVendu article = null;
+
+		try (Connection cnx = connectBDD.getConnection()) {
+			PreparedStatement pstmt = cnx.prepareStatement(SELECTION_ARTICLE);
+			pstmt.setInt(1, noArticle);
+			ResultSet rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				article = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),
+						rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"),
+						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_utilisateur"),
+						new Retrait(rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville")),
+						new Categorie(rs.getInt("no_categorie"), rs.getString("libelle")));
+			}
+		} catch (SQLException | CodePostalException | NoRetraitExeption e) {
+			e.printStackTrace();
+		}
+
+		return article;
 	}
 
 }

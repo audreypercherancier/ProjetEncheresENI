@@ -245,13 +245,14 @@ public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, 
 
 
 //---------------------------------------METHODE/FUNCTION ZONE---------------------------------------//
-	public void vendArticle(ArticleVendu article) throws CodePostalException, NoRetraitExeption {
-		article.setVendeur(this);
-		if (article.getLieuRetrait() == null) {
-			article.setLieuRetrait(new Retrait(this.getRue(), this.getCodePostal(), this.getVille()));
-		}
-		this.articlesAVendre.add(article);
-	}
+
+//	public void vendArticle(ArticleVendu article) throws CodePostalException, NoRetraitExeption {
+//		article.setVendeur(this);
+//		if (article.getLieuRetrait() == null) {
+//			article.setLieuRetrait(new Retrait(this.getRue(), this.getCodePostal(), this.getVille()));
+//		}
+//		this.articlesAVendre.add(article);
+//	}
 	
 	public void annulerVente(ArticleVendu article) {
 		if (article.getEnchereGagnante() != null) {

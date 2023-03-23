@@ -116,19 +116,22 @@ public class ArticleVendu {
 	}
 
 	// --------------------------------------------METHOD/FUNCTION ZONE----------------------------------------//
-	/**
-	 * tu casses les couilles mathieuP
-	 */
-	public void finEnchere() {
-		Date now = new Date(System.currentTimeMillis());
-		int creditVendeur = this.getVendeur().getCredit();
-		if (this.getDateFinEncheres().equals(now) || this.getDateFinEncheres().before(now)) {
-			if (this.getPrixVente() > 0) {
-				this.vendeur.setCredit(creditVendeur += this.prixVente);
-				this.getEnchereGagnante().getEncherisseur().gagneEnchere(this);
-			}
-		}
-	}
+	
+
+		/**
+	 	* tu casses les couilles mathieuP
+	 	*/
+	//public void finEnchere() {
+	//	Date now = new Date(System.currentTimeMillis());
+	//	int creditVendeur = this.getVendeur().getCredit();
+	//	if (this.getDateFinEncheres().equals(now) || this.getDateFinEncheres().before(now)) {
+	//		if (this.getPrixVente() > 0) {
+	//			this.vendeur.setCredit(creditVendeur += this.prixVente);
+	//			this.getEnchereGagnante().getEncherisseur().gagneEnchere(this);
+	//		}
+	//	}
+//	}
+	
 
 	// -----------------------------------------GETTER SETTER ZONE----------------------------------------//
 	/**
@@ -258,19 +261,6 @@ public class ArticleVendu {
 		this.setPrixVente(enchereGagnante.getMontantEnchere());
 	}
 
-	/**
-	 * @return the vendeur
-	 */
-	public Utilisateur getVendeur() {
-		return vendeur;
-	}
-
-	/**
-	 * @param vendeur the vendeur to set
-	 */
-	public void setVendeur(Utilisateur vendeur) {
-		this.vendeur = vendeur;
-	}
 
 	/**
 	 * @return the lieuRetrait
@@ -284,6 +274,35 @@ public class ArticleVendu {
 	 */
 	public void setLieuRetrait(Retrait lieuRetrait) {
 		this.lieuRetrait = lieuRetrait;
+	}
+	
+
+	/**
+	 * @return the noVendeur
+	 */
+	public int getNoVendeur() {
+		return noVendeur;
+	}
+
+	/**
+	 * @param noVendeur the noVendeur to set
+	 */
+	public void setNoVendeur(int noVendeur) {
+		this.noVendeur = noVendeur;
+	}
+
+	/**
+	 * @return the categorie
+	 */
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+	/**
+	 * @param categorie the categorie to set
+	 */
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
 	}
 
 	// --------------------------------------------------------------------------------------------------------------//
