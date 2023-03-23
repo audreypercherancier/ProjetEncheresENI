@@ -23,8 +23,9 @@ public class ArticleVendu {
 
 	// -----------------lien interclasses-----------------//
 	private Enchere enchereGagnante;
-	private Utilisateur vendeur;
+	private int noVendeur;
 	private Retrait lieuRetrait;
+	private Categorie categorie;
 
 	// -------------------- CONSTRUCTOR ZONE --------------------//
 
@@ -42,14 +43,14 @@ public class ArticleVendu {
 	 * @description constructeur surchargé sans id
 	 */
 	public ArticleVendu(String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres,
-			int miseAPrix, int etatVente) {
-		super();
+			int miseAPrix, int etatVente, Categorie categorie) {
 		this.nomArticle = nomArticle;
 		this.description = description;
 		this.dateDebutEncheres = dateDebutEncheres;
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
 		this.etatVente = etatVente;
+		this.categorie = categorie;
 	}
 
 	/**
@@ -78,10 +79,24 @@ public class ArticleVendu {
 		this.lieuRetrait = lieuRetrait;
 	}
 
+	/**
+	 * pour recuperiation avec objet special AUDREY 
+	 * constructeur a modifie dans le futur avec les enchere
+	 * @param noArticle
+	 * @param nomArticle
+	 * @param description
+	 * @param dateDebutEncheres
+	 * @param dateFinEncheres
+	 * @param miseAPrix
+	 * @param prixVente
+	 * @param etatVente
+	 * @param enchereGagnante
+	 * @param vendeur
+	 * @param lieuRetrait
+	 */
 	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
-			Date dateFinEncheres, int miseAPrix, int prixVente, int etatVente, Enchere enchereGagnante,
-			Utilisateur vendeur, Retrait lieuRetrait) {
-		super();
+			Date dateFinEncheres, int miseAPrix, int prixVente, 
+			int noVendeur, Retrait lieuRetrait, Categorie categorie) {
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -89,10 +104,9 @@ public class ArticleVendu {
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
-		this.etatVente = etatVente;
-		this.enchereGagnante = enchereGagnante;
-		this.vendeur = vendeur;
+		this.noVendeur = noVendeur;
 		this.lieuRetrait = lieuRetrait;
+		this.categorie = categorie;
 	}
 
 	/**
@@ -102,6 +116,9 @@ public class ArticleVendu {
 	}
 
 	// --------------------------------------------METHOD/FUNCTION ZONE----------------------------------------//
+	/**
+	 * tu casses les couilles mathieuP
+	 */
 	public void finEnchere() {
 		Date now = new Date(System.currentTimeMillis());
 		int creditVendeur = this.getVendeur().getCredit();
