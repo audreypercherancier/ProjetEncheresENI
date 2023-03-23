@@ -39,7 +39,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				pstmt.setString(2, login);
 			}
 			pstmt.setString(3, pwd);
-			System.out.println(pstmt);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
 				utilisateur = rsToUtilisateur(rs);
