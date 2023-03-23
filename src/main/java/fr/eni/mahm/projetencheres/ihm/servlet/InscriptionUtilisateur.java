@@ -2,6 +2,7 @@ package fr.eni.mahm.projetencheres.ihm.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,10 +50,14 @@ public class InscriptionUtilisateur extends HttpServlet {
 		String ville = request.getParameter("ville");
 		System.out.println(mdp);
 		UtilisateurManager userMgr = new UtilisateurManager();
-		
-		userMgr.inscription(new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, mdp));
-		
+		if(!pseudo.matches("^[a-zA-Z0-9]*$")) {
+			request.setAttribute("erreurPseudo", "Le pseudo ne peux pas contenire de caractères spéciaux");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/inscription.jsp");
+			rd.forward(request, response);
+		}else {
+		userMgr.inscription(new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, mdp));	
 		response.sendRedirect("/ProjetEncheresENI/index.jsp");
+		}
 	}
 
 }
