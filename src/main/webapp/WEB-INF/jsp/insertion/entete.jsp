@@ -1,7 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- zone non connecté -->
 <c:if test="${empty userConnected}">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
       <a class="navbar-brand" href="/ProjetEncheresENI/index.jsp"
         >ProjetEnchereEni</a
@@ -51,7 +51,7 @@
 
 <!-- zone connecté  -->
 <c:if test="${!empty userConnected}">
-  <nav class="navbar navbar-dark bg-primary fixed-top">
+  <nav class="navbar navbar-dark bg-primary">
     <div class="container-fluid">
       <a class="navbar-brand" href="/ProjetEncheresENI/index.jsp"
         >ProjetEnchereEni</a
