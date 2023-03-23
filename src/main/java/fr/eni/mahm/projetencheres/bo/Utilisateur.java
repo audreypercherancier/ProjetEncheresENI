@@ -16,6 +16,7 @@ import fr.eni.mahm.projetencheres.exceptions.NoRetraitExeption;
  */
 
 public class Utilisateur {
+	
 
 	private int noUtilisateur;
 	private String pseudo;
@@ -241,6 +242,7 @@ public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, 
 	this.motDePasse = motDePasse;
 	this.credit = credit;
 }
+
 
 //---------------------------------------METHODE/FUNCTION ZONE---------------------------------------//
 	public void vendArticle(ArticleVendu article) throws CodePostalException, NoRetraitExeption {

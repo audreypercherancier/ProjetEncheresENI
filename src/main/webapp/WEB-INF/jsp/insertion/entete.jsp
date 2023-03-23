@@ -4,7 +4,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
       <a class="navbar-brand" href="/ProjetEncheresENI/index.jsp"
-        >ProjetEnchereEni</a
+        >Alors Audrey c'est mieux ?</a
       >
       <button
         class="navbar-toggler"
@@ -95,7 +95,11 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
+<<<<<<< Updated upstream
               <a class="nav-link active" aria-current="page" href="/ProjetEncheresENI/monCompte"
+=======
+              <a class="nav-link active" aria-current="page" href="/ProjetEncheresENI/modifier"
+>>>>>>> Stashed changes
                 >Mon profil</a
               >
             </li>

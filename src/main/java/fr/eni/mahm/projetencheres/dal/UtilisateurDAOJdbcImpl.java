@@ -40,6 +40,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			}
 			pstmt.setString(3, pwd);
 			ResultSet rs = pstmt.executeQuery();
+			
 			if (rs.next()) {
 				utilisateur = rsToUtilisateur(rs);
 			}
@@ -51,7 +52,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		return utilisateur;
 	}
 
-	// --------------------------------DELET---------------------------//
+	// --------------------------------DELETE---------------------------//
 	public void delete(int noUtilisateur) {
 		Connection cnx;
 		Statement stmt;

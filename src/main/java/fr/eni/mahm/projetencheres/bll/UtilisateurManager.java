@@ -9,7 +9,7 @@ import fr.eni.mahm.projetencheres.dal.UtilisateurDAO;
 
 public class UtilisateurManager {
 	
-	private UtilisateurDAO userDAO;
+	private static UtilisateurDAO userDAO;
 	
 	//-----------CONSTRUCTOR-------------------//
 	public UtilisateurManager() {
@@ -42,6 +42,8 @@ public class UtilisateurManager {
 		
 		return utilisateurs;
 	}
-	
+	public static void deleteById(int id) {
+		userDAO.delete(id);
+	}
 
 }
