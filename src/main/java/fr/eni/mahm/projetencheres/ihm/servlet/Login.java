@@ -59,6 +59,7 @@ public class Login extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+<<<<<<< Updated upstream
 	}
 
 	/**
@@ -88,6 +89,11 @@ public class Login extends HttpServlet {
 			// rd.forward(request, response);
 		} else {
 			request.setAttribute("alert alert-danger", "Identifiant et / ou mot de passe incorrect(s)");
+=======
+		else
+		{
+			request.setAttribute("alert alert-danger", "Identifiant et / ou mot de passe incorrect(s)"); 
+>>>>>>> Stashed changes
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/seConnecter.jsp");
 			rd.forward(request, response);
 		}
