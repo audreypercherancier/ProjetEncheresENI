@@ -24,13 +24,13 @@ pageEncoding="UTF-8"%>
 		          <c:if test="${!empty erreur}">
 		          	<p class="text-danger">${erreur}</p>
 		          </c:if>
-		         <% if(request.getAttribute("alert alert-danger") != null) {%>             
-		         	<div class="alert alert-danger"> 
-			         	<strong class="icon-remove-sign">
-				         	<%=request.getAttribute("alert alert-danger")%>
-				         </strong>
-		         	</div>
-		         <%}%>
+			         <% if(request.getAttribute("alert alert-danger") != null) {%>             
+			         	<div class="alert alert-danger"> 
+				         	<strong class="icon-remove-sign">
+					         	<%=request.getAttribute("alert alert-danger")%>
+					         </strong>
+			         	</div>
+			         <%}%>
 		       	<form action="login" method="post">
 		             <!-- Email input -->
 		             <div class="form-outline mb-4">
