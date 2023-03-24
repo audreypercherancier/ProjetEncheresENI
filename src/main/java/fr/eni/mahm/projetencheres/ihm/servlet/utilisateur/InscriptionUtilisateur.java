@@ -51,15 +51,15 @@ public class InscriptionUtilisateur extends HttpServlet {
 		List<Utilisateur> utilisateurs = userMgr.toutLesUtilisateurs();
 		for (Utilisateur utilisateur : utilisateurs) {
 			if (utilisateur.getPseudo().equalsIgnoreCase(pseudo)) {
-				request.setAttribute("usedPseudo", "Pseudo deja utilisé");
+				request.setAttribute("usedPseudo", "Pseudo déjà utilisé");
 				doGet(request, response);
 			} else if (utilisateur.getEmail().equals(email)) {
-				request.setAttribute("usedEmail", "Email déja connue");
+				request.setAttribute("usedEmail", "Email déjà connue");
 				doGet(request, response);
 			}
 		}
 		if (!pseudo.matches("^[a-zA-Z0-9]*$")) {
-			request.setAttribute("erreurPseudo", "Le pseudo ne peux pas contenire de caractères spéciaux");
+			request.setAttribute("erreurPseudo", "Le pseudo ne peux pas contenir de caractères spéciaux");
 			doGet(request, response);
 		} else {
 			Utilisateur nouvelUtilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, mdp);
