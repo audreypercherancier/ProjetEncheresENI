@@ -41,7 +41,7 @@ public class Login extends HttpServlet {
 			pims = new Cookie("lastLogin", user.getEmail());
 			pims.setMaxAge(60 * 60 * 24 * 7);
 			response.addCookie(pims);
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("/ProjetEncheresENI/accueil");
 		} else {
 
 			try {
@@ -83,7 +83,7 @@ public class Login extends HttpServlet {
 			pims.setMaxAge(60 * 60 * 24 * 7);
 			response.addCookie(pims);
 
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("/ProjetEncheresENI/accueil");
 		} 
 		else
 		{

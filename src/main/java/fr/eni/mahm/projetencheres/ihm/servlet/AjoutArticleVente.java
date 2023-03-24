@@ -67,7 +67,7 @@ public class AjoutArticleVente extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("/ProjetEncheresENI/accueil");
 
 	}
 

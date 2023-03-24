@@ -31,7 +31,6 @@ public class ArticleManager {
 	public List<ArticleVendu> articlesEnVente(){	
 		 return articleDAO.selectionArticles();
 	}
-	
 	/**
 	 * supprime l'article en BD via son numero unique
 	 * @param noArticle

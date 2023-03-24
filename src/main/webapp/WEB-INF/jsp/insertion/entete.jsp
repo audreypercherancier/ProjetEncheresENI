@@ -3,7 +3,7 @@
 <c:if test="${empty userConnected}">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/ProjetEncheresENI/index.jsp"
+      <a class="navbar-brand" href="/ProjetEncheresENI/accueil"
         >Alors Audrey c'est mieux ?</a
       >
       <button
@@ -53,7 +53,7 @@
 <c:if test="${!empty userConnected}">
   <nav class="navbar navbar-dark bg-primary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/ProjetEncheresENI/index.jsp"
+      <a class="navbar-brand" href="/ProjetEncheresENI/accueil"
         >Alors Audrey c'est mieux ?</a
       > 
       <ul class="navbar-nav me-auto list-inline">

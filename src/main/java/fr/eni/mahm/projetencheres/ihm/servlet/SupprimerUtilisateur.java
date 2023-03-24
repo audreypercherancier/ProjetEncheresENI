@@ -34,7 +34,7 @@ public class SupprimerUtilisateur extends HttpServlet
 		ses=request.getSession();
 		ses.setAttribute("userConnected", null);
 		
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("/ProjetEncheresENI/accueil");
 	}
 	
 
@@ -54,7 +54,7 @@ public class SupprimerUtilisateur extends HttpServlet
 		ses=request.getSession();
 		ses.setAttribute("userConnected", null);
 		
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("/ProjetEncheresENI/accueil");
 		
 	}
 
