@@ -1,4 +1,4 @@
-package fr.eni.mahm.projetencheres.ihm.servlet;
+package fr.eni.mahm.projetencheres.ihm.servlet.article;
 
 import java.io.IOException;
 import java.sql.Date;

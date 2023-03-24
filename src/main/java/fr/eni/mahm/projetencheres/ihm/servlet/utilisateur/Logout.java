@@ -1,35 +1,32 @@
-package fr.eni.mahm.projetencheres.ihm.servlet;
+package fr.eni.mahm.projetencheres.ihm.servlet.utilisateur;
 
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class monCompte
+ * Servlet implementation class Logout
  */
-@WebServlet("/monCompte")
-public class AccesProfil extends HttpServlet{
+@WebServlet("/logout")
+public class Logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+   
 
-	/**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AccesProfil() {
-        super();
-    }
-
-	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/monCompte.jsp");
-		rd.forward(request, response);
+		HttpSession ses;
+		ses=request.getSession();
+		ses.setAttribute("userConnected", null);
+		response.sendRedirect("/ProjetEncheresENI/accueil");
+	
 	}
 
 	/**
@@ -39,4 +36,5 @@ public class AccesProfil extends HttpServlet{
 		
 		doGet(request, response);
 	}
+
 }

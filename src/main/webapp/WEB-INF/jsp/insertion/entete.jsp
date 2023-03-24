@@ -64,6 +64,9 @@
           <li class="nav-item list-inline-item">
             <a class="nav-link" href="<%=request.getContextPath()%>/VendreUnArticle">Vendre un article</a>
           </li>
+          <li class="nav-item list-inline-item">
+            <a class="nav-link" href="<%=request.getContextPath()%>/listeUtilisateur">Liste Utilisateur</a>
+          </li>
         </div>
       </ul>
       <button

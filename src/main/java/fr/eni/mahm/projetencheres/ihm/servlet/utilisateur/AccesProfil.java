@@ -1,37 +1,35 @@
-package fr.eni.mahm.projetencheres.ihm.servlet;
+package fr.eni.mahm.projetencheres.ihm.servlet.utilisateur;
 
 import java.io.IOException;
-import java.util.List;
-
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.mahm.projetencheres.bll.ArticleManager;
-import fr.eni.mahm.projetencheres.bo.ArticleVendu;
-
 /**
- * Servlet implementation class ListerArticlesVendu
+ * Servlet implementation class monCompte
  */
-@WebServlet("/accueil")
-public class ListerArticlesVendu extends HttpServlet {
+@WebServlet("/monCompte")
+public class AccesProfil extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-   
 
+	/**
+     * @see HttpServlet#HttpServlet()
+     */
+    public AccesProfil() {
+        super();
+    }
+
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		List<ArticleVendu> listeArticleVendu;
-		ArticleManager articleMgr= new ArticleManager();
-		listeArticleVendu = articleMgr.articlesEnVente();
-		//System.out.println("liste ici "+listeArticleVendu);
-		request.setAttribute("listeArticleVendu", listeArticleVendu);
-		request.getRequestDispatcher("index.jsp").forward(request, response);
-
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/monCompte.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
@@ -41,5 +39,4 @@ public class ListerArticlesVendu extends HttpServlet {
 		
 		doGet(request, response);
 	}
-
 }

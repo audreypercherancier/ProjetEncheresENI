@@ -1,4 +1,4 @@
-package fr.eni.mahm.projetencheres.ihm.servlet;
+package fr.eni.mahm.projetencheres.ihm.servlet.utilisateur;
 
 import java.io.IOException;
 
