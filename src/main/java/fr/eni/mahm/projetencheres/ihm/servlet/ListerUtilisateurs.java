@@ -2,8 +2,7 @@ package fr.eni.mahm.projetencheres.ihm.servlet;
 
 import java.io.IOException;
 
-
-
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,11 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-
 /**
  * Servlet implementation class ListerUtilisateurs
  */
-@WebServlet("/lister")
+@WebServlet("/listeUtilisateur")
 public class ListerUtilisateurs extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -24,7 +22,15 @@ public class ListerUtilisateurs extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		getServletContext().getRequestDispatcher("/WEB-INF/lister.jsp").forward(request, response);
-	}
+	
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/listeUtilisateur.jsp");
+			rd.forward(request, response);
+		} 
+		
+	
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		doGet(request, response);
+	}
 }
