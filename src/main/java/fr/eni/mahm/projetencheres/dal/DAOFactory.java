@@ -3,6 +3,9 @@
  */
 package fr.eni.mahm.projetencheres.dal;
 
+import fr.eni.mahm.projetencheres.dal.article.ArticleDAO;
+import fr.eni.mahm.projetencheres.dal.article.ArticleDAOJdbcImpl;
+
 /**
  * @author audreypercherancier
  *

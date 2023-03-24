@@ -11,7 +11,7 @@ import javax.sql.DataSource;
  * @date             20-03-2023
  * @version			 POO - V1.0
  */
-public class connectBDD 
+public class ConnectBDD 
 {
 	public static Connection getConnection()
 	{

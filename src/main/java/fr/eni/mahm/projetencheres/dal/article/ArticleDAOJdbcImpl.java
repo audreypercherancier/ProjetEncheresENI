@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.eni.mahm.projetencheres.dal;
+package fr.eni.mahm.projetencheres.dal.article;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +14,7 @@ import java.util.List;
 import fr.eni.mahm.projetencheres.bo.ArticleVendu;
 import fr.eni.mahm.projetencheres.bo.Categorie;
 import fr.eni.mahm.projetencheres.bo.Retrait;
+import fr.eni.mahm.projetencheres.dal.ConnectBDD;
 import fr.eni.mahm.projetencheres.exceptions.CodePostalException;
 import fr.eni.mahm.projetencheres.exceptions.NoRetraitExeption;
 
@@ -29,7 +30,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	@Override
 	public void supprimer(int noArticle) {
-		Connection cnx = connectBDD.getConnection();
+		Connection cnx = ConnectBDD.getConnection();
 		try {
 			cnx.setAutoCommit(false);
 			PreparedStatement pstmt = cnx.prepareStatement(SUPPRIMER);
@@ -51,7 +52,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	@Override
 	public void ajouter(ArticleVendu article) {
 			
-		try (Connection cnx = connectBDD.getConnection()){
+		try (Connection cnx = ConnectBDD.getConnection()){
 			PreparedStatement pstmt = cnx.prepareStatement(AJOUTER, PreparedStatement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1, article.getNomArticle());
 			pstmt.setString(2, article.getDescription());
@@ -91,7 +92,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	public List<ArticleVendu> selectionArticles() {
 		List<ArticleVendu> articlesEnVente = new ArrayList<>();
 
-		try (Connection cnx = connectBDD.getConnection()) {
+		try (Connection cnx = ConnectBDD.getConnection()) {
 			Statement stmt = cnx.createStatement();
 			ResultSet rs = stmt.executeQuery(SELECTION_TOUT_ARTICLES);
 
@@ -113,7 +114,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	public ArticleVendu selectionParNoArticle(int noArticle) {
 		ArticleVendu article = null;
 
-		try (Connection cnx = connectBDD.getConnection()) {
+		try (Connection cnx = ConnectBDD.getConnection()) {
 			PreparedStatement pstmt = cnx.prepareStatement(SELECTION_ARTICLE);
 			pstmt.setInt(1, noArticle);
 			ResultSet rs = pstmt.executeQuery();
