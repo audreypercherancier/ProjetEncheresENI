@@ -37,6 +37,9 @@ public class Utilisateur {
 	private List<Enchere> encheresEffectuees = new ArrayList<>();
 
 	//--------------------------CONSTRUCTOR ZONE----------------------------//
+	/**
+	 * Constructeur par défault
+	 */
 	
 	
 	/**

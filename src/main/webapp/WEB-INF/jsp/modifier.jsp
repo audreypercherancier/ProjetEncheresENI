@@ -14,7 +14,7 @@
 	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
 	<h1 class="text-center">Modification</h1>
 	<div class="card-body px-4 py-5 px-md-5">
-		<form method="POST" action="modifier"">
+		<form method="POST" action="modifier">
 			<!-- 2 column grid layout with text inputs for the first and last names -->
 			<div class="row">
 				<div class="col-md-6 mb-4">
