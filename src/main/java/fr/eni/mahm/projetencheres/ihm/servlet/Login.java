@@ -82,8 +82,12 @@ public class Login extends HttpServlet {
 			pims = new Cookie("lastLogin", u.getEmail());
 			pims.setMaxAge(60 * 60 * 24 * 7);
 			response.addCookie(pims);
+<<<<<<< Updated upstream
 
 			response.sendRedirect("/ProjetEncheresENI/accueil");
+=======
+			response.sendRedirect("index.jsp");
+>>>>>>> Stashed changes
 		} 
 		else
 		{
