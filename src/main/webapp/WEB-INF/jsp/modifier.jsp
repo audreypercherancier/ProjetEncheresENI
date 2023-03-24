@@ -63,14 +63,21 @@
 
 			<!-- Password input -->
 			<div class="form-outline mb-4">
-				<input type="password" name="motDePasse" id="form3Example6"
+				<input type="password" name="ancienMotDePasse" id="form3Example6"
 					class="form-control" value="${userConnected.motDePasse}"
 					placeholder="${userConnected.motDePasse}" /> <label
-					class="form-label" for="form3Example6">Mot de passe</label>
+					class="form-label" for="form3Example6">Ancien Mot de passe</label>
+			</div>
+			
+			<div class="form-outline mb-4">
+				<input type="password" name="nouveauMotDePasse" id="form3Example6"
+					class="form-control" value="${userConnected.motDePasse}"
+					placeholder="${userConnected.motDePasse}" /> <label
+					class="form-label" for="form3Example6">Nouveau Mot de passe</label>
 			</div>
 
 			<div class="form-outline mb-4">
-				<input type="password" name="motDePasse" id="form3Example6"
+				<input type="password" name="nouveauMotDePasseConfirmé" id="form3Example6"
 					class="form-control" value="${userConnected.motDePasse}"
 					placeholder="${userConnected.motDePasse}" /> <label
 					class="form-label" for="form3Example6">Confirmation Mot de

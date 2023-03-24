@@ -35,7 +35,7 @@ public class ModifierUtilisateur extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		Utilisateur u; ; 
+		
 		int id;
 		UtilisateurManager userMgr = new UtilisateurManager(); 
 		try {
@@ -43,8 +43,10 @@ public class ModifierUtilisateur extends HttpServlet {
 			id=Integer.parseInt(request.getParameter("id"));
 			String ancienMotDePasseEcrit = Utilisateur.hashagePwd(request.getParameter("ancienMotDePasse")); 
 			String nouveauMotDePasse = request.getParameter("nouveauMotDePasse"); 
-			String nouveauMotDePasseconfirmé = request.getParameter("confirmationNouveauMotDePasse"); 
-			u=userMgr.verificationMdp(ancienMotDePasseEcrit); 
+			String nouveauMotDePasseconfirmé = request.getParameter("nouveauMotDePasseConfirmé"); 
+			Utilisateur u = new Utilisateur(); 
+			u=userMgr.selectbyId(id); 
+			System.out.println(id);
 			System.out.println(u);
 			
 			

@@ -16,8 +16,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private final String MYSQLLOGIN = "select no_utilisateur, pseudo, nom, prenom, email, mot_de_passe, telephone, rue, code_postal, ville, credit from utilisateurs where (email=? or pseudo=?) and mot_de_passe=? ";
 	private final String MYSQLDELETE = "delete from utilisateurs where no_utilisateur=";
 	private final String MYSQLINSERT = "insert into utilisateurs (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur)  values(?,?,?,?,?,?,?,?,?,?,?)";
-	private final String MYSQLUPDATE = "update utilisateurs set nom=?,prenom=?,email=?,telephone=?,rue=?,code_postal=?,ville=?, mot_de_passe=? where no_utilisateur=?";	private final String MYSQLSELECTALL = "select pseudo,nom,prenom,email,telephone,rue,code_postal,ville,credit from utilisateurs";
-	private final String MYSQLSELECTBYID = "select pseudo,nom,prenom,email,mot_de_passe,telephone,rue,code_postal,ville,credit from utilisateurs where no_utilisateur=?";
+	private final String MYSQLUPDATE = "update utilisateurs set nom=?,prenom=?,email=?,telephone=?,rue=?,code_postal=?,ville=?, mot_de_passe=? where no_utilisateur=?";	
+	private final String MYSQLSELECTALL = "select pseudo,nom,prenom,email,telephone,rue,code_postal,ville,credit from utilisateurs";
+	private final String MYSQLSELECTBYID = "select pseudo,nom,prenom,email,mot_de_passe,telephone,rue,code_postal,ville from utilisateurs where no_utilisateur=?";
 	private final String MYSQLSELECTBYIDPUBLIC = "select pseudo,nom,prenom,email,telephone,rue,code_postal,ville from utilisateurs where no_utilisateur=?";
 
 	// --------------------------------------------Constructeur par
@@ -185,7 +186,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			rs = stmt.executeQuery();
 			u = new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
 					rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"),
-					rs.getString("ville"), rs.getInt("credit"));
+					rs.getString("ville"), rs.getString("mot_de_passe"));
 			cnx.commit();
 			cnx.close();
 		} catch (Exception e) {
@@ -205,7 +206,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		PreparedStatement stmt;
 		ResultSet rs;
 		cnx = ConnectBDD.getConnection();
-		Utilisateur u = null;
+		Utilisateur u= null;
 
 		try {
 			cnx.setAutoCommit(false);

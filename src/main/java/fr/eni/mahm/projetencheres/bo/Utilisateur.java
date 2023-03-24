@@ -41,6 +41,9 @@ public class Utilisateur {
 	 * Constructeur par défault
 	 */
 	
+	public Utilisateur() {
+		
+	}
 	
 	/**
 	 * Constructeur pour recuperation DATABASE
@@ -81,6 +84,31 @@ public class Utilisateur {
 		this.encheresEffectuees = encheresEffectuees;
 	}
 	
+	/**       Constructeur pour modification profil Utilisateur
+	 * @param pseudo
+	 * @param nom
+	 * @param prenom
+	 * @param email
+	 * @param telephone
+	 * @param rue
+	 * @param codePostal
+	 * @param ville
+	 * @param motDePasse
+	 */
+	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
+			String codePostal, String ville, String motDePasse) {
+		super();
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.motDePasse = motDePasse;
+	}
+
 	/**
 	 *  Constructeur surchargé sans id
 	 * @param pseudo
@@ -108,35 +136,7 @@ public class Utilisateur {
 		this.setMotDePasse(motDePasse);
 		this.administrateur = administrateur;
 	}
-
-
-	/**
-	 *  Constructeur surchargé sans id et sans admin pour inscription
-	 * @param pseudo
-	 * @param nom
-	 * @param prenom
-	 * @param email
-	 * @param telephone
-	 * @param rue
-	 * @param codePostal
-	 * @param ville
-	 * @param motDePasse
-	 */
-
-	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville, String motDePasse) {
-		this.pseudo = pseudo;
-		this.nom = nom;
-		this.setPrenom(prenom);
-		this.email = email;
-		this.telephone = telephone;
-		this.rue = rue;
-		this.codePostal = codePostal;
-		this.ville = ville;
-		this.setMotDePasse(motDePasse);
-	}
-	
-	
+		
 
 	/**
 	 * CONSTRUCTEUR SPECIALEMENT CONCU POUR AUDREY
@@ -168,10 +168,6 @@ public class Utilisateur {
 	}
 	
 	
-
-		
-	
-
 /**   CONSTRUCTEUR ENCORE POUR AUDREY
 	 * @param pseudo
 	 * @param nom
