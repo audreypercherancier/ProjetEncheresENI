@@ -9,8 +9,6 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
-	<h1 class="fs-1">test attribut session :
-		${userConnected.getNoUtilisateur()}</h1>
 	<h1>Nouvelle vente</h1>
 
 	<form action="VendreUnArticle" method="post">
