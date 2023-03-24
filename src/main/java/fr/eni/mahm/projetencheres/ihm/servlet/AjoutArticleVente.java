@@ -2,11 +2,6 @@ package fr.eni.mahm.projetencheres.ihm.servlet;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import fr.eni.mahm.projetencheres.bll.ArticleManager;
 import fr.eni.mahm.projetencheres.bo.ArticleVendu;
 import fr.eni.mahm.projetencheres.bo.Categorie;
+import fr.eni.mahm.projetencheres.bo.Retrait;
 import fr.eni.mahm.projetencheres.bo.Utilisateur;
 
 /**
@@ -56,12 +52,12 @@ public class AjoutArticleVente extends HttpServlet {
 		int prixBase = Integer.parseInt(request.getParameter("prixinitial"));
 		Date finArticle =  Date.valueOf(request.getParameter("datefinencheres"));;
 		Date debutEnchere = Date.valueOf(request.getParameter("datedebutencheres"));
-		
+		Retrait lieuRetrait = new Retrait(request.getParameter("rue"), request.getParameter("codePostal"), request.getParameter("ville"));
 
 		try {
 
 			articleAVendre = new ArticleVendu(nom, description, debutEnchere, finArticle, prixBase,
-					utilisateur.getNoUtilisateur(), categorie);
+					utilisateur.getNoUtilisateur(), lieuRetrait, categorie);
 
 			articleMgr.ajouter(articleAVendre);
 			

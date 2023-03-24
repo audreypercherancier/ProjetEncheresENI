@@ -3,8 +3,15 @@
  */
 package fr.eni.mahm.projetencheres.dal;
 
+import fr.eni.mahm.projetencheres.dal.article.ArticleDAO;
+import fr.eni.mahm.projetencheres.dal.article.ArticleDAOJdbcImpl;
+import fr.eni.mahm.projetencheres.dal.retrait.RetraitDAO;
+import fr.eni.mahm.projetencheres.dal.retrait.RetraitDAOJdbcImpl;
+import fr.eni.mahm.projetencheres.dal.utilisateur.UtilisateurDAO;
+import fr.eni.mahm.projetencheres.dal.utilisateur.UtilisateurDAOJdbcImpl;
+
 /**
- * @author audreypercherancier
+ * @author groupe Mahm Cookies
  *
  */
 public abstract class DAOFactory {
@@ -16,6 +23,10 @@ public abstract class DAOFactory {
 	
 	public static ArticleDAO getArticleDAO() {
 		return new ArticleDAOJdbcImpl();
+	}
+
+	public static RetraitDAO getRetraitDAO() {
+		return new RetraitDAOJdbcImpl();
 	}
 	
 }

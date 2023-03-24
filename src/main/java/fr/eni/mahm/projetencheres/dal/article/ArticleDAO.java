@@ -1,4 +1,4 @@
-package fr.eni.mahm.projetencheres.dal;
+package fr.eni.mahm.projetencheres.dal.article;
 
 import java.util.List;
 

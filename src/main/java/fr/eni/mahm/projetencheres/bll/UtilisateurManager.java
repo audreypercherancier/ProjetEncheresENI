@@ -5,7 +5,7 @@ import java.util.List;
 
 import fr.eni.mahm.projetencheres.bo.Utilisateur;
 import fr.eni.mahm.projetencheres.dal.DAOFactory;
-import fr.eni.mahm.projetencheres.dal.UtilisateurDAO;
+import fr.eni.mahm.projetencheres.dal.utilisateur.UtilisateurDAO;
 
 public class UtilisateurManager {
 	

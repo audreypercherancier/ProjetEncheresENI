@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.eni.mahm.projetencheres.dal;
+package fr.eni.mahm.projetencheres.dal.utilisateur;
 
 import java.util.List;
 

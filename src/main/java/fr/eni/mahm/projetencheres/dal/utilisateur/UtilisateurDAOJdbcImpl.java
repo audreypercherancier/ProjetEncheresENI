@@ -1,4 +1,4 @@
-package fr.eni.mahm.projetencheres.dal;
+package fr.eni.mahm.projetencheres.dal.utilisateur;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import fr.eni.mahm.projetencheres.bo.Utilisateur;
+import fr.eni.mahm.projetencheres.dal.ConnectBDD;
 
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
@@ -23,13 +24,12 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	// défault-------------------------------------------------------------------//
 
 	public UtilisateurDAOJdbcImpl() {
-		super();
 	}
 
 	// --------------------------------LOGIN---------------------------//
 	public Utilisateur login(String login, String pwd) {
 		Utilisateur utilisateur = null;
-		try (Connection con = connectBDD.getConnection()) {
+		try (Connection con = ConnectBDD.getConnection()) {
 			PreparedStatement pstmt = con.prepareStatement(MYSQLLOGIN);
 			if (login.contains("@")) {
 				pstmt.setString(1, login);
@@ -56,7 +56,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	public void delete(int noUtilisateur) {
 		Connection cnx;
 		Statement stmt;
-		cnx = connectBDD.getConnection();
+		cnx = ConnectBDD.getConnection();
 		try {
 			cnx.setAutoCommit(false);
 			stmt = cnx.createStatement();
@@ -77,7 +77,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	// ------------------------INSERT-------------------------------//
 
 	public void insert(Utilisateur u) {
-		Connection cnx = connectBDD.getConnection();
+		Connection cnx = ConnectBDD.getConnection();
 
 		try {
 			PreparedStatement pstmt;
@@ -123,7 +123,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	public void update(Utilisateur u) {
 		Connection cnx;
 		PreparedStatement stmt;
-		cnx = connectBDD.getConnection();
+		cnx = ConnectBDD.getConnection();
 		try {
 			cnx.setAutoCommit(false);
 			stmt = cnx.prepareStatement(MYSQLUPDATE);
@@ -155,7 +155,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		Statement stmt;
 		ResultSet rs;
 		ArrayList<Utilisateur> lst = new ArrayList<>();
-		Connection cnx = connectBDD.getConnection();
+		Connection cnx = ConnectBDD.getConnection();
 		try {
 			stmt = cnx.createStatement();
 			rs = stmt.executeQuery(MYSQLSELECTALL);
@@ -176,7 +176,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		Connection cnx;
 		PreparedStatement stmt;
 		ResultSet rs;
-		cnx = connectBDD.getConnection();
+		cnx = ConnectBDD.getConnection();
 		Utilisateur u = null;
 		try {
 			cnx.setAutoCommit(false);
@@ -204,7 +204,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		Connection cnx;
 		PreparedStatement stmt;
 		ResultSet rs;
-		cnx = connectBDD.getConnection();
+		cnx = ConnectBDD.getConnection();
 		Utilisateur u = null;
 
 		try {
