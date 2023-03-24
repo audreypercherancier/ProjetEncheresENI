@@ -16,20 +16,37 @@ public class Retrait {
 	private String rue;
 	private String codePostal;
 	private String ville;
+	
+	//---------lien interclasse---------//
+	private int noArticle;
 
 	/**
+	 * pour recuperation en BDD
 	 * @param noRetrait
 	 * @param rue
 	 * @param codePostal
 	 * @param ville
 	 */
-	public Retrait(String rue, String codePostal, String ville) throws CodePostalException, NoRetraitExeption {
+	public Retrait(int noArticle, String rue, String codePostal, String ville) throws CodePostalException, NoRetraitExeption {
 		this.rue = rue;
 		this.setCodePostal(codePostal);
 		this.ville = ville;
+		this.setNoArticle(noArticle);
 	}
 
+	/**
+	 * pour insertion en BDD
+	 * @param parameter
+	 * @param parameter2
+	 * @param parameter3
+	 */
+	public Retrait(String rue, String codePostal,String ville) {
+		this.ville = ville;
+		this.codePostal = codePostal;
+		this.rue = rue;
+	}
 //--------------------------------------------SETTER ET GETTER-----------------------------------------------//
+
 
 	public String getRue() {
 		return rue;
@@ -58,5 +75,20 @@ public class Retrait {
 	public void setVille(String ville) {
 		this.ville = ville;
 	}
+
+	public int getNoArticle() {
+		return noArticle;
+	}
+
+	public void setNoArticle(int noArticle) {
+		this.noArticle = noArticle;
+	}
+
+	@Override
+	public String toString() {
+		return "Retrait [rue=" + rue + ", codePostal=" + codePostal + ", ville=" + ville + "]";
+	}
+	
+	
 
 }

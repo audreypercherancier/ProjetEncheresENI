@@ -30,35 +30,8 @@ public class ArticleVendu {
 
 	// -------------------- CONSTRUCTOR ZONE --------------------//
 
-
 	/**
-	 * constructeur a appelé lors de la creation d'un article avec lieu retrait
-	 * DIFFERENT domicile vendeur
-	 * 
-	 * @param nomArticle
-	 * @param description
-	 * @param dateDebutEncheres
-	 * @param dateFinEncheres
-	 * @param miseAPrix
-	 * @param etatVente
-	 * @param enchereGagnante
-	 * @param lieuRetrait
-	 */
-	public ArticleVendu(String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres,
-			int miseAPrix, int etatVente, Enchere enchereGagnante, Retrait lieuRetrait) {
-		super();
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.miseAPrix = miseAPrix;
-		this.etatVente = etatVente;
-		this.enchereGagnante = enchereGagnante;
-		this.lieuRetrait = lieuRetrait;
-	}
-
-	/**
-	 * PIOUPIOU pour recuperiation avec objet special AUDREY 
+	 * PIOUPIOU pour recuperation avec objet special AUDREY 
 	 * constructeur a modifie dans le futur avec les enchere
 	 * @param noArticle
 	 * @param nomArticle
@@ -85,8 +58,7 @@ public class ArticleVendu {
 		this.categorie = categorie;
 	}
 	/**
-	 * PIOUPIOU 2 pour insertion avec objet special AUDREY 
-	 * constructeur a modifie dans le futur avec les enchere
+	 * Constructeur pour MATHIEU P je bosse dessus
 	 * @param noArticle
 	 * @param nomArticle
 	 * @param description
@@ -94,11 +66,11 @@ public class ArticleVendu {
 	 * @param dateFinEncheres
 	 * @param miseAPrix
 	 * @param vendeur
-	 * @param lieuRetrait -> pas pour le moment bisou
+	 * @param lieuRetrait
 	 */
 	public ArticleVendu( String nomArticle, String description, Date dateDebutEncheres,
 			Date dateFinEncheres, int miseAPrix,  
-			int noVendeur, Categorie categorie) {
+			int noVendeur, Retrait lieuRetrait , Categorie categorie) {
 		this.nomArticle = nomArticle;
 		this.description = description;
 		this.dateDebutEncheres = dateDebutEncheres;
@@ -106,7 +78,7 @@ public class ArticleVendu {
 		this.miseAPrix = miseAPrix;
 		this.prixVente = miseAPrix;
 		this.noVendeur = noVendeur;
-		// this.lieuRetrait = lieuRetrait;
+		this.lieuRetrait = lieuRetrait;
 		this.categorie = categorie;
 	}
 
@@ -304,6 +276,14 @@ public class ArticleVendu {
 	 */
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
+	}
+
+	public Utilisateur getVendeur() {
+		return vendeur;
+	}
+
+	public void setVendeur(Utilisateur vendeur) {
+		this.vendeur = vendeur;
 	}
 
 	// --------------------------------------------------------------------------------------------------------------//

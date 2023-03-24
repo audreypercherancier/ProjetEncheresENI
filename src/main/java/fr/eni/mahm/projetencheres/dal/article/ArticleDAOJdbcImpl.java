@@ -66,16 +66,16 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			
 			ResultSet rs = pstmt.getGeneratedKeys();
 			if(rs.next()) {
-				article.setNoArticle(rs.getInt(1));
+				article.getLieuRetrait().setNoArticle(rs.getInt(1));
 			}
-		/*	a faire
+			
 			try {
-				RetraitManager retraitMgr = new retraitMgr();
-				retraitMgr.ajouter(article.getLieuRetrait(), article.getNoArticle());
+				RetraitManager retraitMgr = new RetraitManager();
+				retraitMgr.ajouter(article.getLieuRetrait());
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
-		*/
+		
 			
 		}catch (SQLException e) {
 			e.printStackTrace();
@@ -100,7 +100,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				articlesEnVente.add(new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),
 						rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"),
 						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_utilisateur"),
-						new Retrait(rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville")),
+						new Retrait(rs.getInt("no_article"), rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville")),
 						new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"))));
 			}
 		} catch (SQLException | CodePostalException | NoRetraitExeption e) {
@@ -123,7 +123,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				article = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),
 						rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"),
 						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_utilisateur"),
-						new Retrait(rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville")),
+						new Retrait(rs.getInt("no_article"), rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville")),
 						new Categorie(rs.getInt("no_categorie"), rs.getString("libelle")));
 			}
 		} catch (SQLException | CodePostalException | NoRetraitExeption e) {

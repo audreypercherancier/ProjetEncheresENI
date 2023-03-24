@@ -1,4 +1,4 @@
-package fr.eni.mahm.projetencheres.dal;
+package fr.eni.mahm.projetencheres.dal.utilisateur;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import fr.eni.mahm.projetencheres.bo.Utilisateur;
+import fr.eni.mahm.projetencheres.dal.ConnectBDD;
 
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
@@ -23,7 +24,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	// défault-------------------------------------------------------------------//
 
 	public UtilisateurDAOJdbcImpl() {
-		super();
 	}
 
 	// --------------------------------LOGIN---------------------------//

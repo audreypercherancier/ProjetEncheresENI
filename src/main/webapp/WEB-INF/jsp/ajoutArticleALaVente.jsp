@@ -31,6 +31,19 @@
 		<label> Date de fin d'enchères </label> <input type="date"
 			name="datefinencheres" required> <br>
 
+	<fieldset>
+		<legend>Retrait</legend>
+		<label for="rue">Rue : </label>
+		<input type="text" name="rue" id="rue" value="${userConnected.getRue()}" required/>
+		
+		<label for="cp">Code postal : </label>
+		<input type="number" name="codePostal" id="cp" value="${userConnected.getCodePostal()}" required/>
+		
+		<label for="ville">Ville : </label>
+		<input type="text" name="ville" id="ville" value="${userConnected.getVille()}" required/>
+		
+	</fieldset>
+
 		<input type="submit" value="Valider" /> <a type="button" href="#">
 			Annuler </a>
 	</form>
