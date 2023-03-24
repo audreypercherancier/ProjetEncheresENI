@@ -11,6 +11,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import fr.eni.mahm.projetencheres.bll.ArticleManager;
 import fr.eni.mahm.projetencheres.bo.ArticleVendu;
 import fr.eni.mahm.projetencheres.bo.Categorie;
@@ -39,35 +41,29 @@ public class AjoutArticleVente extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		ArticleManager articleMgr = new ArticleManager();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-		Utilisateur utilisateur = (Utilisateur) request.getAttribute("connectedUser");
-		System.out.println(utilisateur);
+		Utilisateur utilisateur = (Utilisateur) session.getAttribute("userConnected");
 		ArticleVendu articleAVendre;
 
 		String nom = request.getParameter("nomArticle");
 		String description = request.getParameter("descriptionArticle");
 		Categorie categorie = new Categorie(Integer.parseInt(request.getParameter("categorie")));
 		int prixBase = Integer.parseInt(request.getParameter("prixinitial"));
-		Date FinArticle;
+		Date finArticle =  Date.valueOf(request.getParameter("datefinencheres"));;
+		Date debutEnchere = Date.valueOf(request.getParameter("datedebutencheres"));
+		
+
 		try {
-			Date DebutEnchere = (Date) sdf.parse(request.getParameter("datedebutencheres"));
-			FinArticle = (Date) sdf.parse(request.getParameter("datefinencheres"));
 
-			try {
+			articleAVendre = new ArticleVendu(nom, description, debutEnchere, finArticle, prixBase,
+					utilisateur.getNoUtilisateur(), categorie);
 
-				articleAVendre = new ArticleVendu(nom, description, DebutEnchere, FinArticle, prixBase,
-						utilisateur.getNoUtilisateur(), categorie);
+			articleMgr.ajouter(articleAVendre);
 
-				articleMgr.ajouter(articleAVendre);
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		response.sendRedirect("index.jsp");

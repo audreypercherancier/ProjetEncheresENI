@@ -25,7 +25,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	private final String SUPPRIMER = "DELETE FROM articles_vendus, retraits WHERE no_article=?";
 	private final String SELECTION_TOUT_ARTICLES = "SELECT av.*, c.libelle, r.rue, r.code_postal, r.ville FROM articles_vendus av INNER JOIN retraits r ON r.no_article = av.no_article INNER JOIN categories c ON c.no_categorie ";
 	private final String SELECTION_ARTICLE = "SELECT av.*, c.libelle, r.rue, r.code_postal, r.ville FROM articles_vendus av INNER JOIN retraits r ON r.no_article = av.no_article INNER JOIN categories c ON c.no_categorie WHERE no_article=?";
-	private final String AJOUTER = "INSERT INTO articles_vendus (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie VALUES(?,?,?,?,?,?,?,?)";
+	private final String AJOUTER = "INSERT INTO articles_vendus (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES(?,?,?,?,?,?,?,?)";
 
 	@Override
 	public void supprimer(int noArticle) {
@@ -65,7 +65,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			
 			ResultSet rs = pstmt.getGeneratedKeys();
 			if(rs.next()) {
-				article.setNoArticle(rs.getInt("no_article"));
+				article.setNoArticle(rs.getInt(1));
 			}
 		/*	a faire
 			try {
