@@ -20,6 +20,5 @@ public interface UtilisateurDAO {
 	List<Utilisateur> selectAll(); 
 	Utilisateur selectById(int noUtilisateur);
 	Utilisateur selectByIdPublic(int noUtilisateur); 
-	Utilisateur verificationMdp(String motDePasse); 
 	
 }

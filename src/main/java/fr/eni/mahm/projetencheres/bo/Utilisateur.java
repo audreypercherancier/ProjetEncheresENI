@@ -254,10 +254,6 @@ public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, 
 //		this.articlesAVendre.add(article);
 //	}
 	
-	public Utilisateur() {
-	
-}
-
 	public void annulerVente(ArticleVendu article) {
 		if (article.getEnchereGagnante() != null) {
 			article.getEnchereGagnante().getEncherisseur().setCredit(article.getEnchereGagnante().getEncherisseur().getCredit()+article.getPrixVente());

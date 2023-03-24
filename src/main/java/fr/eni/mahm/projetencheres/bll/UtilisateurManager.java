@@ -45,24 +45,5 @@ public class UtilisateurManager {
 	public static void deleteById(int id) {
 		userDAO.delete(id);
 	}
-	public Utilisateur selectbyId(int id) {
-		Utilisateur userConnected = null;
-		
-			userConnected = userDAO.selectById(id);
-		
-		return userConnected;
-	}
-	
-	public Utilisateur verificationMdp(String motDePasse) {
-		Utilisateur u = null;
-		
-		try {
-			u = userDAO.verificationMdp(motDePasse);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return u;
-	}
 
 }
