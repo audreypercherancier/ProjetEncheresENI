@@ -54,7 +54,7 @@
   <nav class="navbar navbar-dark bg-primary">
     <div class="container-fluid">
       <a class="navbar-brand" href="/ProjetEncheresENI/index.jsp"
-        >ProjetEnchereEni</a
+        >Alors Audrey c'est mieux ?</a
       > 
       <ul class="navbar-nav me-auto list-inline">
         <div id="navbarColor01">
