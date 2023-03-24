@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -45,10 +47,9 @@ public class AjoutArticleVente extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		ArticleManager articleMgr = new ArticleManager();
-
+		
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("userConnected");
-		ArticleVendu articleAVendre;
-
+		ArticleVendu articleAVendre;                             
 		String nom = request.getParameter("nomArticle");
 		String description = request.getParameter("descriptionArticle");
 		Categorie categorie = new Categorie(Integer.parseInt(request.getParameter("categorie")));
@@ -63,6 +64,8 @@ public class AjoutArticleVente extends HttpServlet {
 					utilisateur.getNoUtilisateur(), categorie);
 
 			articleMgr.ajouter(articleAVendre);
+			
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
