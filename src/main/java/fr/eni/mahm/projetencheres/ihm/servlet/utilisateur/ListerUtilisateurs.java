@@ -2,8 +2,6 @@ package fr.eni.mahm.projetencheres.ihm.servlet.utilisateur;
 
 import java.io.IOException;
 import java.util.List;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,13 +23,15 @@ public class ListerUtilisateurs extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException  
 	{
+		
 		List<Utilisateur> selectAll;
 		UtilisateurManager utilisateurManager = new UtilisateurManager();
 		selectAll = utilisateurManager.toutLesUtilisateurs();
-		request.setAttribute("selectAll", selectAll);
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/listeUtilisateur.jsp");
-		rd.forward(request, response);
-		
+		if (selectAll != null) {
+			request.setAttribute("selectAll", selectAll);
+			request.getRequestDispatcher("/WEB-INF/jsp/listeUtilisateur.jsp").forward(request, response);	
+		}
+			
 	} 
 		
 	
