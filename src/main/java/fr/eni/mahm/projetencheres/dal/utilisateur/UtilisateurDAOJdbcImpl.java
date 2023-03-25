@@ -12,13 +12,12 @@ import fr.eni.mahm.projetencheres.dal.ConnectBDD;
 
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
-	private final String MYSQLVERIFMDP = "select no_utilisateur, pseudo, nom, prenom, email, mot_de_passe, telephone, rue, code_postal, ville, credit from utilisateurs where mot_de_passe=?";
-	private final String MYSQLLOGIN = "select no_utilisateur, pseudo, nom, prenom, email, mot_de_passe, telephone, rue, code_postal, ville, credit from utilisateurs where (email=? or pseudo=?) and mot_de_passe=? ";
+	private final String MYSQLLOGIN = "select no_utilisateur, pseudo, nom, prenom, email, mot_de_passe, telephone, rue, code_postal, ville, credit from utilisateurs where (email like binary ? or pseudo like binary ?) and mot_de_passe=? ";
 	private final String MYSQLDELETE = "delete from utilisateurs where no_utilisateur=";
 	private final String MYSQLINSERT = "insert into utilisateurs (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur)  values(?,?,?,?,?,?,?,?,?,?,?)";
-	private final String MYSQLUPDATE = "update utilisateurs set nom=?,prenom=?,email=?,telephone=?,rue=?,code_postal=?,ville=?, mot_de_passe=? where no_utilisateur=?";	
+	private final String MYSQLUPDATE = "update utilisateurs set pseudo=?,nom=?,prenom=?,email=?,telephone=?,rue=?,code_postal=?,ville=?, mot_de_passe=? where no_utilisateur=";	
 	private final String MYSQLSELECTALL = "select pseudo,nom,prenom,email,telephone,rue,code_postal,ville,credit from utilisateurs";
-	private final String MYSQLSELECTBYID = "select pseudo,nom,prenom,email,mot_de_passe,telephone,rue,code_postal,ville from utilisateurs where no_utilisateur=?";
+	private final String MYSQLSELECTBYID = "select no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe from utilisateurs where no_utilisateur=?";
 	private final String MYSQLSELECTBYIDPUBLIC = "select pseudo,nom,prenom,email,telephone,rue,code_postal,ville from utilisateurs where no_utilisateur=?";
 
 	// --------------------------------------------Constructeur par
@@ -28,7 +27,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 
 	// --------------------------------LOGIN---------------------------//
-	public Utilisateur login(String login, String pwd) {
+	public Utilisateur connexion(String login, String pwd) {
 		Utilisateur utilisateur = null;
 		try (Connection con = ConnectBDD.getConnection()) {
 			PreparedStatement pstmt = con.prepareStatement(MYSQLLOGIN);
@@ -54,7 +53,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 
 	// --------------------------------DELETE---------------------------//
-	public void delete(int noUtilisateur) {
+	public void supprimer(int noUtilisateur) {
 		Connection cnx;
 		Statement stmt;
 		cnx = ConnectBDD.getConnection();
@@ -77,7 +76,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 	// ------------------------INSERT-------------------------------//
 
-	public void insert(Utilisateur u) {
+	public void inserer(Utilisateur u) {
 		Connection cnx = ConnectBDD.getConnection();
 
 		try {
@@ -121,13 +120,13 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 
 	// ------------------------UPDATE-------------------------------//
-	public void update(Utilisateur u) {
+	public void modifier(Utilisateur u) {
 		Connection cnx;
 		PreparedStatement stmt;
 		cnx = ConnectBDD.getConnection();
 		try {
 			cnx.setAutoCommit(false);
-			stmt = cnx.prepareStatement(MYSQLUPDATE);
+			stmt = cnx.prepareStatement(MYSQLUPDATE + u.getNoUtilisateur());
 			stmt.setString(1, u.getPseudo());
 			stmt.setString(2, u.getNom());
 			stmt.setString(3, u.getPrenom());
@@ -136,6 +135,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			stmt.setString(6, u.getRue());
 			stmt.setString(7, u.getCodePostal());
 			stmt.setString(8, u.getVille());
+			stmt.setString(9, u.getMotDePasse()); 
 			stmt.executeUpdate();
 			cnx.commit();
 			cnx.close();
@@ -152,7 +152,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 
 	// ------------------------SELECTALL-------------------------------//
-	public List<Utilisateur> selectAll() {
+	public List<Utilisateur> selectionnerUtilisateurs() {
 		Statement stmt;
 		ResultSet rs;
 		ArrayList<Utilisateur> lst = new ArrayList<>();
@@ -173,7 +173,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 
 	// ------------------------SELECTBYID-------------------------------//
-	public Utilisateur selectById(int noUtilisateur) {
+	public Utilisateur selectionnerParId(int noUtilisateur) {
 		Connection cnx;
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -184,9 +184,11 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			stmt = cnx.prepareStatement(MYSQLSELECTBYID);
 			stmt.setInt(1, noUtilisateur);
 			rs = stmt.executeQuery();
-			u = new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
-					rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"),
-					rs.getString("ville"), rs.getString("mot_de_passe"));
+			while (rs.next()) {
+				u = new Utilisateur(Integer.parseInt(rs.getString("no_utilisateur")), rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
+						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"),
+						rs.getString("ville"), rs.getString("mot_de_passe"));
+			}
 			cnx.commit();
 			cnx.close();
 		} catch (Exception e) {
@@ -201,7 +203,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		return u;
 	}
 
-	public Utilisateur selectByIdPublic(int noUtilisateur) {
+	public Utilisateur selectionnerParIdPublic(int noUtilisateur) {
 		Connection cnx;
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -246,24 +248,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		return u;
 	}
 
-	public Utilisateur verificationMdp(String motDePasse) {
-		Utilisateur u = null;
-		try (Connection con = ConnectBDD.getConnection()) {
-			 
-			PreparedStatement pstmt = con.prepareStatement(MYSQLVERIFMDP);
-			pstmt.setString(1, motDePasse);
-			ResultSet rs = pstmt.executeQuery();
-			if (rs.next()) {
-				
-			}
-			con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		
-		return u;
-		
-	}
+	
 
 }

@@ -13,12 +13,11 @@ import fr.eni.mahm.projetencheres.bo.Utilisateur;
  */
 public interface UtilisateurDAO {
 
-	void delete(int noUtilisateur); 
-	Utilisateur login(String email,String pwd);
-	void insert(Utilisateur u); 
-	void update(Utilisateur u); 
-	List<Utilisateur> selectAll(); 
-	Utilisateur selectById(int noUtilisateur);
-	Utilisateur selectByIdPublic(int noUtilisateur); 
-	Utilisateur verificationMdp(String motDePasse); 
+	void supprimer(int noUtilisateur); 
+	Utilisateur connexion(String email,String pwd);
+	void inserer(Utilisateur u); 
+	void modifier(Utilisateur u); 
+	List<Utilisateur> selectionnerUtilisateurs(); 
+	Utilisateur selectionnerParId(int noUtilisateur);
+	Utilisateur selectionnerParIdPublic(int noUtilisateur);  
 }

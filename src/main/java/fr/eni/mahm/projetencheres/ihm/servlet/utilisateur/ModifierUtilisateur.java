@@ -7,6 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import fr.eni.mahm.projetencheres.bll.UtilisateurManager;
 import fr.eni.mahm.projetencheres.bo.Utilisateur;
 
@@ -36,6 +38,9 @@ public class ModifierUtilisateur extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		
+		HttpSession session = request.getSession();
+		
+		
 		int id;
 		UtilisateurManager userMgr = new UtilisateurManager(); 
 		try {
@@ -43,42 +48,63 @@ public class ModifierUtilisateur extends HttpServlet {
 			id=Integer.parseInt(request.getParameter("id"));
 			String ancienMotDePasseEcrit = Utilisateur.hashagePwd(request.getParameter("ancienMotDePasse")); 
 			String nouveauMotDePasse = request.getParameter("nouveauMotDePasse"); 
-			String nouveauMotDePasseconfirmé = request.getParameter("nouveauMotDePasseConfirmé"); 
+			String nouveauMotDePasseconfirme = request.getParameter("nouveauMotDePasseConfirme"); 
 			Utilisateur u = new Utilisateur(); 
-			u=userMgr.selectbyId(id); 
-			System.out.println(id);
-			System.out.println(u);
-			
+			u=userMgr.selectionnerParId(id); 
 			
 			if (u!=null) {
-				 
-				if(nouveauMotDePasse.equals(nouveauMotDePasseconfirmé)) {
-					Utilisateur utilisateurModifié = 
-					new Utilisateur(request.getParameter("pseudo"),
-									request.getParameter("nom"), 
-									request.getParameter("prenom"),
-									request.getParameter("email"),
-									request.getParameter("numero"),
-									request.getParameter("rue"),
-									request.getParameter("codePostal"),
-									request.getParameter("ville"),
-									Utilisateur.hashagePwd(nouveauMotDePasse));
-				
-					userMgr.modifier(utilisateurModifié); 
-					response.sendRedirect("/ProjetEncheresENI/AccesProfil"); 
-			}	
-				else {
-					request.setAttribute("invalid-feedback", "Les nouveaux mots de passe ne sont pas exactes, veuillez recommencer."); 
-					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modifier.jsp");
-					rd.forward(request, response);
-				
-					}
-			}else {
-						request.setAttribute("invalid-feedback", "Votre mot de passe est incorrect, veuillez réessayer."); 
+					
+				if(u.getMotDePasse().equals(ancienMotDePasseEcrit)) {
+					Utilisateur	 utilisateurModifie = new Utilisateur(request.getParameter("pseudo"),
+							request.getParameter("nom"), 
+							request.getParameter("prenom"),
+							request.getParameter("email"),
+							request.getParameter("numero"),
+							request.getParameter("rue"),
+							request.getParameter("codePostal"),
+							request.getParameter("ville"),
+							u.getMotDePasse());
+		
+					utilisateurModifie.setNoUtilisateur(u.getNoUtilisateur());
+					
+
+					
+					if(nouveauMotDePasse != null && !nouveauMotDePasse.isEmpty() &&
+					   nouveauMotDePasseconfirme != null && !nouveauMotDePasseconfirme.isEmpty() && 
+					   nouveauMotDePasse.equals(nouveauMotDePasseconfirme)){
+						
+						
+						utilisateurModifie.setMotDePasse(nouveauMotDePasseconfirme);
+						userMgr.modifier(utilisateurModifie); 
+						session.setAttribute("userConnected", utilisateurModifie);
+						response.sendRedirect("/ProjetEncheresENI/monCompte"); 
+						
+						
+					}else if(nouveauMotDePasse != null && !nouveauMotDePasse.isEmpty() &&
+							   nouveauMotDePasseconfirme != null && !nouveauMotDePasseconfirme.isEmpty() && 
+							   !nouveauMotDePasse.equals(nouveauMotDePasseconfirme)) {
+						request.setAttribute("nosimilairesmdp", "Les nouveaux mots de passe ne sont pas exactes, veuillez recommencer."); 
 						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modifier.jsp");
 						rd.forward(request, response);
-						
-						  }
+					}else {
+						userMgr.modifier(utilisateurModifie); 
+						session.setAttribute("userConnected", utilisateurModifie);
+						response.sendRedirect("/ProjetEncheresENI/monCompte"); 
+					}
+					
+					
+			}	else {
+				request.setAttribute("mdpincorrect", "Votre mot de passe est incorrect, veuillez réessayer."); 
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modifier.jsp");
+				rd.forward(request, response);
+				
+				  }
+				
+			} else {
+				request.setAttribute("invalid-feedback","Une erreur est survenue"); 
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modifier.jsp");
+				rd.forward(request, response);
+			}
 		}catch (Exception e) {
 			e.printStackTrace(); 
 		}

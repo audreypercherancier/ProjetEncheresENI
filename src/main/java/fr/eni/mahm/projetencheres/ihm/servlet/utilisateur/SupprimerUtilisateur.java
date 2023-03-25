@@ -29,7 +29,7 @@ public class SupprimerUtilisateur extends HttpServlet
 		HttpSession ses;
 		
 		id=Integer.parseInt(request.getParameter("id"));
-		UtilisateurManager.deleteById(id);
+		UtilisateurManager.supprimerParId(id);
 		
 		ses=request.getSession();
 		ses.setAttribute("userConnected", null);
@@ -49,7 +49,7 @@ public class SupprimerUtilisateur extends HttpServlet
 		
 		id=Integer.parseInt(request.getParameter("id"));
 		System.out.println();
-		UtilisateurManager.deleteById(id);
+		UtilisateurManager.supprimerParId(id);
 		
 		ses=request.getSession();
 		ses.setAttribute("userConnected", null);

@@ -40,6 +40,7 @@ pageEncoding="UTF-8"%>
 		                  name="login"
 		                  class="form-control form-control-lg"
 		                  placeholder="Pseudo / Adresse email"
+		                  required
 		                />
 		             </div>
 				     <!-- Password input -->
@@ -50,6 +51,7 @@ pageEncoding="UTF-8"%>
 		                  name="password"
 		                  class="form-control form-control-lg"
 		                  placeholder="Entrer votre mot de passe"
+		                  required
 		                />
 		              </div>
 		              <div class="d-flex justify-content-between align-items-center">
