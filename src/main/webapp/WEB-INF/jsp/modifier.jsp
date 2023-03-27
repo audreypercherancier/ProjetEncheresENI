@@ -178,5 +178,9 @@
 <script type="text/javascript" src="vendor/checkRequired.js"></script>
 
 
-
+<style type="text/css">
+.form-control {
+border-width : 0.5px; 
+}
+</style>
 </html>
