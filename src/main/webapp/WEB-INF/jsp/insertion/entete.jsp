@@ -4,8 +4,9 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
       <a class="navbar-brand" href="/ProjetEncheresENI/accueil"
-        >Alors Audrey c'est mieux ?</a
+        ></a
       >
+      
       <button
         class="navbar-toggler"
         type="button"
