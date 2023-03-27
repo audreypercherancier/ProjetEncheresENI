@@ -73,6 +73,7 @@ public class Login extends HttpServlet {
 		password = Utilisateur.hashagePwd(request.getParameter("password"));
 		HttpSession ses;
 		ses = request.getSession();
+		ses.setMaxInactiveInterval(5 * 60); 
 		UtilisateurManager userMgr = new UtilisateurManager();
 		u = userMgr.connexion(login, password);
 

@@ -26,7 +26,7 @@ pageEncoding="UTF-8"%>
 	          <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
 			         <% if(request.getAttribute("alert alert-danger") != null) {%>             
 			         	<div class="alert alert-danger"> 
-				         	<strong class="icon-remove-sign">Identifiant et / ou mot de passe incorrect(s)
+				         	<strong class="icon-remove-sign">
 					         	<%=request.getAttribute("alert alert-danger")%>
 					         </strong>
 			         	</div>
@@ -39,7 +39,7 @@ pageEncoding="UTF-8"%>
 		                  id="form3Example3"
 		                  name="login"
 		                  class="form-control form-control-lg"
-		                  placeholder="Pseudo / Adresse email"
+		                  placeholder="Pseudo / Adresse email" value="${cookie.lastLogin.value}"
 		                  required
 		                />
 		             </div>
