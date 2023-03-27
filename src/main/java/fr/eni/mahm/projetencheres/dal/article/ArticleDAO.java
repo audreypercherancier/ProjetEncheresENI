@@ -15,5 +15,6 @@ public interface ArticleDAO {
 	void ajouter(ArticleVendu article);
 	void modifier(ArticleVendu article);
 	List<ArticleVendu> selectionArticles();
+	List<ArticleVendu> selectionParNoArticlePseudo();
 	ArticleVendu selectionParNoArticle(int noArticle);
 }

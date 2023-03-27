@@ -99,10 +99,9 @@ public class Enchere {
 
 	@Override
 	public String toString() {
-		return "le :" + dateEnchere +  "pour" + article.getNomArticle()+" : " + montantEnchere + "crédit";
+		return "le :" + dateEnchere + "pour" + article.getNomArticle() + " : " + montantEnchere + "crédit";
 	}
-	
-	//------------------to string-----------------//
-	
+
+	// ------------------to string-----------------//
 
 }

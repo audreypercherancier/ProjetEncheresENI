@@ -1,4 +1,4 @@
-package fr.eni.mahm.projetencheres.dal.article;
+package fr.eni.mahm.projetencheres.bll;
 
 import fr.eni.mahm.projetencheres.bo.Retrait;
 import fr.eni.mahm.projetencheres.dal.DAOFactory;
