@@ -3,6 +3,10 @@ package fr.eni.mahm.projetencheres.dal;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+<<<<<<< Updated upstream
+=======
+import javax.naming.Context;
+>>>>>>> Stashed changes
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
@@ -16,15 +20,14 @@ public class ConnectBDD
 {
 	public static Connection getConnection()
 	{
-		Connection cnx=null;
-		InitialContext ctx;
-		DataSource ds;
+		Connection cnx = null; 
 		
 		try 
 		{
-			ctx=new InitialContext();
-			ds=(DataSource)ctx.lookup("java:comp/env/jdbc/pool_cnx");
-			cnx=ds.getConnection();
+			Context context = new InitialContext();
+			DataSource datasource = (DataSource) context.lookup("java:comp/env/jdbc/pool_cnx"); 
+			
+			cnx = datasource.getConnection();
 			
 		} catch (SQLException e) {
 			

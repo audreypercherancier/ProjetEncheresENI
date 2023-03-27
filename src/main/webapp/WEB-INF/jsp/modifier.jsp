@@ -76,9 +76,7 @@
 						<input type="number" name="numero" id="form3Example4"
 							class="form-control" value="${userConnected.telephone}"
 							placeholder="${userConnected.telephone}" /> 
-							<div class="invalid-feedback">
-							 Veuillez saisir un telephone
-							</div>
+							
 					</div>
 			</div>
 			</div>
