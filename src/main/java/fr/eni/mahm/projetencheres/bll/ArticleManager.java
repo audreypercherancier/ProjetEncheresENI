@@ -3,8 +3,9 @@ package fr.eni.mahm.projetencheres.bll;
 import java.util.List;
 
 import fr.eni.mahm.projetencheres.bo.ArticleVendu;
-import fr.eni.mahm.projetencheres.dal.article.ArticleDAO;
+
 import fr.eni.mahm.projetencheres.dal.DAOFactory;
+import fr.eni.mahm.projetencheres.dal.article.ArticleDAO;
 
 public class ArticleManager {
 
