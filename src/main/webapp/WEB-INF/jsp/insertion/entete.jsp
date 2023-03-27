@@ -4,7 +4,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
       <a class="navbar-brand" href="/ProjetEncheresENI/accueil"
-        ></a
+        >ENI Encheres</a
       >
       
       <button
@@ -55,7 +55,7 @@
   <nav class="navbar navbar-dark bg-primary">
     <div class="container-fluid">
       <a class="navbar-brand" href="/ProjetEncheresENI/accueil"
-        >Alors Audrey c'est mieux ?</a
+        >ENI Encheres</a
       > 
       <ul class="navbar-nav me-auto list-inline">
         <div id="navbarColor01">
