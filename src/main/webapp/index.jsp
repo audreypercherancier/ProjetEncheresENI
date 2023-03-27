@@ -28,7 +28,7 @@
 								<hr>
 								<p class="card-text">Prix de l'article ${listeArticleVendu.prixVente} </p>
 								<hr>
-								<a href="#" class="btn btn-primary">Voir l'enchère</a>
+								<a href="/ProjetEncheresENI/detailsArticle" class="btn btn-primary">Voir l'enchère</a>
 							</div>
 							<div class="card-footer text-muted">temps restant enchere</div>
 						</div>

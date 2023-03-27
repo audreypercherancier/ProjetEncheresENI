@@ -9,6 +9,7 @@
 </head>
 <body style="background-color: #eee;">
 	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
+
 	<section>
 		<div class="container py-5">
 			<div class="row">
