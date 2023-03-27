@@ -18,7 +18,7 @@ public class ArticleVendu {
 	private Date dateDebutEncheres;
 	private Date dateFinEncheres;
 	private int miseAPrix;
-	private int prixVente = 0;
+	private int prixVente;
 	private int etatVente;
 	private int noVendeur;
 

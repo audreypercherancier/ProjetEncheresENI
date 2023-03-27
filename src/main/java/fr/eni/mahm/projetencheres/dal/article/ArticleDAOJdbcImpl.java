@@ -11,6 +11,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.mahm.projetencheres.bll.UtilisateurManager;
 import fr.eni.mahm.projetencheres.bo.ArticleVendu;
 import fr.eni.mahm.projetencheres.bo.Categorie;
 import fr.eni.mahm.projetencheres.bo.Retrait;
@@ -25,7 +26,7 @@ import fr.eni.mahm.projetencheres.exceptions.NoRetraitExeption;
 public class ArticleDAOJdbcImpl implements ArticleDAO {
 	private final String SUPPRIMER = "DELETE FROM articles_vendus, retraits WHERE no_article=?";
 	private final String SELECTION_TOUT_ARTICLES = "SELECT av.*, c.libelle, r.rue, r.code_postal, r.ville FROM articles_vendus av INNER JOIN retraits r ON r.no_article = av.no_article INNER JOIN categories c ON c.no_categorie=av.no_categorie ";
-	private final String SELECTION_ARTICLE = "SELECT av.*, c.libelle, r.rue, r.code_postal, r.ville FROM articles_vendus av INNER JOIN retraits r ON r.no_article = av.no_article INNER JOIN categories c ON c.no_categorie WHERE no_article=?";
+	private final String SELECTION_ARTICLE = "SELECT av.*, c.libelle, r.rue, r.code_postal, r.ville FROM articles_vendus av INNER JOIN retraits r ON r.no_article = av.no_article INNER JOIN categories c ON c.no_categorie WHERE av.no_article=?";
 	private final String AJOUTER = "INSERT INTO articles_vendus (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES(?,?,?,?,?,?,?,?)";
 
 	@Override
@@ -91,6 +92,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	@Override
 	public List<ArticleVendu> selectionArticles() {
 		List<ArticleVendu> articlesEnVente = new ArrayList<>();
+		UtilisateurManager utilisateurMgr = new UtilisateurManager();
 
 		try (Connection cnx = ConnectBDD.getConnection()) {
 			Statement stmt = cnx.createStatement();
@@ -102,6 +104,11 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_utilisateur"),
 						new Retrait(rs.getInt("no_article"), rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville")),
 						new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"))));
+				
+			}
+			
+			for (ArticleVendu article : articlesEnVente) {
+				article.setVendeur(utilisateurMgr.selectionnerParId(article.getNoVendeur()));
 			}
 		} catch (SQLException | CodePostalException | NoRetraitExeption e) {
 			e.printStackTrace();
@@ -113,6 +120,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	@Override
 	public ArticleVendu selectionParNoArticle(int noArticle) {
 		ArticleVendu article = null;
+		UtilisateurManager utilisateurMgr = new UtilisateurManager();
 
 		try (Connection cnx = ConnectBDD.getConnection()) {
 			PreparedStatement pstmt = cnx.prepareStatement(SELECTION_ARTICLE);
@@ -125,7 +133,13 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_utilisateur"),
 						new Retrait(rs.getInt("no_article"), rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville")),
 						new Categorie(rs.getInt("no_categorie"), rs.getString("libelle")));
+				
+				article.setVendeur(utilisateurMgr.selectionnerParId(article.getNoVendeur()));
 			}
+			
+		
+			
+			
 		} catch (SQLException | CodePostalException | NoRetraitExeption e) {
 			e.printStackTrace();
 		}

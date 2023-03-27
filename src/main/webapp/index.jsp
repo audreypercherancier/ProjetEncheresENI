@@ -15,7 +15,7 @@
 				<div class="row justify-content-evenly">
 					<c:forEach var= "listeArticleVendu" items = "${requestScope.listeArticleVendu}" >
 						<div class="card text-center col-5 my-3 p-0 shadow">
-							<a href="#" class="card-header text-decoration-none">${listeArticleVendu.noArticle}</a> 
+							<a href="#" class="card-header text-decoration-none">${listeArticleVendu.getVendeur().getPseudo()}</a> 
 							<img src="https://ik.imagekit.io/uwzsb7j5w/wp-content/uploads/sites/2/2022/10/vente-aux-encheres-illustration.jpg" class="img-fluid" alt="fuck" />
 							<div class="card-body">
 								<h5 class="card-title">${listeArticleVendu.nomArticle}</h5>
@@ -28,7 +28,10 @@
 								<hr>
 								<p class="card-text">Prix de l'article ${listeArticleVendu.prixVente} </p>
 								<hr>
-								<a href="#" class="btn btn-primary">Voir l'enchère</a>
+								<form action="/ProjetEncheresENI//detailArticle" method="get">
+									<input type="text" name="noArticle" value="${listeArticleVendu.noArticle}" style="display: none;"/>
+									<input type="submit" class="btn btn-primary" value="Voir l'enchère"/>
+								</form>
 							</div>
 							<div class="card-footer text-muted">temps restant enchere</div>
 						</div>
