@@ -16,21 +16,30 @@
 	
 	<div class="card-body px-4 py-5 px-md-5">
 	
-	<form action="VendreUnArticle" method="post">
+	<form class="needs-validation"  action="VendreUnArticle" method="post" novalidate>
 				<div class="row">
 							<div class="col-md-6 mb-4">
 								<div class="form-outline">
 									<label> Nom Article </label>
-									<input type="text" name="nomArticle" required> <br>
+									<input type="text" name="nomArticle" class="form-control" required> <br>
 									
 								</div>
+								<div class="invalid-feedback">
+						 				Veuillez saisir un nom d'article
+								</div>
+								<label for="photoarticle">Choississez une photo pour l'article</label>
+
+								<input type="file" id="photoarticle" name="photoarticle" accept="image/png, image/jpeg">
 							</div>
 							<div class="col-md-6 mb-4">
 								<div class="form-outline">
 									<label style="vertical-align : top"> Description Article </label> 
-									<textarea rows="3" cols="20" name="descriptionArticle" required></textarea> <br>
+									<textarea rows="5" cols="20" name="descriptionArticle" class="form-control" minlength="10" maxlength ="300" placeholder="Veuillez saisir au moins 10 caractères" required></textarea> <br>
 								</div>
 							</div>
+								<div class="invalid-feedback">
+						 				Veuillez saisir une description d'article
+								</div>
 				</div>
 	
 				<div class="row">
@@ -38,7 +47,7 @@
 								<div class="form-outline">
 									<label>Catégorie du produit</label>
 									
-									<select name="categorie" id="categorie" required>
+									<select name="categorie" id="categorie" class="form-control" required>
 											<option value="">Choississez une catégorie</option>
 											<option value="1">Hygiène et Santé</option>
 											<option value="2">Animalerie</option>
@@ -52,12 +61,17 @@
 											<option value="10">Véhicules</option>
 											<option value="11">Autres</option>
 									</select> 
+									
 											
 								</div>
+								<div class="invalid-feedback">
+						 				Veuillez saisir une catégorie d'articles
+									</div>
 							</div>
 							<div class="col-md-6 mb-4">
 								<div class="form-outline">
-									<label> Mise à prix</label> <input type="number" name="prixinitial" required> <br>
+									<label> Mise à prix</label> 
+									<input type="number" name="prixinitial" class="form-control" min="0"> <br>
 									
 								</div>
 							</div>
@@ -66,14 +80,23 @@
 				<div class="row">
 							<div class="col-md-6 mb-4">
 								<div class="form-outline">
-									<label> Date de début d'enchères </label> <input type="date" name="datedebutencheres" required> <br>
+									<label> Date de début d'enchères </label> 
+									<input type="date" name="datedebutencheres" id="datefield"  class="form-control" required> <br>
+								
 								</div>
+									<div class="invalid-feedback">
+						 				Veuillez saisir un date de début d'enchères
+									</div>
 							</div>
 							
 							<div class="col-md-6 mb-4">
 								<div class="form-outline">
-									<label> Date de fin d'enchères </label> <input type="date" name="datefinencheres" required> <br>
+									<label> Date de fin d'enchères </label> 
+									<input type="date" name="datefinencheres" class="form-control" required> <br>
 								</div>
+									<div class="invalid-feedback">
+						 				Veuillez saisir un date de fin d'enchères
+									</div>
 							</div>
 				</div>
 	
@@ -83,17 +106,27 @@
 							<div class="col-md-6 mb-4">
 								<div class="form-outline">
 									
-										<label for="rue">Rue : </label>
-										<input type="text" name="rue" id="rue" value="${userConnected.getRue()}" required/>
-					
-										<label for="cp">Code postal : </label>
-										<input type="number" name="codePostal" id="cp" value="${userConnected.getCodePostal()}" required/>
+										<label for="rue">Rue  </label>
+										<input type="text" name="rue" class="form-control" id="rue" value="${userConnected.getRue()}" required/>
+										<br>
+										<label for="cp">Code postal </label>
+										<input type="number" name="codePostal" class="form-control" id="cp" value="${userConnected.getCodePostal()}" required/>
 								</div>
 							</div>
+				<br>
+				<div class="col-md-6 mb-4">
+						<div class="form-outline">
+								<label for="ville">Ville  </label>
+								<input type="text" name="ville" class="form-control" id="ville" value="${userConnected.getVille()}" required/>
+						</div>
+				</div>
 				</div>
 				
-				</fieldset>
-					<input type="submit" value="Valider" /> <a type="button" href="#">
+	</fieldset>
+					<button type="submit" class="btn btn-primary btn-block mb-4">
+				Valider </button>
+					
+					<a type="button" class="btn btn-primary btn-block mb-4"  href="#">
 						Annuler </a>
 	</form>
 	
@@ -110,7 +143,7 @@
 
 <style type="text/css">
 .form-control {
-border-width : 0.5px; 
+border-width : 1.5px; 
 }
 </style>
 </html>
