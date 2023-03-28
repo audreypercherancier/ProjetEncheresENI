@@ -47,8 +47,9 @@ public class FaireEnchere extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		ArticleVendu noArticle = (ArticleVendu) session.getAttribute("article");
-		System.out.println(noArticle.getNoArticle());
+		ArticleVendu article = (ArticleVendu) session.getAttribute("article");
+		
+		//TODO		
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/enchere.jsp");
 		rd.forward(request, response);

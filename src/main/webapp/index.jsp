@@ -12,6 +12,10 @@
 <body>
 	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
 	<div class="container">
+		<select name="cat">
+			<option value="null"></option>
+			<option value="High-Tech">High-Tech</option>
+		</select>
 			<div class="col-8 offset-2">
 				<div class="row justify-content-evenly">
 					<c:forEach var= "ArticleVendu" items = "${requestScope.listeArticleVendu}" >
@@ -19,6 +23,7 @@
 						
 						<c:if test="${empty userConnected}"><a href="/ProjetEncheresENI/login"class="card-header text-decoration-none" >${ArticleVendu.pseudo}</a>  </c:if>
 						<c:if test="${!empty userConnected}"><a href="AfficherUtilisateur?id=${ArticleVendu.noArticle}"class="card-header text-decoration-none">${ArticleVendu.pseudo}</a> </c:if> 
+
 							<img src="https://ik.imagekit.io/uwzsb7j5w/wp-content/uploads/sites/2/2022/10/vente-aux-encheres-illustration.jpg" class="img-fluid" alt="fuck" />
 							<div class="card-body">
 								<h5 class="card-title">${ArticleVendu.nomArticle}</h5>
@@ -32,7 +37,7 @@
 								<p class="card-text">Prix de l'article ${ArticleVendu.prixVente} </p>
 								<hr>
 								<c:if test="${empty userConnected}"><a href="/ProjetEncheresENI/login" class="btn btn-primary">Voir l'enchère</a>  </c:if>
-								<c:if test="${!empty userConnected}"><a href="<%=request.getContextPath() %>/detailsArticle?noArticle=${ArticleVendu.noArticle}" class="btn btn-primary">Voir l'enchère</a> </c:if>
+								<c:if test="${!empty userConnected}"><a href="<%=request.getContextPath() %>/detailArticle?noArticle=${ArticleVendu.noArticle}" class="btn btn-primary">Voir l'enchère</a> </c:if>
 
 							</div>
 							<div class="card-footer text-muted">temps restant enchere</div>

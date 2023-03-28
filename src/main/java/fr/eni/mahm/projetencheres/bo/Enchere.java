@@ -31,7 +31,6 @@ public class Enchere {
 		this.dateEnchere = new Date(System.currentTimeMillis());
 		this.montantEnchere = montantEnchere;
 		this.encherisseur = encherisseur;
-		this.setEnchere();
 	}
 
 	/**
@@ -51,14 +50,6 @@ public class Enchere {
 		return valide;
 	}
 
-	private void setEnchere() {
-		if (this.article.getEnchereGagnante() != null) {
-			int montantEncherePerdante = this.article.getEnchereGagnante().getMontantEnchere();
-			this.article.getEnchereGagnante().encherisseur
-					.setCredit(this.article.getEnchereGagnante().encherisseur.getCredit() + montantEncherePerdante);
-		}
-		this.article.setEnchereGagnante(this);
-	}
 
 	// ------------------------ GETTER/SETTER ZONE------------------------//
 
