@@ -12,10 +12,6 @@
 <body>
 	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
 	<div class="container">
-		<select name="cat">
-			<option value="null"></option>
-			<option value="High-Tech">High-Tech</option>
-		</select>
 			<div class="col-8 offset-2">
 				<div class="row justify-content-evenly">
 					<c:forEach var= "ArticleVendu" items = "${requestScope.listeArticleVendu}" >

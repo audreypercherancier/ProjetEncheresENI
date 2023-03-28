@@ -70,5 +70,9 @@ public class ArticleManager {
 	public List<ArticleVendu>articleEnVentePseudo(){	
 		 return articleDAO.selectionParNoArticlePseudo();
 	}
+	
+	public void faireEnchere(int montant, int noArticle) {
+		articleDAO.nouvelleEnchere(montant, noArticle);
+	}
 
 }

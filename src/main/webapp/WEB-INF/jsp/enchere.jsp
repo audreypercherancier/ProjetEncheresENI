@@ -46,7 +46,7 @@
 		<br/>
 		
 		<label for="monEnchere">Ma proposition : </label> 
-		<input type="number" value="${article.getPrixVente() }" id="monEnchere"> 
+		<input type="number" value="${article.getPrixVente() }" id="monEnchere" name="monEnchere"> 
 		<br/>
 		
 		<input type="submit" class="btn btn-secondary" value="Enchérir">

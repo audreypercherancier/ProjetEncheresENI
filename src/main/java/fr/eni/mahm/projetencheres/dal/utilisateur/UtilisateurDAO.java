@@ -20,4 +20,5 @@ public interface UtilisateurDAO {
 	List<Utilisateur> selectionnerUtilisateurs(); 
 	Utilisateur selectionnerParId(int noUtilisateur);
 	Utilisateur selectionnerParIdPublic(int noUtilisateur);  
+	void modifierSolde(int nouveauSolde, int noUtilisateur);
 }

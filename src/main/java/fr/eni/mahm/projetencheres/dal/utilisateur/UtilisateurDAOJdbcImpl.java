@@ -20,6 +20,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private final String MYSQLSELECTALL = "select pseudo,nom,prenom,email,telephone,rue,code_postal,ville,credit from utilisateurs";
 	private final String MYSQLSELECTBYID = "select no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe from utilisateurs where no_utilisateur=?";
 	private final String MYSQLSELECTBYIDPUBLIC = "select pseudo,nom,prenom,email,telephone,rue,code_postal,ville from utilisateurs where no_utilisateur=?";
+	
+	
+	private final String MODIFICATION_SOLDE = "UPDATE utilisateurs  SET credit = ? WHERE no_utilisateur = ?";
 
 	// --------------------------------------------Constructeur par
 	// défault-------------------------------------------------------------------//
@@ -247,6 +250,22 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			e.printStackTrace();
 		}
 		return u;
+	}
+
+	@Override
+	public void modifierSolde(int nouveauSolde, int noUtilisateur) {
+
+		try(Connection cnx = ConnectBDD.getConnection()){
+			PreparedStatement pstmt = cnx.prepareStatement(MODIFICATION_SOLDE);
+			pstmt.setInt(1, nouveauSolde);
+			pstmt.setInt(2, noUtilisateur);
+			
+			pstmt.executeUpdate();
+	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	

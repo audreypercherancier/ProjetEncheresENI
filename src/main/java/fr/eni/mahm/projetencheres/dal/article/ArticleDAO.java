@@ -17,4 +17,5 @@ public interface ArticleDAO {
 	List<ArticleVendu> selectionArticles();
 	List<ArticleVendu> selectionParNoArticlePseudo();
 	ArticleVendu selectionParNoArticle(int noArticle);
+	void nouvelleEnchere(int montant, int noArticle);
 }

@@ -19,14 +19,17 @@ public class Enchere {
 	private Utilisateur encherisseur;
 
 	// ------------------------ CONSTRUCTOR ZONE ------------------------//
+	
+	
+	
+	
 	/**
-	 * visibilité package, doit faire l'objet d'une validation avant creation
-	 * 
+	 * pour insertion BD 
 	 * @param encherisseur
 	 * @param article
 	 * @param montantEnchere
 	 */
-	Enchere(Utilisateur encherisseur, ArticleVendu article, int montantEnchere) {
+	public Enchere(Utilisateur encherisseur, ArticleVendu article, int montantEnchere) {
 		this.article = article;
 		this.dateEnchere = new Date(System.currentTimeMillis());
 		this.montantEnchere = montantEnchere;
