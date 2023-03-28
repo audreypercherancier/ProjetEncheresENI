@@ -15,14 +15,14 @@ import fr.eni.mahm.projetencheres.bo.Utilisateur;
 /**
  * Servlet implementation class CompteEncherisseur
  */
-@WebServlet("/CompteEncherisseur")
-public class CompteEncherisseur extends HttpServlet {
+@WebServlet("/compteVendeur")
+public class compteVendeur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CompteEncherisseur() {
+    public compteVendeur() {
         super();
         
     }
@@ -38,11 +38,11 @@ public class CompteEncherisseur extends HttpServlet {
 		Utilisateur utilisateur;
 		UtilisateurManager utilisateurMgr = new UtilisateurManager();
 		
-		utilisateur =  utilisateurMgr.selectionnerParId(Integer.parseInt(request.getParameter("noUtilisateur")));
+		utilisateur =  utilisateurMgr.selectionnerParId(Integer.parseInt(request.getParameter("id")));
 		
 		session.setAttribute("utilisateur", utilisateur);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/compteEncherisseur.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/compteVendeur.jsp");
 		rd.forward(request, response);
 		}
 

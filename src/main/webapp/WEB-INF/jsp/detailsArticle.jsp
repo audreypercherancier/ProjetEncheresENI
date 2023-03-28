@@ -117,7 +117,7 @@
 						<p class="text-muted mb-1">${articleSelectione.pseudo}</p>
 						<div class="d-flex justify-content-center mb-2">
 							<a type="button" class="btn btn-secondary my-2 my-sm-0"
-								href="<%=request.getContextPath() %>/compteEncherisseur?pseudo?=${articleSelectione.pseudo}" role="button">Accedez au compte</a>
+								href="<%=request.getContextPath() %>/compteVendeur?id=${articleSelectione.noVendeur}" role="button">Accedez au compte</a>
 						</div>
 					</div>
 				</div>

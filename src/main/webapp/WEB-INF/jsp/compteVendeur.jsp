@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Compte Vendeur</title>
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
 	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
@@ -19,9 +20,7 @@
 								src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2.webp"
 								alt="avatar" class="rounded-circle img-fluid"
 								style="width: 150px;">
-							<h5 class="my-3">${utilisateur.pseudo}</h5>
-							<p class="text-muted mb-1">${utilisateur.nom}
-								${utilisateur.prenom}</p>
+							<h5 class="my-3">${utilisateur.pseudo} ${utilisateur.prenom}</h5>
 						</div>
 					</div>
 				</div>
