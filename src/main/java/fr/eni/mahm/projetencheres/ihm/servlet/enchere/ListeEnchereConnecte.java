@@ -48,7 +48,7 @@ public class ListeEnchereConnecte extends HttpServlet {
 		param5 = request.getParameter("ventesNonCommences");
 		param6 = request.getParameter("ventesTerminees");
 		idUtilisateurConnecte = Integer.parseInt(request.getParameter("userConnected"));
-	
+		System.out.println(param);
 		System.out.println("user"+idUtilisateurConnecte);
 		
 		if (param1 !=null) {
@@ -57,12 +57,12 @@ public class ListeEnchereConnecte extends HttpServlet {
 			System.out.println("affiche param1 "+param1);
 		}
 		if (param2 !=null) {
-			//tout les articles ou toutes les encheres ont le userconnected=no_utilisateur
+			//tout les articles ou il ya une enchere dans la tabvle enchere ou le noutilisaeut = user connected
 			//
 			System.out.println("affiche param2 "+param2);
 		}
 		if (param3 !=null) {
-			//tout les article ou 
+			//Voir avec mathieu P
 			//
 			System.out.println("affiche param3 "+param3);
 		}
