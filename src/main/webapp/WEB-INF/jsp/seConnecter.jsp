@@ -26,7 +26,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                      
             <div class="alert alert-danger">
               <strong class="icon-remove-sign"
-                >Identifiant et / ou mot de passe incorrect(s)
+                >
                 <%=request.getAttribute("alert alert-danger")%>
               </strong>
             </div>
@@ -34,14 +34,17 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             <form action="login" method="post">
               <!-- Email input -->
               <div class="form-outline mb-4">
-                <input
+              <input
                   type="text"
                   id="form3Example3"
                   name="login"
+                  value="${cookie.lastLogin.value}"
                   class="form-control form-control-lg"
                   placeholder="Pseudo / Adresse email"
                   required
                 />
+       
+                
               </div>
               <!-- Password input -->
               <div class="form-outline mb-3">
@@ -60,7 +63,8 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                   <input
                     class="form-check-input me-2"
                     type="checkbox"
-                    value=""
+                    name="sesouvenirdemoi"
+                    value="coche"
                     id="form2Example3"
                   />
                   <label class="form-check-label" for="form2Example3">
