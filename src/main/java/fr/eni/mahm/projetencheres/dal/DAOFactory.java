@@ -5,6 +5,8 @@ package fr.eni.mahm.projetencheres.dal;
 
 import fr.eni.mahm.projetencheres.dal.article.ArticleDAO;
 import fr.eni.mahm.projetencheres.dal.article.ArticleDAOJdbcImpl;
+import fr.eni.mahm.projetencheres.dal.enchere.EnchereDAO;
+import fr.eni.mahm.projetencheres.dal.enchere.EnchereDAOJdbcImpl;
 import fr.eni.mahm.projetencheres.dal.retrait.RetraitDAO;
 import fr.eni.mahm.projetencheres.dal.retrait.RetraitDAOJdbcImpl;
 import fr.eni.mahm.projetencheres.dal.utilisateur.UtilisateurDAO;
@@ -27,5 +29,9 @@ public abstract class DAOFactory {
 	public static RetraitDAO getRetraitDAO() {
 		return new RetraitDAOJdbcImpl();
 	}
-
+	
+	public static EnchereDAO getEnchereDAO() {
+		return new EnchereDAOJdbcImpl();
+	}
+	
 }

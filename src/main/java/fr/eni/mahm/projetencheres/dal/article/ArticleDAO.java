@@ -18,5 +18,7 @@ public interface ArticleDAO {
 	List<ArticleVendu> selectionParcategorie(int categorie);
 	List<ArticleVendu> selectionParNoArticlePseudo();
 	List<ArticleVendu> selectionArticleParNom(String nomArticle);
+	List<ArticleVendu> selectionParNoArticlePseudo();
 	ArticleVendu selectionParNoArticle(int noArticle);
+	void nouvelleEnchere(int montant, int noArticle);
 }

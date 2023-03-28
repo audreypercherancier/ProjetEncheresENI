@@ -59,6 +59,10 @@ public class UtilisateurManager {
 		return u;
 		
 	}
+	
+	public void miseAJourSolde(int nouveauSolde, int noUtilisateur) {
+		userDAO.modifierSolde(nouveauSolde, noUtilisateur);
+	}
 
 
 }

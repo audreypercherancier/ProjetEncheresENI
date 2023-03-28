@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8" />
 <title>Page d'accueil</title>
-
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>

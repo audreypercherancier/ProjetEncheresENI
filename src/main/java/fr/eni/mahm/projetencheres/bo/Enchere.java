@@ -19,19 +19,21 @@ public class Enchere {
 	private Utilisateur encherisseur;
 
 	// ------------------------ CONSTRUCTOR ZONE ------------------------//
+	
+	
+	
+	
 	/**
-	 * visibilité package, doit faire l'objet d'une validation avant creation
-	 * 
+	 * pour insertion BD 
 	 * @param encherisseur
 	 * @param article
 	 * @param montantEnchere
 	 */
-	Enchere(Utilisateur encherisseur, ArticleVendu article, int montantEnchere) {
+	public Enchere(Utilisateur encherisseur, ArticleVendu article, int montantEnchere) {
 		this.article = article;
 		this.dateEnchere = new Date(System.currentTimeMillis());
 		this.montantEnchere = montantEnchere;
 		this.encherisseur = encherisseur;
-		this.setEnchere();
 	}
 
 	/**
@@ -51,14 +53,6 @@ public class Enchere {
 		return valide;
 	}
 
-	private void setEnchere() {
-		if (this.article.getEnchereGagnante() != null) {
-			int montantEncherePerdante = this.article.getEnchereGagnante().getMontantEnchere();
-			this.article.getEnchereGagnante().encherisseur
-					.setCredit(this.article.getEnchereGagnante().encherisseur.getCredit() + montantEncherePerdante);
-		}
-		this.article.setEnchereGagnante(this);
-	}
 
 	// ------------------------ GETTER/SETTER ZONE------------------------//
 
@@ -99,10 +93,9 @@ public class Enchere {
 
 	@Override
 	public String toString() {
-		return "le :" + dateEnchere +  "pour" + article.getNomArticle()+" : " + montantEnchere + "crédit";
+		return "le :" + dateEnchere + "pour" + article.getNomArticle() + " : " + montantEnchere + "crédit";
 	}
-	
-	//------------------to string-----------------//
-	
+
+	// ------------------to string-----------------//
 
 }

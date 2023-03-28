@@ -77,5 +77,9 @@ public class ArticleManager {
 		 return articleDAO.selectionArticleParNom(nomArticle);
 	}
 
+	
+	public void faireEnchere(int montant, int noArticle) {
+		articleDAO.nouvelleEnchere(montant, noArticle);
+	}
 
 }
