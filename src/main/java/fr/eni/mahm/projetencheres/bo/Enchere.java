@@ -37,6 +37,18 @@ public class Enchere {
 	}
 
 	/**
+	 * pour recuperer derniere enchere
+	 * @param dateEnchere
+	 * @param montantEnchere
+	 * @param encherisseur
+	 */
+	public Enchere(Utilisateur encherisseur, int montantEnchere, Date dateEnchere) {
+		this.dateEnchere = dateEnchere;
+		this.montantEnchere = montantEnchere;
+		this.encherisseur = encherisseur;
+	}
+
+	/**
 	 * verifie la validité de l'enchere
 	 * 
 	 * @param article
