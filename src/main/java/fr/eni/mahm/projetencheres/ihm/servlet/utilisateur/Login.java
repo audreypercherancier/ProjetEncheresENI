@@ -37,11 +37,17 @@ public class Login extends HttpServlet {
 		if (session.getAttribute("newUser") != null) {
 			user = (Utilisateur) session.getAttribute("newUser");
 			session.setAttribute("userConnected", user);
-			Cookie pims;
-			pims = new Cookie("lastLogin", user.getEmail());
-			pims.setMaxAge(60 * 60 * 24 * 7);
-			response.addCookie(pims);
+			String coche = (String) request.getParameter("sesouvenirdemoi");
+				Cookie pims;
+				pims = new Cookie("lastLogin", user.getEmail());
+				Cookie souvenir; 
+				souvenir = new Cookie("coche", coche); 
+				pims.setMaxAge(60 * 60 * 24 * 7);
+				souvenir.setMaxAge(60 * 60 * 24 * 7); 
+				response.addCookie(pims);
+				response.addCookie(souvenir);
 			response.sendRedirect("/ProjetEncheresENI/accueil");
+		
 		} else {
 
 			try {
@@ -77,21 +83,29 @@ public class Login extends HttpServlet {
 		ses.setMaxInactiveInterval(5 * 60); 
 		UtilisateurManager userMgr = new UtilisateurManager();
 		u = userMgr.connexion(login, password);
-
+		Cookie pims;
 		if (u != null) {
 			ses.setAttribute("userConnected", u);
-			Cookie pims;
+			System.out.println(request.getParameter("sesouvenirdemoi")); 
+			
+			if(request.getParameter("sesouvenirdemoi") != null) {
+			
+			
 			pims = new Cookie("lastLogin", u.getEmail());
-			pims.setMaxAge(60 * 60 * 24 * 7);
+			
+			} else {
+				
+				pims = new Cookie("lastLogin", "");
+			}
+				pims.setMaxAge(60 * 60 * 24 * 7);
 			response.addCookie(pims);
-
+		
 			response.sendRedirect("/ProjetEncheresENI/accueil");
+			
 		} 
 		else
 		{
 			request.setAttribute("alert alert-danger", "Identifiant et / ou mot de passe incorrect(s)"); 
-
-
 			//response.sendRedirect("index.jsp");
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/seConnecter.jsp");
 			rd.forward(request, response);
