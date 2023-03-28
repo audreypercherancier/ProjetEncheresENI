@@ -54,8 +54,7 @@ public class Contient extends HttpServlet {
 		}
 		
 		request.setAttribute("listeArticleVendu", listeArticleVendu);
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/articleSelonFiltre.jsp");
-		rd.forward(request, response);
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 		
 		
 		

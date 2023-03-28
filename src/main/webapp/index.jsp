@@ -55,6 +55,7 @@
 		<form action="ListeEnchereConnecte" method="post">
 			<div class="row">
 				<div class="col">
+				 <input type="hidden" id="userConnected" name="userConnected" value=${userConnected.noUtilisateur }>
 					<div class="form-check">
 						<input class="form-check-input" type="radio" name="optionsRadios"
 							id="optionsRadios1" value="achat" onclick="disableVenteRadios()">
@@ -77,8 +78,8 @@
 					</div>
 					<div class="form-check">
 						<input class="form-check-input" type="checkbox"
-							value="achatsEncheresgagnantes" id="inputCheckAchat3"
-							name="achatsEncheresgagnantes"> <label
+							value="achatsEncheresGagnantes" id="inputCheckAchat3"
+							name="achatsEncheresGagnantes"> <label
 							class="form-check-label" for="flexCheckDefault"> mes
 							encheres remportés </label>
 					</div>

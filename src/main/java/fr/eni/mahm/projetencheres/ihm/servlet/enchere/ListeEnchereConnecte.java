@@ -1,8 +1,7 @@
 package fr.eni.mahm.projetencheres.ihm.servlet.enchere;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.util.GregorianCalendar;
+
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.mahm.projetencheres.bll.ArticleManager;
 import fr.eni.mahm.projetencheres.bo.ArticleVendu;
@@ -22,19 +22,12 @@ import fr.eni.mahm.projetencheres.bo.ArticleVendu;
 public class ListeEnchereConnecte extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ListeEnchereConnecte() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+    
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -45,64 +38,55 @@ public class ListeEnchereConnecte extends HttpServlet {
 		
 		List<ArticleVendu> listeArticleVendu=null;
 		ArticleManager articleMgr= new ArticleManager();
-		String param, param1, param2,param3,param5,param6,param7;
+		int idUtilisateurConnecte;
+		String param, param1, param2,param3,param4,param5,param6;
 		param = request.getParameter("optionsRadios");
 		param1 = request.getParameter("achatsEncheresOuvertes");
 		param2 = request.getParameter("achatsDejaEncherie");
-		param3 = request.getParameter("achatsEncheresgagnantes");
+		param3 = request.getParameter("achatsEncheresGagnantes");	
+		param4 = request.getParameter("ventesEnCours");
+		param5 = request.getParameter("ventesNonCommences");
+		param6 = request.getParameter("ventesTerminees");
+		idUtilisateurConnecte = Integer.parseInt(request.getParameter("userConnected"));
+	
+		System.out.println("user"+idUtilisateurConnecte);
 		
-		param5 = request.getParameter("ventesEnCours");
-		param6 = request.getParameter("ventesNonCommences");
-		param7 = request.getParameter("ventesTerminees");
-		System.out.println(param);
-		System.out.println(param1);
-		System.out.println(param2);
-		System.out.println(param3);
+		if (param1 !=null) {
+			//toutes les encheres ou la date de debutenchere est superieur ou egal a la date du jour
+			// SELECT * FROM encheres.articles_vendus WHERE date_debut_encheres <= CURDATE()
+			System.out.println("affiche param1 "+param1);
+		}
+		if (param2 !=null) {
+			//tout les articles ou toutes les encheres ont le userconnected=no_utilisateur
+			//
+			System.out.println("affiche param2 "+param2);
+		}
+		if (param3 !=null) {
+			//tout les article ou 
+			//
+			System.out.println("affiche param3 "+param3);
+		}
+		if (param4 !=null) {
+			// tout les articles ou no_utilisateur=userconnected et la date de debut<date du jour< date de fin
+			//
+			System.out.println("affiche param4 "+param4);
+		}
+		if (param5 !=null) {
+			// tout les articles ou no_utilisateur=userconnected et la date du jour<date de debut
+			//
+			System.out.println("affiche param5 "+param5);
+		}
+		if (param6 !=null) {
+			// tout les articles ou no_utilisateur=userconnected et la date de fin > date du jour
+			//
+			System.out.println("affiche param6 "+param6);
+		}
 		
-		System.out.println(param5);
-		System.out.println(param6);
-		System.out.println(param7);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/articleSelonFiltre.jsp");
 		rd.forward(request, response);
 		
-	/*	switch (param) {
-		case "achatsEncheresOuvertes":
-			//enchere ou la date est commencé exexution query +machin manager +liste
-			System.out.println(param);
-			
-			request.setAttribute("listeArticleVendu", listeArticleVendu);
-			rd.forward(request, response);
-			break;		
-		case "achatsDejaEncherie":
-			//enchere ou le userconnected a deja bid
-			System.out.println(param);
-			request.setAttribute("listeArticleVendu", listeArticleVendu);		
-			rd.forward(request, response);
-			break;
-		case "achatsEncheresgagnantes":
-			//enchere ou le userconnected est le user qui a la derniere enchere
-			System.out.println(param);
-			rd.forward(request, response);
-			break;
-		case "ventesEnCours":
-			//vente ou le user est le vendeur + date > aujourd'hui
-			System.out.println(param);
-			rd.forward(request, response);
-			break;
-		case "ventesNonCommences":
-			//vente ou la date est superieur a celle d'aujourd'hui
-			System.out.println(param);
-			rd.forward(request, response);
-			break;
-		case "ventesTerminees":
-			//vente ou le user est le nonoocted et la vente terminé
-			System.out.println(param);
-			rd.forward(request, response);
-			break;
-		default:
-			break;
-		}*/
-		
-	}
+
+}
 
 }
