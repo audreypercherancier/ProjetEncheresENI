@@ -269,6 +269,16 @@ public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, 
 	this.credit = credit;
 }
 
+/**
+ * pour recuperation derniere enchere db
+ * @param noUtilisateur
+ * @param pseudo
+ */
+public Utilisateur(String pseudo, int noUtilisateur, int credit) {
+	this.noUtilisateur = noUtilisateur;
+	this.pseudo = pseudo;
+	this.credit = credit;
+}
 
 //---------------------------------------METHODE/FUNCTION ZONE---------------------------------------//
 
@@ -280,12 +290,12 @@ public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, 
 //		this.articlesAVendre.add(article);
 //	}
 	
-	public void annulerVente(ArticleVendu article) {
-		if (article.getEnchereGagnante() != null) {
-			article.getEnchereGagnante().getEncherisseur().setCredit(article.getEnchereGagnante().getEncherisseur().getCredit()+article.getPrixVente());
-		}
-		this.articlesAVendre.remove(article);
+public void annulerVente(ArticleVendu article) {
+	if (article.getEnchereGagnante() != null) {
+		article.getEnchereGagnante().getEncherisseur().setCredit(article.getEnchereGagnante().getEncherisseur().getCredit()+article.getPrixVente());
 	}
+	this.articlesAVendre.remove(article);
+}
 
 	public void faitUneEnchere(ArticleVendu article, int montant) {
 		if (this.getCredit() > montant && Enchere.enchereValide(article, montant)) {

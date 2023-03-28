@@ -59,8 +59,8 @@ public class FaireEnchere extends HttpServlet {
 		try {
 
 			if (encherisseur.getCredit() >= montant && montant != article.getPrixVente()) {
-				encherisseur.setCredit(encherisseur.getCredit() - montant);
 				if (article.getPrixVente() < montant) {
+					encherisseur.setCredit(encherisseur.getCredit() - montant);
 					nouvelleEnchere = new Enchere(encherisseur, article, montant);
 
 					enchereMgr.faireEnchere(nouvelleEnchere);

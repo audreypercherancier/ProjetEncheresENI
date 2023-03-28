@@ -5,7 +5,6 @@ package fr.eni.mahm.projetencheres.bll;
 
 import fr.eni.mahm.projetencheres.bo.Enchere;
 import fr.eni.mahm.projetencheres.dal.DAOFactory;
-import fr.eni.mahm.projetencheres.dal.article.ArticleDAO;
 import fr.eni.mahm.projetencheres.dal.enchere.EnchereDAO;
 
 /**
@@ -26,10 +25,25 @@ public class EnchereManager {
 	
 	public void faireEnchere(Enchere enchere) {
 		if(Enchere.enchereValide(enchere.getArticle(), enchere.getMontantEnchere())) {
+			
+			rendreArgentAncienEncherisseur(enchere.getArticle().getNoArticle());
+			
 			enchereDAO.ajouter(enchere);
 			articleMgr.faireEnchere(enchere.getMontantEnchere(), enchere.getArticle().getNoArticle());
 			utilisateurMgr.miseAJourSolde(enchere.getEncherisseur().getCredit(), enchere.getEncherisseur().getNoUtilisateur());
 		}
+	}
+	
+	private static void rendreArgentAncienEncherisseur(int noArticle) {
+		
+		Enchere ancienneEnchere = enchereDAO.recupererDerniereEnchere(noArticle);
+		
+		int credit = ancienneEnchere.getEncherisseur().getCredit() + ancienneEnchere.getMontantEnchere();
+		System.out.println("credit actuel ancien encherisseur = " + ancienneEnchere.getEncherisseur().getCredit());
+		System.out.println("montant ancienne enchere = " + ancienneEnchere.getMontantEnchere());
+		System.out.println("nouveau solde = " + credit);
+		
+		utilisateurMgr.miseAJourSolde(credit, ancienneEnchere.getEncherisseur().getNoUtilisateur());
 	}
 
 }
