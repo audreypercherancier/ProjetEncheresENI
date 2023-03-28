@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+    <%@page import="java.util.List,fr.eni.mahm.projetencheres.bo.ArticleVendu" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Mon compte</title>
+<title>Vendeur</title>
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 </head>
-<body style="background-color: #eee;">
-	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
-	<section>
+<body>
+
+<section>
 		<div class="container py-5">
 			<div class="row">
 				<div class="col-lg-4">
@@ -19,14 +20,12 @@
 								src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2.webp"
 								alt="avatar" class="rounded-circle img-fluid"
 								style="width: 150px;">
-							<h5 class="my-3">${userConnected.pseudo}</h5>
-							<p class="text-muted mb-1">${userConnected.nom}
-								${userConnected.prenom}</p>
-							<p class="text-muted mb-4">Mon Credit :
-								${userConnected.credit}</p>
+							<h5 class="my-3">${utilisateur.pseudo }</h5>
+							<p class="text-muted mb-1">${utilisateur.nom}
+								${utilisateur.prenom}</p>
+							<p class="text-muted mb-4"> Credit : ${utilisateur.credit}</p>
 							<div class="d-flex justify-content-center mb-2">
-								<a type="button" class="btn btn-secondary my-2 my-sm-0"
-									href="/ProjetEncheresENI/modifier" role="button">modifier</a>
+								
 							</div>
 						</div>
 					</div>
@@ -39,7 +38,7 @@
 									<p class="mb-0">Pseudo :</p>
 								</div>
 								<div class="col-sm-9">
-									<p class="text-muted mb-0">${userConnected.pseudo}</p>
+									<p class="text-muted mb-0">${utilisateur.pseudo}</p>
 								</div>
 							</div>
 							<hr>
@@ -48,7 +47,7 @@
 									<p class="mb-0">nom :</p>
 								</div>
 								<div class="col-sm-9">
-									<p class="text-muted mb-0">${userConnected.nom}</p>
+									<p class="text-muted mb-0">${utilisateur.nom}</p>
 								</div>
 							</div>
 							<hr>
@@ -57,7 +56,7 @@
 									<p class="mb-0">Prénom :</p>
 								</div>
 								<div class="col-sm-9">
-									<p class="text-muted mb-0">${userConnected.prenom}</p>
+									<p class="text-muted mb-0">${utilisateur.prenom}</p>
 								</div>
 							</div>
 							<hr>
@@ -66,7 +65,7 @@
 									<p class="mb-0">Email :</p>
 								</div>
 								<div class="col-sm-9">
-									<p class="text-muted mb-0">${userConnected.email}</p>
+									<p class="text-muted mb-0">${utilisateur.email}</p>
 								</div>
 							</div>
 							<hr>
@@ -75,7 +74,7 @@
 									<p class="mb-0">Téléphone :</p>
 								</div>
 								<div class="col-sm-9">
-									<p class="text-muted mb-0">${userConnected.telephone}</p>
+									<p class="text-muted mb-0">${utilisateur.telephone}</p>
 								</div>
 							</div>
 							<hr>
@@ -84,7 +83,7 @@
 									<p class="mb-0">Rue :</p>
 								</div>
 								<div class="col-sm-9">
-									<p class="text-muted mb-0">${userConnected.rue}</p>
+									<p class="text-muted mb-0">${utilisateur.rue}</p>
 								</div>
 							</div>
 							<hr>
@@ -93,7 +92,7 @@
 									<p class="mb-0">Code postal :</p>
 								</div>
 								<div class="col-sm-9">
-									<p class="text-muted mb-0">${userConnected.codePostal}</p>
+									<p class="text-muted mb-0">${utilisateur.codePostal}</p>
 								</div>
 							</div>
 							<hr>
@@ -102,7 +101,7 @@
 									<p class="mb-0">Ville :</p>
 								</div>
 								<div class="col-sm-9">
-									<p class="text-muted mb-0">${userConnected.ville}</p>
+									<p class="text-muted mb-0">${utilisateur.ville}</p>
 								</div>
 							</div>
 							<hr>

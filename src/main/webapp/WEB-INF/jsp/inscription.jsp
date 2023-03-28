@@ -125,6 +125,8 @@
 
 	</section>
 
-	<%@ include file="/WEB-INF/html/piedDePage.html"%>
+	<div class="fixed-bottom">
+		<%@ include file="/WEB-INF/html/piedDePage.html"%>
+	</div>
 </body>
 </html>

@@ -27,7 +27,7 @@ public class ListerArticlesVendu extends HttpServlet {
 	
 		List<ArticleVendu> listeArticleVendu;
 		ArticleManager articleMgr= new ArticleManager();
-		listeArticleVendu = articleMgr.articlesEnVente();
+		listeArticleVendu = articleMgr.articleEnVentePseudo();
 		//System.out.println("liste ici "+listeArticleVendu);
 		request.setAttribute("listeArticleVendu", listeArticleVendu);
 		request.getRequestDispatcher("index.jsp").forward(request, response);

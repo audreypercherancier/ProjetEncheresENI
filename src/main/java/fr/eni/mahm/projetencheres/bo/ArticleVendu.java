@@ -18,7 +18,7 @@ public class ArticleVendu {
 	private Date dateDebutEncheres;
 	private Date dateFinEncheres;
 	private int miseAPrix;
-	private int prixVente = 0;
+	private int prixVente;
 	private int etatVente;
 	private int noVendeur;
 
@@ -27,6 +27,7 @@ public class ArticleVendu {
 	private Utilisateur vendeur;
 	private Retrait lieuRetrait;
 	private Categorie categorie;
+	private String Pseudo;
 
 	// -------------------- CONSTRUCTOR ZONE --------------------//
 
@@ -57,6 +58,36 @@ public class ArticleVendu {
 		this.lieuRetrait = lieuRetrait;
 		this.categorie = categorie;
 	}
+	
+	/**
+	 * PIOUPIOU2 pour recuperation avec objet special AUDREY 
+	 * constructeur a modifie dans le futur avec les enchere
+	 * @param noArticle
+	 * @param nomArticle
+	 * @param description
+	 * @param dateDebutEncheres
+	 * @param dateFinEncheres
+	 * @param miseAPrix
+	 * @param prixVente
+	 * @param vendeur
+	 * @param lieuRetrait
+	 */
+	public ArticleVendu(String Pseudo,int noArticle, String nomArticle, String description, Date dateDebutEncheres,
+			Date dateFinEncheres, int miseAPrix, int prixVente, 
+			int noVendeur, Retrait lieuRetrait, Categorie categorie) {
+		this.Pseudo = Pseudo;
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.noVendeur = noVendeur;
+		this.lieuRetrait = lieuRetrait;
+		this.categorie = categorie;
+	}
+	
 	/**
 	 * Constructeur pour MATHIEU P je bosse dessus
 	 * @param noArticle
@@ -284,6 +315,20 @@ public class ArticleVendu {
 
 	public void setVendeur(Utilisateur vendeur) {
 		this.vendeur = vendeur;
+	}
+
+	/**
+	 * @return the pseudo
+	 */
+	public String getPseudo() {
+		return Pseudo;
+	}
+
+	/**
+	 * @param pseudo the pseudo to set
+	 */
+	public void setPseudo(String pseudo) {
+		Pseudo = pseudo;
 	}
 
 	// --------------------------------------------------------------------------------------------------------------//
