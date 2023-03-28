@@ -14,8 +14,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
     <form action="<%=request.getContextPath()%>/enchereEffectuee" method="post">
       <h2>${article.getNomArticle()}</h2>
       <label for="description">description : </label>
-      <textarea rows="3" cols="20" id="description">
-${article.getDescription()}</textarea
+      <textarea rows="3" cols="20" id="description">{article.getDescription()}</textarea
       >
       <br />
       <label for="categorie">categorie : </label>
