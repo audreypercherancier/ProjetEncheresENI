@@ -26,13 +26,13 @@ import fr.eni.mahm.projetencheres.exceptions.NoRetraitExeption;
 public class ArticleDAOJdbcImpl implements ArticleDAO {
 	private final String SUPPRIMER = "DELETE FROM articles_vendus, retraits WHERE no_article=?";
 	private final String SELECTION_TOUT_ARTICLES = "SELECT av.*, c.libelle, r.rue, r.code_postal, r.ville FROM articles_vendus av INNER JOIN retraits r ON r.no_article = av.no_article INNER JOIN categories c ON c.no_categorie=av.no_categorie ";
+	private final String AJOUTER = "INSERT INTO articles_vendus (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES(?,?,?,?,?,?,?,?)";
+	private final String UPDATE_PRIX_ARTICLE = " UPDATE articles_vendus SET prix_vente = ? WHERE (no_article = ?)";
+	///////////////////////////////////////////////////////////////TRI//////////////////////////////////////////////////////////////
 	private final String SELECTION_ARTICLE = "SELECT av.*, c.libelle, r.rue, r.code_postal, r.ville, u.pseudo FROM articles_vendus av INNER JOIN retraits r ON r.no_article = av.no_article INNER JOIN categories c ON c.no_categorie = av.no_categorie INNER JOIN utilisateurs u  ON u.no_utilisateur=av.no_utilisateur WHERE av.no_article=?";
 	private final String SELECTION_ARTICLE_PAR_CATEGORIE ="SELECT av.*, c.libelle, r.rue, r.code_postal, r.ville, u.pseudo FROM articles_vendus av INNER JOIN retraits r ON r.no_article = av.no_article INNER JOIN categories c ON c.no_categorie = av.no_categorie INNER JOIN utilisateurs u  ON u.no_utilisateur=av.no_utilisateur WHERE av.no_categorie=?";
 	private final String SELECTION_ARTICLE_PAR_NOM ="SELECT av.*, c.libelle, r.rue, r.code_postal, r.ville, u.pseudo FROM articles_vendus av INNER JOIN retraits r ON r.no_article = av.no_article INNER JOIN categories c ON c.no_categorie = av.no_categorie INNER JOIN utilisateurs u  ON u.no_utilisateur=av.no_utilisateur WHERE av.nom_article LIKE ? ";
-	private final String AJOUTER = "INSERT INTO articles_vendus (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES(?,?,?,?,?,?,?,?)";
 	private final String SELECTION_TOUT_ARTICLES_AVEC_PSEUDO="SELECT av.*, c.libelle, r.rue, r.code_postal, r.ville,u.pseudo FROM articles_vendus av INNER JOIN retraits r ON r.no_article = av.no_article INNER JOIN categories c ON c.no_categorie=av.no_categorie INNER JOIN utilisateurs u  ON u.no_utilisateur=av.no_utilisateur";
-	private final String UPDATE_PRIX_ARTICLE = " UPDATE articles_vendus SET prix_vente = ? WHERE (no_article = ?)";
-	
 	@Override
 	public void supprimer(int noArticle) {
 		Connection cnx = ConnectBDD.getConnection();

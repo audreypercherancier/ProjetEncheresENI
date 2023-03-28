@@ -45,11 +45,7 @@ public class Contient extends HttpServlet {
 		ArticleManager articleMgr= new ArticleManager();
 		String nomArticle;
 		nomArticle = request.getParameter("nomArticle");
-	/*     reste a regle le contains avec 
-		 private String isSubStringIn(String sub, String input){
-        return input.contains(sub) ? sub : null;
-    }
-    */
+	
 		if(nomArticle !=null ) {
 			listeArticleVendu = articleMgr.selectionArticleParNom(nomArticle);
 			
