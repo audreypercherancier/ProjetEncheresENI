@@ -39,7 +39,7 @@ public class FaireEnchere extends HttpServlet {
 
 		session.setAttribute("article", article);
 
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/enchere.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/detailsArticle.jsp");
 		rd.forward(request, response);
 	}
 
@@ -74,7 +74,7 @@ public class FaireEnchere extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/enchere.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/detailsArticle.jsp");
 		rd.forward(request, response);
 	}
 

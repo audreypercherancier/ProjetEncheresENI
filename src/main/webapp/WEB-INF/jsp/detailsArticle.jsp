@@ -35,19 +35,28 @@
 							<hr>
 							<div class="row">
 								<div class="col-sm-3">
-									<p class="mb-0">Meilleur Offre: </p>
+									<p class="mb-0">Categorie :</p>
 								</div>
 								<div class="col-sm-9">
-									<p class="text-muted mb-0">${articleSelectione.enchereGagnante}</p>
+									<p class="text-muted mb-0">${articleSelectione.categorie.libelle}</p>
 								</div>
 							</div>
 							<hr>
 							<div class="row">
 								<div class="col-sm-3">
-									<p class="mb-0">Prix  de vente :</p>
+									<p class="mb-0">Offre initiale:</p>
 								</div>
 								<div class="col-sm-9">
 									<p class="text-muted mb-0">${articleSelectione.prixVente}</p>
+								</div>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-sm-3">
+									<p class="mb-0">Meilleur Offre: </p>
+								</div>
+								<div class="col-sm-9">
+									<p class="text-muted mb-0">${articleSelectione.miseAPrix}</p>
 								</div>
 							</div>
 							<hr>
@@ -85,7 +94,17 @@
 								<div class="col-sm-9">
 									<p class="text-muted mb-0">${articleSelectione.lieuRetrait}</p>
 								</div>
-							</div>								
+							</div>
+      						<hr>
+      						<div class="row">
+								<div class="col-sm-3">
+									<label for="monEnchere">Ma proposition : </label>
+								</div>
+								<div class="col-sm-9">
+      							<input type="number" value="${articleSelectione.getPrixVente() }" id="monEnchere"name="monEnchere" />
+      							</div>
+      							<input type="submit" class="btn btn-secondary" value="Enchérir" />
+      						</div>    													
 						</div>
 					</div>
 				</div>
@@ -95,17 +114,17 @@
 						<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2.webp"
 							alt="avatar" class="rounded-circle img-fluid"
 							style="width: 150px;">
-						<h5 class="my-3">${articleSelectione.vendeur}</h5>
 						<p class="text-muted mb-1">${articleSelectione.pseudo}</p>
 						<div class="d-flex justify-content-center mb-2">
 							<a type="button" class="btn btn-secondary my-2 my-sm-0"
-								href="#" role="button">Contacter le vendeur </a>
+								href="<%=request.getContextPath() %>/compteEncherisseur?pseudo?=${articleSelectione.pseudo}" role="button">Accedez au compte</a>
 						</div>
 					</div>
 				</div>
 				</div>
 			</div>
 		</div>
+		
 		</section>
 		<%@ include file="/WEB-INF/html/piedDePage.html"%>
 </body>

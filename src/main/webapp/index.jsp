@@ -62,7 +62,7 @@
 								<p class="card-text">Prix de l'article ${ArticleVendu.prixVente} </p>
 								<hr>
 								<c:if test="${empty userConnected}"><a href="/ProjetEncheresENI/login" class="btn btn-primary">Voir l'enchère</a>  </c:if>
-								<c:if test="${!empty userConnected}"><a href="<%=request.getContextPath() %>/detailArticle?noArticle=${ArticleVendu.noArticle}" class="btn btn-primary">Voir l'enchère</a> </c:if>
+								<c:if test="${!empty userConnected}"><a href="<%=request.getContextPath() %>/detailsArticle?noArticle=${ArticleVendu.noArticle}" class="btn btn-primary">Voir l'enchère</a> </c:if>
 								
 							</div>
 							<div class="card-footer text-muted">temps restant enchere</div>
