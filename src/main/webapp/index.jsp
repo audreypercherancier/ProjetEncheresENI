@@ -51,48 +51,63 @@
 	</form>
 	<br>
 	<c:if test="${!empty userConnected}">
+
 		<form action="ListeEnchereConnecte" method="post">
 			<div class="row">
 				<div class="col">
 					<div class="form-check">
-						 <label
-							class="form-check-label" for="flexCheckChecked"> Achats </label>
+						<input class="form-check-input" type="radio" name="optionsRadios"
+							id="optionsRadios1" value="achat" onclick="disableVenteRadios()">
+						<label class="form-check-label" for="optionsRadios1">
+							achat </label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="optionsRadios"
-							id="achatsEncheresOuvertes" value="achatsEncheresOuvertes" checked=""> <label
-							class="form-check-label" for="optionsRadios"> enchéres ouvertes </label>
+						<input class="form-check-input" type="checkbox"
+							value="achatsEncheresOuvertes" id="inputCheckAchat1"
+							name="achatsEncheresOuvertes"> <label
+							class="form-check-label" for="flexCheckDefault"> enchéres
+							ouvertes </label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="optionsRadios"
-							id="optionsRadios2" value="achatsDejaEncherie"> <label
-							class="form-check-label" for="optionsRadios2"> mes encheres </label>
+						<input class="form-check-input" type="checkbox"
+							value="achatsDejaEncherie" id="inputCheckAchat2"
+							name="achatsDejaEncherie"> <label
+							class="form-check-label" for="flexCheckDefault"> mes
+							encheres </label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="optionsRadios"
-							id="optionsRadios3" value="achatsEncheresgagnantes"> <label
-							class="form-check-label" for="optionsRadios3"> mes encheres remportés </label>
+						<input class="form-check-input" type="checkbox"
+							value="achatsEncheresgagnantes" id="inputCheckAchat3"
+							name="achatsEncheresgagnantes"> <label
+							class="form-check-label" for="flexCheckDefault"> mes
+							encheres remportés </label>
 					</div>
 				</div>
 				<div class="col">
 					<div class="form-check">
-						 <label
-							class="form-check-label" for="flexCheckChecked"> Mes ventes </label>
+						<input class="form-check-input" type="radio" name="optionsRadios"
+							id="optionsRadios2" value="vente" onclick="disableAchatRadios()">
+						<label class="form-check-label" for="optionsRadios2">
+							Ventes </label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="optionsRadios"
-							id="optionsRadios1" value="ventesEnCours" > <label
-							class="form-check-label" for="optionsRadios1"> mes ventes en cours </label>
+						<input class="form-check-input" type="checkbox"
+							value="ventesEnCours" id="inputCheckVente1" name="ventesEnCours">
+						<label class="form-check-label" for="flexCheckDefault">
+							mes ventes en cours </label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="optionsRadios"
-							id="optionsRadios2" value="ventesNonCommences"> <label
-							class="form-check-label" for="optionsRadios2">ventes non débutées </label>
+						<input class="form-check-input" type="checkbox"
+							value="ventesNonCommences" id="inputCheckVente2"
+							name="ventesNonCommences"> <label
+							class="form-check-label" for="flexCheckDefault"> ventes
+							non débutées </label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="optionsRadios"
-							id="optionsRadios3" value="ventesTerminees"> <label
-							class="form-check-label" for="optionsRadios3"> ventes terminées </label>
+						<input class="form-check-input" type="checkbox"
+							value="ventesTerminees" id="inputCheckVente3"
+							name="ventesTerminees"> <label class="form-check-label"
+							for="flexCheckDefault"> ventes terminées </label>
 					</div>
 				</div>
 			</div>
@@ -100,9 +115,8 @@
 			<button class="btn btn-primary" type="submit">rechercher</button>
 		</form>
 
+
 	</c:if>
-
-
 
 	<div class="container">
 		<div class="col-8 offset-2">
@@ -155,6 +169,8 @@
 	</div>
 
 	<%@ include file="/WEB-INF/html/piedDePage.html"%>
+	<script type="text/javascript"
+		src="vendor/javascript/disableCheckbox.js"></script>
 </body>
 
 </html>

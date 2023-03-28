@@ -45,12 +45,27 @@ public class ListeEnchereConnecte extends HttpServlet {
 		
 		List<ArticleVendu> listeArticleVendu=null;
 		ArticleManager articleMgr= new ArticleManager();
-		String param;
+		String param, param1, param2,param3,param5,param6,param7;
 		param = request.getParameter("optionsRadios");
+		param1 = request.getParameter("achatsEncheresOuvertes");
+		param2 = request.getParameter("achatsDejaEncherie");
+		param3 = request.getParameter("achatsEncheresgagnantes");
 		
+		param5 = request.getParameter("ventesEnCours");
+		param6 = request.getParameter("ventesNonCommences");
+		param7 = request.getParameter("ventesTerminees");
+		System.out.println(param);
+		System.out.println(param1);
+		System.out.println(param2);
+		System.out.println(param3);
+		
+		System.out.println(param5);
+		System.out.println(param6);
+		System.out.println(param7);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/articleSelonFiltre.jsp");
+		rd.forward(request, response);
 		
-		switch (param) {
+	/*	switch (param) {
 		case "achatsEncheresOuvertes":
 			//enchere ou la date est commencé exexution query +machin manager +liste
 			System.out.println(param);
@@ -86,7 +101,7 @@ public class ListeEnchereConnecte extends HttpServlet {
 			break;
 		default:
 			break;
-		}
+		}*/
 		
 	}
 
