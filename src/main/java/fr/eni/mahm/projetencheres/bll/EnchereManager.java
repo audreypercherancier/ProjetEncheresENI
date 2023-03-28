@@ -37,13 +37,14 @@ public class EnchereManager {
 	private static void rendreArgentAncienEncherisseur(int noArticle) {
 		
 		Enchere ancienneEnchere = enchereDAO.recupererDerniereEnchere(noArticle);
-		
+		if(ancienneEnchere != null) {
 		int credit = ancienneEnchere.getEncherisseur().getCredit() + ancienneEnchere.getMontantEnchere();
 		System.out.println("credit actuel ancien encherisseur = " + ancienneEnchere.getEncherisseur().getCredit());
 		System.out.println("montant ancienne enchere = " + ancienneEnchere.getMontantEnchere());
 		System.out.println("nouveau solde = " + credit);
 		
 		utilisateurMgr.miseAJourSolde(credit, ancienneEnchere.getEncherisseur().getNoUtilisateur());
+		}
 	}
 
 }
