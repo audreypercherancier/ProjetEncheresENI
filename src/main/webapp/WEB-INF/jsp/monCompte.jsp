@@ -120,10 +120,12 @@
 							<hr>
 							<div class="row">
 								<div class="col-sm-3">
-									<p class="mb-0">Nombres d'article vendues :</p>
+									<p class="mb-0">Nombres d'article vendus :</p>
 								</div>
 								<div class="col-sm-9">
-									<p class="text-muted mb-0"></p>
+									<c:if test="${userConnected.articlesVendus.size() > 0 }">
+									<p class="text-muted mb-0">Vous avez vendus ${userConnected.articlesVendus.size()} article<c:if test="${userConnected.articlesVendus.size() > 1 }">s</c:if></p>
+								</c:if>
 								</div>
 							</div>
 						</div>

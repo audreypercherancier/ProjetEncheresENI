@@ -56,9 +56,6 @@ public class ListerArticlesVendu extends HttpServlet {
 		List<ArticleVendu> listeArticleVendu;
 		ArticleManager articleMgr = new ArticleManager();
 		listeArticleVendu = articleMgr.articlesEnVente();
-
-	
-
 		// -----------------boucle de tri ------------------//
 		/*
 		 * on enleve les articles vendus
@@ -66,7 +63,10 @@ public class ListerArticlesVendu extends HttpServlet {
 		Date now = new Date(System.currentTimeMillis());
 
 		Iterator<ArticleVendu> success = listeArticleVendu.iterator();
-		if(utilisateurConnecte != null) utilisateurConnecte.getArticlesAchetes().clear();
+		if (utilisateurConnecte != null) {
+			utilisateurConnecte.getArticlesAchetes().clear();
+			utilisateurConnecte.getArticlesVendus().clear();
+		}
 		while (success.hasNext()) {
 			ArticleVendu article = success.next();
 			if (article.getDateFinEncheres().before(now)) {
@@ -74,12 +74,16 @@ public class ListerArticlesVendu extends HttpServlet {
 					articleMgr.assignerAcquereur(article);
 				} else if (utilisateurConnecte != null
 						&& utilisateurConnecte.getNoUtilisateur() == article.getNoAcquereur()) {
-						utilisateurConnecte.ajoutArticleAchete(article);
-					}
-				
+					utilisateurConnecte.ajoutArticleAchete(article);
+				} else if (utilisateurConnecte != null
+						&& utilisateurConnecte.getNoUtilisateur() == article.getNoVendeur()) {
+					utilisateurConnecte.ajoutArticlesVendus(article);
+				}
+
 				success.remove();
 			}
 		}
+
 		session.setAttribute("userConnected", utilisateurConnecte);
 		return listeArticleVendu;
 

@@ -28,7 +28,7 @@ public class Utilisateur {
 	private boolean administrateur = false;
 
 	// --------lien interclasses---------//
-	private List<ArticleVendu> articlesAVendre = new ArrayList<>(); // liste d'articles vendu par l'utilisateur
+	private List<ArticleVendu> articlesVendus= new ArrayList<>(); // liste d'articles vendu par l'utilisateur
 	private List<ArticleVendu> articlesAchetes = new ArrayList<>(); // liste d'articles vendu par l'utilisateur
 	private List<Enchere> encheresEffectuees = new ArrayList<>();
 
@@ -75,7 +75,7 @@ public class Utilisateur {
 		this.motDePasse = motDePasse;
 		this.credit = credit;
 		this.administrateur = administrateur;
-		this.articlesAVendre = articlesAVendre;
+		this.articlesVendus = articlesAVendre;
 		this.encheresEffectuees = encheresEffectuees;
 	}
 	
@@ -278,20 +278,7 @@ public Utilisateur(String pseudo, int noUtilisateur, int credit) {
 
 //---------------------------------------METHODE/FUNCTION ZONE---------------------------------------//
 
-//	public void vendArticle(ArticleVendu article) throws CodePostalException, NoRetraitExeption {
-//		article.setVendeur(this);
-//		if (article.getLieuRetrait() == null) {
-//			article.setLieuRetrait(new Retrait(this.getRue(), this.getCodePostal(), this.getVille()));
-//		}
-//		this.articlesAVendre.add(article);
-//	}
-	
-public void annulerVente(ArticleVendu article) {
-	if (article.getEnchereGagnante() != null) {
-		article.getEnchereGagnante().getEncherisseur().setCredit(article.getEnchereGagnante().getEncherisseur().getCredit()+article.getPrixVente());
-	}
-	this.articlesAVendre.remove(article);
-}
+
 
 	public void faitUneEnchere(ArticleVendu article, int montant) {
 		if (this.getCredit() > montant && Enchere.enchereValide(article, montant)) {
@@ -304,10 +291,14 @@ public void annulerVente(ArticleVendu article) {
 	public void ajoutArticleAchete(ArticleVendu article) {
 		this.articlesAchetes.add(article);
 	}
+	
+	public void ajoutArticlesVendus(ArticleVendu article) {
+		this.articlesVendus.add(article);
+	}
 //---------------------------------------------GETTER SETTER ZONE-------------------------------------------------------//
 
-	public List<ArticleVendu> getArticlesAVendre() {
-		return articlesAVendre;
+	public List<ArticleVendu> getArticlesVendus() {
+		return articlesVendus;
 	}
 
 	/**
@@ -316,7 +307,7 @@ public void annulerVente(ArticleVendu article) {
 	 * @param articles
 	 */
 	public void setArticlesAVendre(List<ArticleVendu> articles) {
-		this.articlesAVendre = articles;
+		this.articlesVendus = articles;
 	}
 
 	public int getNoUtilisateur() {
