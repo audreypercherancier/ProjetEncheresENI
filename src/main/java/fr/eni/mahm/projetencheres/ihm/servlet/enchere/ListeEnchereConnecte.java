@@ -1,7 +1,7 @@
 package fr.eni.mahm.projetencheres.ihm.servlet.enchere;
 
 import java.io.IOException;
-
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,7 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 
 import fr.eni.mahm.projetencheres.bll.ArticleManager;
 import fr.eni.mahm.projetencheres.bo.ArticleVendu;
@@ -39,51 +39,54 @@ public class ListeEnchereConnecte extends HttpServlet {
 		List<ArticleVendu> listeArticleVendu=null;
 		ArticleManager articleMgr= new ArticleManager();
 		int idUtilisateurConnecte;
-		String param, param1, param2,param3,param4,param5,param6;
-		param = request.getParameter("optionsRadios");
-		param1 = request.getParameter("achatsEncheresOuvertes");
-		param2 = request.getParameter("achatsDejaEncherie");
-		param3 = request.getParameter("achatsEncheresGagnantes");	
-		param4 = request.getParameter("ventesEnCours");
-		param5 = request.getParameter("ventesNonCommences");
-		param6 = request.getParameter("ventesTerminees");
+		Date dateDujour;
+		String optionsRadios, achatsEncheresOuvertes, achatsDejaEncherie,achatsEncheresGagnantes,ventesEnCours,ventesNonCommences,ventesTerminees;
+		optionsRadios = request.getParameter("optionsRadios");
+		achatsEncheresOuvertes = request.getParameter("achatsEncheresOuvertes");
+		achatsDejaEncherie = request.getParameter("achatsDejaEncherie");
+		achatsEncheresGagnantes = request.getParameter("achatsEncheresGagnantes");	
+		ventesEnCours = request.getParameter("ventesEnCours");
+		ventesNonCommences = request.getParameter("ventesNonCommences");
+		ventesTerminees = request.getParameter("ventesTerminees");
 		idUtilisateurConnecte = Integer.parseInt(request.getParameter("userConnected"));
-		System.out.println(param);
-		System.out.println("user"+idUtilisateurConnecte);
+		System.out.println(optionsRadios);
+		System.out.println("user "+idUtilisateurConnecte);
+		dateDujour = new Date(System.currentTimeMillis());
+		System.out.println(dateDujour);
 		
-		if (param1 !=null) {
+		if (achatsEncheresOuvertes !=null) {
 			//toutes les encheres ou la date de debutenchere est superieur ou egal a la date du jour
-			// SELECT * FROM encheres.articles_vendus WHERE date_debut_encheres <= CURDATE()
-			System.out.println("affiche param1 "+param1);
+			// SELECT * FROM encheres.articles_vendus WHERE date_debut_encheres <= "dateDujour" pas oublié les quotes 
+			System.out.println("affiche param1 "+achatsEncheresOuvertes);
 		}
-		if (param2 !=null) {
+		if (achatsDejaEncherie !=null) {
 			//tout les articles ou il ya une enchere dans la tabvle enchere ou le noutilisaeut = user connected
-			//
-			System.out.println("affiche param2 "+param2);
+			//SELECT DISTINCT av.* FROM encheres.encheres e INNER JOIN articles_vendus av ON e.no_article=av.no_article where e.no_utilisateur=idUtilisateurConnecte
+			System.out.println("affiche param2 "+achatsDejaEncherie);
 		}
-		if (param3 !=null) {
+		if (achatsEncheresGagnantes !=null) {
 			//Voir avec mathieu P
 			//
-			System.out.println("affiche param3 "+param3);
+			System.out.println("affiche param3 "+achatsEncheresGagnantes);
 		}
-		if (param4 !=null) {
+		if (ventesEnCours !=null) {
 			// tout les articles ou no_utilisateur=userconnected et la date de debut<date du jour< date de fin
-			//
-			System.out.println("affiche param4 "+param4);
+			//SELECT * FROM encheres.articles_vendus where no_utilisateur=idUtilisateurConnecte and date_debut_encheres<="dateDujour"<=date_fin_encheres
+			System.out.println("affiche param4 "+ventesEnCours);
 		}
-		if (param5 !=null) {
+		if (ventesNonCommences !=null) {
 			// tout les articles ou no_utilisateur=userconnected et la date du jour<date de debut
-			//
-			System.out.println("affiche param5 "+param5);
+			// SELECT * FROM encheres.articles_vendus where no_utilisateur=idUtilisateurConnecte and "dateDujour"<=date_debut_encheres
+			System.out.println("affiche param5 "+ventesNonCommences);
 		}
-		if (param6 !=null) {
+		if (ventesTerminees !=null) {
 			// tout les articles ou no_utilisateur=userconnected et la date de fin > date du jour
-			//
-			System.out.println("affiche param6 "+param6);
+			//SELECT * FROM encheres.articles_vendus where no_utilisateur=idUtilisateurConnecte and "dateDujour"> date_fin_encheres
+			System.out.println("affiche param6 "+ventesTerminees);
 		}
 		
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/articleSelonFiltre.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 		rd.forward(request, response);
 		
 
