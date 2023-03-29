@@ -5,7 +5,6 @@ import java.util.List;
 import fr.eni.mahm.projetencheres.bo.ArticleVendu;
 
 /**
- * 
  * @author MFail4562
  * @version 1.0.0
  */
