@@ -104,7 +104,7 @@ public class ArticleVendu {
 	public ArticleVendu( String nomArticle, String description, Date dateDebutEncheres,
 			Date dateFinEncheres, int miseAPrix,  
 			int noVendeur, Retrait lieuRetrait , Categorie categorie) {
-		this.nomArticle = nomArticle;
+		this.nomArticle = nomArticle.toLowerCase();
 		this.description = description;
 		this.dateDebutEncheres = dateDebutEncheres;
 		this.dateFinEncheres = dateFinEncheres;

@@ -133,7 +133,7 @@ public class Contient extends HttpServlet {
 				success.remove();
 
 			}
-			if (!article.getNomArticle().contains(nomArticle) && listeArticleVendu.contains(article)) {
+			if (!article.getNomArticle().contains(nomArticle.toLowerCase()) && listeArticleVendu.contains(article)) {
 				success.remove();
 			}
 		}
