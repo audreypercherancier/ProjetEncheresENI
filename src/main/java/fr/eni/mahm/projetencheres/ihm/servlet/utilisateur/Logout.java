@@ -25,6 +25,7 @@ public class Logout extends HttpServlet {
 		HttpSession ses;
 		ses=request.getSession();
 		ses.setAttribute("userConnected", null);
+		ses.invalidate();
 		response.sendRedirect("/ProjetEncheresENI/accueil");
 	
 	}

@@ -35,10 +35,10 @@ public class Utilisateur {
 	/**
 	 * Constructeur par défault
 	 */
-	
 	public Utilisateur() {
 		
 	}
+	
 	
 	/**
 	 * Constructeur pour recuperation DATABASE
@@ -78,7 +78,7 @@ public class Utilisateur {
 		this.encheresEffectuees = encheresEffectuees;
 	}
 	
-	/**       Constructeur pour modification profil Utilisateur
+	/**  Constructeur inscription et modification, 
 	 * @param pseudo
 	 * @param nom
 	 * @param prenom
@@ -88,23 +88,25 @@ public class Utilisateur {
 	 * @param codePostal
 	 * @param ville
 	 * @param motDePasse
+	 * @param administrateur
 	 */
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville, String motDePasse) {
+			String codePostal, String ville, String motDePasse, boolean administrateur){
 		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
-		this.prenom = prenom;
+		this.setPrenom(prenom);
 		this.email = email;
 		this.telephone = telephone;
 		this.rue = rue;
 		this.codePostal = codePostal;
 		this.ville = ville;
-		this.motDePasse = motDePasse;
+		this.setMotDePasse(motDePasse);
+		this.administrateur = administrateur;
 	}
 
 	/**
-	 *  Constructeur surchargé sans id
+	 *  Constructeur surchargé sans id et sans admin pour inscription
 	 * @param pseudo
 	 * @param nom
 	 * @param prenom
@@ -118,7 +120,7 @@ public class Utilisateur {
 	 */
 
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville, String motDePasse, boolean administrateur) {
+			String codePostal, String ville, String motDePasse) {
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.setPrenom(prenom);
@@ -128,7 +130,6 @@ public class Utilisateur {
 		this.codePostal = codePostal;
 		this.ville = ville;
 		this.setMotDePasse(motDePasse);
-		this.administrateur = administrateur;
 	}
 		
 

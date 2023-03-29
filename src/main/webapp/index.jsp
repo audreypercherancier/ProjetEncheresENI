@@ -158,7 +158,7 @@
 							</c:if>
 							<c:if test="${!empty userConnected}">
 								<a
-									href="<%=request.getContextPath() %>/detailArticle?noArticle=${ArticleVendu.noArticle}"
+									href="<%=request.getContextPath() %>/detailsArticle?noArticle=${ArticleVendu.noArticle}"
 									class="btn btn-primary">Voir l'enchère</a>
 							</c:if>
 						</div>

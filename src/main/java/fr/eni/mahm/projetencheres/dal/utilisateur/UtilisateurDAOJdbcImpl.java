@@ -19,6 +19,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private final String MYSQLUPDATE = "update utilisateurs set pseudo=?,nom=?,prenom=?,email=?,telephone=?,rue=?,code_postal=?,ville=?, mot_de_passe=? where no_utilisateur=";	
 	private final String MYSQLSELECTALL = "select pseudo,nom,prenom,email,telephone,rue,code_postal,ville,credit from utilisateurs";
 	private final String MYSQLSELECTBYID = "select no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe from utilisateurs where no_utilisateur=?";
+	private final String MYSQLVERIFMDP = "select no_utilisateur, pseudo, nom, prenom, email, mot_de_passe, telephone, rue, code_postal, ville, credit from utilisateurs where mot_de_passe=?";
 	private final String MYSQLSELECTBYIDPUBLIC = "select pseudo,nom,prenom,email,telephone,rue,code_postal,ville from utilisateurs where no_utilisateur=?";
 	
 	
@@ -236,6 +237,26 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		}
 
 		return u;
+	}
+	
+	public Utilisateur verificationMdp(String motDePasse) {
+		Utilisateur u = null;
+		try (Connection con = ConnectBDD.getConnection()) {
+			 
+			PreparedStatement pstmt = con.prepareStatement(MYSQLVERIFMDP);
+			pstmt.setString(1, motDePasse);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				
+			}
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return u;
+		
 	}
 
 	private Utilisateur rsToUtilisateur(ResultSet rs) {
