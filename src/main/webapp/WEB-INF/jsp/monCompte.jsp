@@ -112,7 +112,9 @@
 									<p class="mb-0">Nombres d'article achetés :</p>
 								</div>
 								<div class="col-sm-9">
-									<p class="text-muted mb-0"></p>
+								<c:if test="${userConnected.articlesAchetes.size() > 0 }">
+									<p class="text-muted mb-0">Vous avez acheté ${userConnected.articlesAchetes.size()} article<c:if test="${userConnected.articlesAchetes.size() > 1 }">s</c:if></p>
+								</c:if>
 								</div>
 							</div>
 							<hr>

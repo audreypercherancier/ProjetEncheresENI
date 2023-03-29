@@ -77,7 +77,6 @@ public class Login extends HttpServlet {
 		Utilisateur u = null;
 		login = request.getParameter("login");
 		password = Utilisateur.hashagePwd(request.getParameter("password"));
-		System.out.println(password);
 		HttpSession ses;
 		ses = request.getSession();
 		ses.setMaxInactiveInterval(5 * 60); 
@@ -86,7 +85,6 @@ public class Login extends HttpServlet {
 		Cookie pims;
 		if (u != null) {
 			ses.setAttribute("userConnected", u);
-			System.out.println(request.getParameter("sesouvenirdemoi")); 
 			
 			if(request.getParameter("sesouvenirdemoi") != null) {
 			

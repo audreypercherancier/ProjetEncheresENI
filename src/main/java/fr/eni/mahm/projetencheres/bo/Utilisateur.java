@@ -29,6 +29,7 @@ public class Utilisateur {
 
 	// --------lien interclasses---------//
 	private List<ArticleVendu> articlesAVendre = new ArrayList<>(); // liste d'articles vendu par l'utilisateur
+	private List<ArticleVendu> articlesAchetes = new ArrayList<>(); // liste d'articles vendu par l'utilisateur
 	private List<Enchere> encheresEffectuees = new ArrayList<>();
 
 	//--------------------------CONSTRUCTOR ZONE----------------------------//
@@ -299,7 +300,10 @@ public void annulerVente(ArticleVendu article) {
 		}
 	}
 
-
+	
+	public void ajoutArticleAchete(ArticleVendu article) {
+		this.articlesAchetes.add(article);
+	}
 //---------------------------------------------GETTER SETTER ZONE-------------------------------------------------------//
 
 	public List<ArticleVendu> getArticlesAVendre() {
@@ -421,6 +425,16 @@ public void annulerVente(ArticleVendu article) {
 		return encheresEffectuees;
 	}
 	
+	/**
+	 * @return the articlesAchetes
+	 */
+	public List<ArticleVendu> getArticlesAchetes() {
+		return articlesAchetes;
+	}
+
+
+
+
 	//--------hashage lachement volé a thierry----------//
 	public static String hashagePwd(String password) {
 		MessageDigest md=null;

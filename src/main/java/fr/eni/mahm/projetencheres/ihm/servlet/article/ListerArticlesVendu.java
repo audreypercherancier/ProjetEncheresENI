@@ -10,9 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.mahm.projetencheres.bll.ArticleManager;
 import fr.eni.mahm.projetencheres.bo.ArticleVendu;
+import fr.eni.mahm.projetencheres.bo.Utilisateur;
 
 /**
  * Servlet implementation class ListerArticlesVendu
@@ -28,16 +30,14 @@ public class ListerArticlesVendu extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-
 		List<ArticleVendu> listeArticleVendu;
-		listeArticleVendu = verifierArticles();
+		listeArticleVendu = verifierArticles(request);
 
-		
 		// System.out.println("liste ici "+listeArticleVendu);
 		request.setAttribute("listeArticleVendu", listeArticleVendu);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 
-}
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -48,32 +48,41 @@ public class ListerArticlesVendu extends HttpServlet {
 
 		doGet(request, response);
 	}
-	
 
-	private static List<ArticleVendu> verifierArticles(){
+	private static List<ArticleVendu> verifierArticles(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("userConnected");
+
 		List<ArticleVendu> listeArticleVendu;
 		ArticleManager articleMgr = new ArticleManager();
 		listeArticleVendu = articleMgr.articlesEnVente();
+
+	
 
 		// -----------------boucle de tri ------------------//
 		/*
 		 * on enleve les articles vendus
 		 */
 		Date now = new Date(System.currentTimeMillis());
-	
+
 		Iterator<ArticleVendu> success = listeArticleVendu.iterator();
+		if(utilisateurConnecte != null) utilisateurConnecte.getArticlesAchetes().clear();
 		while (success.hasNext()) {
 			ArticleVendu article = success.next();
-			if(article.getDateFinEncheres().before(now)) {
-				if(article.getNoAcquereur() == 0) {
-					System.out.println("tutut!");
+			if (article.getDateFinEncheres().before(now)) {
+				if (article.getNoAcquereur() == 0) {
 					articleMgr.assignerAcquereur(article);
-				}
+				} else if (utilisateurConnecte != null
+						&& utilisateurConnecte.getNoUtilisateur() == article.getNoAcquereur()) {
+						utilisateurConnecte.ajoutArticleAchete(article);
+					}
+				
 				success.remove();
 			}
 		}
+		session.setAttribute("userConnected", utilisateurConnecte);
 		return listeArticleVendu;
-		
+
 	}
 
 }
