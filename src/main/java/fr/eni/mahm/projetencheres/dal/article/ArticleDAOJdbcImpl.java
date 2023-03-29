@@ -28,7 +28,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	private final String SELECTION_TOUT_ARTICLES = "SELECT av.*, c.libelle, r.rue, r.code_postal, r.ville,u.pseudo FROM articles_vendus av INNER JOIN retraits r ON r.no_article = av.no_article INNER JOIN categories c ON c.no_categorie=av.no_categorie INNER JOIN utilisateurs u  ON u.no_utilisateur=av.no_utilisateur";
 	private final String AJOUTER = "INSERT INTO articles_vendus (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES(?,?,?,?,?,?,?,?)";
 	private final String UPDATE_PRIX_ARTICLE = " UPDATE articles_vendus SET prix_vente = ? WHERE (no_article = ?)";
-	///////////////////////////////////////////////////////////////TRI//////////////////////////////////////////////////////////////
+	private final String MODIFIER = "update articles_vendus set no_article=?,nom_article=?,description=?,date_debut_encheres=?,date_fin_encheres=?,prix_initial=?,prix_vente=?,no_utilisateur=?, no_categorie=? where no_article=";
 	private final String SELECTION_ARTICLE = "SELECT av.*, c.libelle, r.rue, r.code_postal, r.ville, u.pseudo FROM articles_vendus av INNER JOIN retraits r ON r.no_article = av.no_article INNER JOIN categories c ON c.no_categorie = av.no_categorie INNER JOIN utilisateurs u  ON u.no_utilisateur=av.no_utilisateur WHERE av.no_article=?";
 	private final String SELECTION_ARTICLE_PAR_CATEGORIE ="SELECT av.*, c.libelle, r.rue, r.code_postal, r.ville, u.pseudo FROM articles_vendus av INNER JOIN retraits r ON r.no_article = av.no_article INNER JOIN categories c ON c.no_categorie = av.no_categorie INNER JOIN utilisateurs u  ON u.no_utilisateur=av.no_utilisateur WHERE av.no_categorie=?";
 	private final String SELECTION_ARTICLE_PAR_NOM ="SELECT av.*, c.libelle, r.rue, r.code_postal, r.ville, u.pseudo FROM articles_vendus av INNER JOIN retraits r ON r.no_article = av.no_article INNER JOIN categories c ON c.no_categorie = av.no_categorie INNER JOIN utilisateurs u  ON u.no_utilisateur=av.no_utilisateur WHERE av.nom_article LIKE ? ";
@@ -89,9 +89,34 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	@Override
 	public void modifier(ArticleVendu article) {
-
+		Connection cnx;
+		PreparedStatement stmt;
+		cnx=ConnectBDD.getConnection();
+		try {
+			cnx.setAutoCommit(false);
+			stmt = cnx.prepareStatement(MODIFIER + article.getNoArticle());
+			stmt.setInt(1, article.getNoArticle());
+			stmt.setString(2, article.getNomArticle());
+			stmt.setString(3, article.getDescription());
+			stmt.setDate(4, article.getDateDebutEncheres());
+			stmt.setDate(5, article.getDateFinEncheres());
+			stmt.setInt(6, article.getMiseAPrix());
+			stmt.setInt(7, article.getPrixVente());
+			stmt.setInt(8, article.getNoVendeur());
+			//stmt.setString(9, article.getCategorie());
+			stmt.executeUpdate();
+			cnx.commit();
+			cnx.close();
+		} catch (Exception e) {
+			try {
+				cnx.rollback();
+				cnx.close();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
 	}
-
 	@Override
 	public List<ArticleVendu> selectionArticles() {
 		List<ArticleVendu> articlesEnVente = new ArrayList<>();
