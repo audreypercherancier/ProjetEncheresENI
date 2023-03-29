@@ -109,14 +109,14 @@
 							<p class="text-muted mb-1">${article.pseudo}</p>
 							<div class="d-flex justify-content-center mb-2">
 								<a type="button" class="btn btn-secondary my-2 my-sm-0"
-									href="<%=request.getContextPath() %>/compteVendeur?id=${articleSelectione.noVendeur}" role="button">Accedez au compte</a>
+									href="<%=request.getContextPath() %>/compteVendeur?id=${article.noVendeur}" role="button">Accedez au compte</a>
 							</div>
-							c:if test="${empty userConnected.noVendeur}= ${ get.noVendeur}">
+							<%-- c:if test="${empty userConnected.noVendeur}= ${ get.noVendeur}">
 							<div class="d-flex justify-content-center mb-2">
 								<a type="button" class="btn btn-secondary my-2 my-sm-0"
 									href="/ProjetEncheresENI/modifierArticle" role="button">modifier Article</a>
 							</div>
-							/c:if>
+							/c:if> --%>
 						</div>
 					</div>
 				<div class="card mb-5">

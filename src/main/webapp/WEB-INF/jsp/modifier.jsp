@@ -154,8 +154,8 @@
 		<%@ include file="/WEB-INF/html/piedDePage.html"%>
 	</div>
 </body>
-<script type="text/javascript" src="vendor/checkConfirmationPassword.js"></script>
-<script type="text/javascript" src="vendor/checkRequired.js"></script>
+<script type="text/javascript" src="vendor/javascript/checkConfirmationPassword.js"></script>
+<script type="text/javascript" src="vendor/javascript/checkRequired.js"></script>
 <style type="text/css">
 .form-control {
 	border-width: 0.5px;

@@ -42,10 +42,7 @@ public class RechercherPar extends HttpServlet {
 
 		List<ArticleVendu> listeArticleVendu = null;
 		int categorie;
-		HttpSession session = request.getSession();
-		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("userConnected");
 		categorie = Integer.parseInt(request.getParameter("categories"));
-		System.out.println("0 : " + utilisateurConnecte);
 		if (categorie != 0) {
 			listeArticleVendu = verifierArticlesCategorie(categorie, request);
 		} else {
@@ -78,19 +75,14 @@ public class RechercherPar extends HttpServlet {
 		while (success.hasNext()) {
 			ArticleVendu article = success.next();
 			if (article.getDateFinEncheres().before(now)) {
-				System.out.println(article.getNoAcquereur() + "mais quel est donc ce numero ?");
 				if (article.getNoAcquereur() == 0) {
-					System.out.println(article.getNoVendeur());
 					article = articleMgr.assignerAcquereur(article);
-					System.out.println(article.getNoAcquereur() + "ca me gave la");
 				} else if (utilisateurConnecte != null
 						&& utilisateurConnecte.getNoUtilisateur() == article.getNoAcquereur()) {
 					utilisateurConnecte.ajoutArticleAchete(article);
-					System.out.println(article.getNoAcquereur() + " bis");
 				} else if (utilisateurConnecte != null
 						&& utilisateurConnecte.getNoUtilisateur() == article.getNoVendeur()) {
 					utilisateurConnecte.ajoutArticlesVendus(article);
-					System.out.println(article.getNoAcquereur() + " bisous");
 				}
 
 				success.remove();
@@ -106,7 +98,6 @@ public class RechercherPar extends HttpServlet {
 		System.out.println("----------------------------------------------------------------");
 		HttpSession session = request.getSession();
 		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("userConnected");
-System.out.println("check : "+utilisateurConnecte.getNom());
 		List<ArticleVendu> listeArticleVendu;
 		ArticleManager articleMgr = new ArticleManager();
 		listeArticleVendu = articleMgr.articlesEnVente();
@@ -123,40 +114,28 @@ System.out.println("check : "+utilisateurConnecte.getNom());
 		}
 		while (success.hasNext()) {
 			ArticleVendu article = success.next();
-			System.out.println("1 : "+article.getCategorie().getNoCategorie() + "test article succes");
 			if (article.getDateFinEncheres().before(now)) {
 				if (article.getNoAcquereur() == 0) {
 				article = articleMgr.assignerAcquereur(article);
-				System.out.println("2 : "+article.getNoAcquereur());
-				System.out.println("2.5 : numero vendeur = " + article.getNoVendeur());
-				System.out.println("2.6 : "+utilisateurConnecte.getNoUtilisateur());
 				} 
 				if (utilisateurConnecte != null
 						&& utilisateurConnecte.getNoUtilisateur() == article.getNoAcquereur()) {
-					System.out.println("3 : ajout achat");
 					utilisateurConnecte.ajoutArticleAchete(article);
 					}
-					System.out.println();
-					System.out.println("2.8 : "+utilisateurConnecte.getNoUtilisateur());
 				 if (utilisateurConnecte != null
 						&& utilisateurConnecte.getNoUtilisateur() == article.getNoVendeur()) {
-					System.out.println("4 : ajout vente");
 					utilisateurConnecte.ajoutArticlesVendus(article);
 				}
 				
-					System.out.println("5 : "+article.getNomArticle() + "cloturé + enleve");
 					success.remove();
 				
 			}
-			System.out.println("6 : "+noCategorie + "no categorie entrante");
 			if(article.getCategorie().getNoCategorie() != noCategorie && listeArticleVendu.contains(article)) {
-				System.out.println("7 : "+article.getNomArticle() + " pas la bonne categorie + enleve");
 				success.remove();
 			}
 		}
 
 		session.setAttribute("userConnected", utilisateurConnecte);
-		System.out.println("8 : "+utilisateurConnecte);
 		return listeArticleVendu;
 		
 
