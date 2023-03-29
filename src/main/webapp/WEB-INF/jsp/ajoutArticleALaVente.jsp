@@ -75,6 +75,9 @@
 									<input type="number" name="prixinitial" class="form-control" min="0"> <br>
 									
 								</div>
+								<div class="invalid-feedback">
+						 				Veuillez saisir une description d'article
+								</div>
 							</div>
 				</div>
 	

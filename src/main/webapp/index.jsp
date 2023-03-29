@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@page
 	import="java.util.List,fr.eni.mahm.projetencheres.bo.ArticleVendu"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,7 @@
 
 
 	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
+	
 	<br>
 	<form action="Contient" method="post">
 		<label for="Filtre">Le nom de l'article contient:</label> <input
@@ -162,7 +164,7 @@
 									class="btn btn-primary">Voir l'enchère</a>
 							</c:if>
 						</div>
-						<div class="card-footer text-muted">temps restant enchere</div>
+						<div class="card-footer text-muted">temps restant enchere  </div>
 					</div>
 				</c:forEach>
 			</div>

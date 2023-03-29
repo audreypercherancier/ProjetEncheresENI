@@ -34,7 +34,7 @@ import="java.util.List,fr.eni.mahm.projetencheres.bo.ArticleVendu" %>
           <div>
           <form class="d-flex">
 					<a class="btn btn-secondary m-2 my-sm-0"
-						href="/ProjetEncheresENI/index" role="button">Retour</a>
+						href="/ProjetEncheresENI/accueil" role="button">Retour</a>
           </form>
           </div>
           

@@ -131,6 +131,13 @@
     					<input type="submit" class="btn btn-secondary" value="Enchérir" />
       				</div>   
 				</div>
+				<div>
+         			 <form class="d-flex">
+						<a class="btn btn-secondary m-2 my-sm-0" href="/ProjetEncheresENI/accueil" role="button">Retour</a>
+          			</form>
+          		
+          		</div>
+          		
 			</div>
 		</div>
 		</div>
