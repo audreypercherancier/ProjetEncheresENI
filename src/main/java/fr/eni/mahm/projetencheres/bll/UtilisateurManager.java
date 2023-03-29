@@ -60,6 +60,17 @@ public class UtilisateurManager {
 		
 	}
 	
+	public Utilisateur verificationMdp(String motDePasse) {
+		Utilisateur u = null;
+		
+		try {
+			u = userDAO.verificationMdp(motDePasse);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return u;
+		}
+	
 	public void miseAJourSolde(int nouveauSolde, int noUtilisateur) {
 		userDAO.modifierSolde(nouveauSolde, noUtilisateur);
 	}

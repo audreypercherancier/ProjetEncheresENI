@@ -43,7 +43,7 @@ public class detailsArticle extends HttpServlet {
 		
 		article =  articleMgr.articleSelectionne(Integer.parseInt(request.getParameter("noArticle")));
 		
-		session.setAttribute("articleSelectione", article);
+		session.setAttribute("article", article);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/detailsArticle.jsp");
 		rd.forward(request, response);
@@ -53,7 +53,8 @@ public class detailsArticle extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Utilisateur encherisseur = (Utilisateur) session.getAttribute("userConnected");
 		ArticleVendu article = (ArticleVendu) session.getAttribute("article");
@@ -64,8 +65,8 @@ public class detailsArticle extends HttpServlet {
 		try {
 
 			if (encherisseur.getCredit() >= montant && montant != article.getPrixVente()) {
-				encherisseur.setCredit(encherisseur.getCredit() - montant);
 				if (article.getPrixVente() < montant) {
+					encherisseur.setCredit(encherisseur.getCredit() - montant);
 					nouvelleEnchere = new Enchere(encherisseur, article, montant);
 
 					enchereMgr.faireEnchere(nouvelleEnchere);
@@ -81,7 +82,6 @@ public class detailsArticle extends HttpServlet {
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/detailsArticle.jsp");
 		rd.forward(request, response);
-	
 	}
 
 }

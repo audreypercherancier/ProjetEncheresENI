@@ -19,6 +19,7 @@ public interface UtilisateurDAO {
 	void modifier(Utilisateur u); 
 	List<Utilisateur> selectionnerUtilisateurs(); 
 	Utilisateur selectionnerParId(int noUtilisateur);
-	Utilisateur selectionnerParIdPublic(int noUtilisateur);  
+	Utilisateur selectionnerParIdPublic(int noUtilisateur); 
+	Utilisateur verificationMdp(String motDePasse);
 	void modifierSolde(int nouveauSolde, int noUtilisateur);
 }
