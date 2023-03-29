@@ -1,11 +1,9 @@
 package fr.eni.mahm.projetencheres.ihm.servlet.article;
 
-import java.io.IOException
-;
+import java.io.IOException;
 import java.sql.Date;
 import java.util.Iterator;
 import java.util.List;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,46 +22,43 @@ import fr.eni.mahm.projetencheres.bo.Utilisateur;
 @WebServlet("/RechercherPar")
 public class RechercherPar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		List<ArticleVendu> listeArticleVendu=null;
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		List<ArticleVendu> listeArticleVendu = null;
 		int categorie;
 		HttpSession session = request.getSession();
 		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("userConnected");
 		categorie = Integer.parseInt(request.getParameter("categories"));
-		System.out.println("coucou la compagnie"+utilisateurConnecte);
-		if(categorie !=0 ) {
-			listeArticleVendu = verifierArticlesCategorie(categorie , request);
-		}else {
-			listeArticleVendu=verifierArticles(request);
+		System.out.println("0 : " + utilisateurConnecte);
+		if (categorie != 0) {
+			listeArticleVendu = verifierArticlesCategorie(categorie, request);
+		} else {
+			listeArticleVendu = verifierArticles(request);
 		}
-		
+
 		request.setAttribute("listeArticleVendu", listeArticleVendu);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
-		
-		
-		
-		
-		
+
 	}
-	
+
 	private static List<ArticleVendu> verifierArticles(HttpServletRequest request) {
-		
-		
+
 		HttpSession session = request.getSession();
 		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("userConnected");
 		List<ArticleVendu> listeArticleVendu;
@@ -111,7 +106,7 @@ public class RechercherPar extends HttpServlet {
 		System.out.println("----------------------------------------------------------------");
 		HttpSession session = request.getSession();
 		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("userConnected");
-System.out.println("userconnected nom"+utilisateurConnecte.getNom());
+System.out.println("check : "+utilisateurConnecte.getNom());
 		List<ArticleVendu> listeArticleVendu;
 		ArticleManager articleMgr = new ArticleManager();
 		listeArticleVendu = articleMgr.articlesEnVente();
@@ -128,34 +123,40 @@ System.out.println("userconnected nom"+utilisateurConnecte.getNom());
 		}
 		while (success.hasNext()) {
 			ArticleVendu article = success.next();
-			System.out.println(article.getCategorie().getNoCategorie() + "test article succes");
+			System.out.println("1 : "+article.getCategorie().getNoCategorie() + "test article succes");
 			if (article.getDateFinEncheres().before(now)) {
 				if (article.getNoAcquereur() == 0) {
 				article = articleMgr.assignerAcquereur(article);
-				System.out.println("on a chnagé de mathieu entre temps"+article.getNoAcquereur());
-				} else if (utilisateurConnecte != null
+				System.out.println("2 : "+article.getNoAcquereur());
+				System.out.println("2.5 : numero vendeur = " + article.getNoVendeur());
+				System.out.println("2.6 : "+utilisateurConnecte.getNoUtilisateur());
+				} 
+				if (utilisateurConnecte != null
 						&& utilisateurConnecte.getNoUtilisateur() == article.getNoAcquereur()) {
-					System.out.println("coucou");
+					System.out.println("3 : ajout achat");
 					utilisateurConnecte.ajoutArticleAchete(article);
-				} else if (utilisateurConnecte != null
+					}
+					System.out.println();
+					System.out.println("2.8 : "+utilisateurConnecte.getNoUtilisateur());
+				 if (utilisateurConnecte != null
 						&& utilisateurConnecte.getNoUtilisateur() == article.getNoVendeur()) {
-					System.out.println("coucou2");
+					System.out.println("4 : ajout vente");
 					utilisateurConnecte.ajoutArticlesVendus(article);
 				}
 				
-					System.out.println(article.getNoArticle() + "removed");
+					System.out.println("5 : "+article.getNomArticle() + "cloturé + enleve");
 					success.remove();
 				
 			}
-			System.out.println(noCategorie + "value entrante");
+			System.out.println("6 : "+noCategorie + "no categorie entrante");
 			if(article.getCategorie().getNoCategorie() != noCategorie && listeArticleVendu.contains(article)) {
-				System.out.println(article.getNoArticle() + "removed");
+				System.out.println("7 : "+article.getNomArticle() + " pas la bonne categorie + enleve");
 				success.remove();
 			}
 		}
 
 		session.setAttribute("userConnected", utilisateurConnecte);
-		System.out.println("user de fin"+utilisateurConnecte);
+		System.out.println("8 : "+utilisateurConnecte);
 		return listeArticleVendu;
 		
 

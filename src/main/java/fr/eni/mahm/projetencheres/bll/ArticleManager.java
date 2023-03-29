@@ -81,7 +81,7 @@ public class ArticleManager {
 
 	public ArticleVendu assignerAcquereur(ArticleVendu articleVendu) {
 		Enchere derniereEnchere = enchereMgr.recupererDerniereEnchere(articleVendu);
-		System.out.println(articleVendu.getNoVendeur());
+		System.out.println("recuperation bll articleMgr : "+articleVendu.getNoVendeur());
 		Utilisateur vendeur = utilisateurMgr.selectionnerParId(articleVendu.getNoVendeur());
 		if (derniereEnchere != null) {
 			int nouveauSoldeVendeur = vendeur.getCredit() + derniereEnchere.getMontantEnchere();
@@ -91,8 +91,11 @@ public class ArticleManager {
 			articleDAO.assignerAcquereur(derniereEnchere.getNoArticle(), derniereEnchere.getEncherisseur().getNoUtilisateur());
 		}
 		
+	ArticleVendu articleTest = articleDAO.selectionParNoArticle(articleVendu.getNoArticle());
+	System.out.println("article recupere pour ajout dans la liste : "+ articleTest.getNomArticle() + ";" + articleTest.getNoAcquereur());
+	
+	return articleTest;
 		
-		return articleDAO.selectionParNoArticle(articleVendu.getNoArticle());
 	}
 
 }

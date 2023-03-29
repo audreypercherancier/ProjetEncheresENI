@@ -179,7 +179,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	// ------------------------SELECTBYID-------------------------------//
 	public Utilisateur selectionnerParId(int noUtilisateur) {
-		System.out.println(noUtilisateur + "test arrivé noUser");
 		Connection cnx;
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -188,7 +187,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		try {
 			stmt = cnx.prepareStatement(MYSQLSELECTBYID);
 			stmt.setInt(1, noUtilisateur);
-			System.out.println(stmt);
 			rs = stmt.executeQuery();
 			if(rs.next()) {
 				u = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
@@ -205,7 +203,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				}
 			
 		}
-		System.out.println(u.getNoUtilisateur() + "userDAOJdbc");
 		
 		return u;
 	}
