@@ -15,8 +15,8 @@
 			<div class="collapse navbar-collapse" id="navbarColor01">
 				<ul class="navbar-nav me-auto">
 					<li class="nav-item"><a class="nav-link active"
-						href="<%=request.getContextPath()%>">Encheres
-							<span class="visually-hidden">(current)</span>
+						href="<%=request.getContextPath()%>">Encheres <span
+							class="visually-hidden">(current)</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="<%=request.getContextPath()%>/login">Vendre un article</a></li>
@@ -26,8 +26,7 @@
 						href="/ProjetEncheresENI/inscription" role="button">S'inscrire</a>
 
 					<a class="btn btn-secondary m-2 my-sm-0"
-						href="/ProjetEncheresENI/login" role="button">Se
-						connecter</a>
+						href="/ProjetEncheresENI/login" role="button">Se connecter</a>
 				</form>
 			</div>
 		</div>
@@ -74,25 +73,12 @@
 						<li class="nav-item">
 							<p>Mon crédit : ${userConnected.credit}</p>
 						</li>
-						<li class="nav-item">
+						<li class="nav-item">nombre articles achetés : ${userConnected.articlesAchetes.size()}</li>
 
-							<ul>
-								<li>Articles achetés</li>
-								<c:forEach var="Article"
-									items="${userConnected.getArticlesAchetes()}">
-									<li>${Article.nomArticle}</li>
-								</c:forEach>
-							</ul>
-						</li>
-						<li class="nav-item">
-							<ul>
-								<li>Articles vendus</li>
-								<c:forEach var="Article" items="${userConnected.getArticlesVendus()}">
-									<li>${Article.nomArticle}</li>
-								</c:forEach>
-							</ul>
-						</li>
+
+						<li class="nav-item">nombre articles vendus : ${userConnected.articlesVendus.size()}</li>
 					</ul>
+
 					<form action="logout" method="get" class="d-flex mt-3">
 						<button class="btn btn-danger" type="submit">Déconnexion</button>
 					</form>

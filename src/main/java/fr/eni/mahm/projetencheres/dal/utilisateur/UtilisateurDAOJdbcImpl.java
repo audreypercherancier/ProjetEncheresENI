@@ -18,7 +18,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private final String MYSQLINSERT = "insert into utilisateurs (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur)  values(?,?,?,?,?,?,?,?,?,?,?)";
 	private final String MYSQLUPDATE = "update utilisateurs set pseudo=?,nom=?,prenom=?,email=?,telephone=?,rue=?,code_postal=?,ville=?, mot_de_passe=? where no_utilisateur=";	
 	private final String MYSQLSELECTALL = "select pseudo,nom,prenom,email,telephone,rue,code_postal,ville,credit from utilisateurs";
-	private final String MYSQLSELECTBYID = "select no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe from utilisateurs where no_utilisateur=?";
+	private final String MYSQLSELECTBYID = "select * from utilisateurs where no_utilisateur=?";
 	private final String MYSQLVERIFMDP = "select no_utilisateur, pseudo, nom, prenom, email, mot_de_passe, telephone, rue, code_postal, ville, credit from utilisateurs where mot_de_passe=?";
 	private final String MYSQLSELECTBYIDPUBLIC = "select pseudo,nom,prenom,email,telephone,rue,code_postal,ville from utilisateurs where no_utilisateur=?";
 	
@@ -179,32 +179,34 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	// ------------------------SELECTBYID-------------------------------//
 	public Utilisateur selectionnerParId(int noUtilisateur) {
+		System.out.println(noUtilisateur + "test arrivé noUser");
 		Connection cnx;
 		PreparedStatement stmt;
 		ResultSet rs;
 		cnx = ConnectBDD.getConnection();
 		Utilisateur u = null;
 		try {
-			cnx.setAutoCommit(false);
 			stmt = cnx.prepareStatement(MYSQLSELECTBYID);
 			stmt.setInt(1, noUtilisateur);
+			System.out.println(stmt);
 			rs = stmt.executeQuery();
-			while (rs.next()) {
-				u = new Utilisateur(Integer.parseInt(rs.getString("no_utilisateur")), rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
+			if(rs.next()) {
+				u = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
 						rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"),
-						rs.getString("ville"), rs.getString("mot_de_passe"));
+						rs.getString("ville"), rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getBoolean("administrateur"));
 			}
-			cnx.commit();
 			cnx.close();
 		} catch (Exception e) {
-			try {
-				cnx.rollback();
-				cnx.close();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-
-			}
+			
+				try {
+					cnx.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			
 		}
+		System.out.println(u.getNoUtilisateur() + "userDAOJdbc");
+		
 		return u;
 	}
 

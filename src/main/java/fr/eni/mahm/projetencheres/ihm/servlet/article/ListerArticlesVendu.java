@@ -71,6 +71,7 @@ public class ListerArticlesVendu extends HttpServlet {
 			ArticleVendu article = success.next();
 			if (article.getDateFinEncheres().before(now)) {
 				if (article.getNoAcquereur() == 0) {
+					System.out.println(article.getNoVendeur());
 					articleMgr.assignerAcquereur(article);
 				} else if (utilisateurConnecte != null
 						&& utilisateurConnecte.getNoUtilisateur() == article.getNoAcquereur()) {

@@ -60,9 +60,7 @@ public class Utilisateur {
 	 * @param encheresEffectuees
 	 */
 	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur,
-			List<ArticleVendu> articlesAVendre, List<ArticleVendu> articleAchete, List<Enchere> encheresEffectuees) {
-		super();
+			String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
 		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -75,8 +73,6 @@ public class Utilisateur {
 		this.motDePasse = motDePasse;
 		this.credit = credit;
 		this.administrateur = administrateur;
-		this.articlesVendus = articlesAVendre;
-		this.encheresEffectuees = encheresEffectuees;
 	}
 	
 	/**  Constructeur inscription et modification, 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import fr.eni.mahm.projetencheres.bo.ArticleVendu;
 import fr.eni.mahm.projetencheres.bo.Enchere;
+import fr.eni.mahm.projetencheres.bo.Utilisateur;
 import fr.eni.mahm.projetencheres.dal.DAOFactory;
 import fr.eni.mahm.projetencheres.dal.article.ArticleDAO;
 
@@ -11,6 +12,7 @@ public class ArticleManager {
 
 	private static ArticleDAO articleDAO;
 	private static EnchereManager enchereMgr = new EnchereManager();
+	private static UtilisateurManager utilisateurMgr = new UtilisateurManager();
 
 	// -----------CONSTRUCTEUR ZONE-----------//
 	public ArticleManager() {
@@ -79,6 +81,12 @@ public class ArticleManager {
 
 	public void assignerAcquereur(ArticleVendu articleVendu) {
 		Enchere derniereEnchere = enchereMgr.recupererDerniereEnchere(articleVendu);
+		System.out.println(articleVendu.getNoVendeur());
+		Utilisateur vendeur = utilisateurMgr.selectionnerParId(articleVendu.getNoVendeur());
+		int nouveauSoldeVendeur = vendeur.getCredit() + derniereEnchere.getMontantEnchere();
+		
+		utilisateurMgr.miseAJourSolde(nouveauSoldeVendeur, vendeur.getNoUtilisateur());
+		
 		articleDAO.assignerAcquereur(derniereEnchere.getNoArticle(), derniereEnchere.getEncherisseur().getNoUtilisateur());
 	}
 
