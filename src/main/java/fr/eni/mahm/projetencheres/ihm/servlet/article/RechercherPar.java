@@ -25,13 +25,7 @@ import fr.eni.mahm.projetencheres.bo.Utilisateur;
 public class RechercherPar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public RechercherPar() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+   
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -48,7 +42,10 @@ public class RechercherPar extends HttpServlet {
 		
 		List<ArticleVendu> listeArticleVendu=null;
 		int categorie;
+		HttpSession session = request.getSession();
+		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("userConnected");
 		categorie = Integer.parseInt(request.getParameter("categories"));
+		System.out.println("coucou la compagnie"+utilisateurConnecte);
 		if(categorie !=0 ) {
 			listeArticleVendu = verifierArticlesCategorie(categorie , request);
 		}else {
@@ -65,9 +62,10 @@ public class RechercherPar extends HttpServlet {
 	}
 	
 	private static List<ArticleVendu> verifierArticles(HttpServletRequest request) {
+		
+		
 		HttpSession session = request.getSession();
 		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("userConnected");
-
 		List<ArticleVendu> listeArticleVendu;
 		ArticleManager articleMgr = new ArticleManager();
 		listeArticleVendu = articleMgr.articlesEnVente();
@@ -113,7 +111,7 @@ public class RechercherPar extends HttpServlet {
 		System.out.println("----------------------------------------------------------------");
 		HttpSession session = request.getSession();
 		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("userConnected");
-
+System.out.println("userconnected nom"+utilisateurConnecte.getNom());
 		List<ArticleVendu> listeArticleVendu;
 		ArticleManager articleMgr = new ArticleManager();
 		listeArticleVendu = articleMgr.articlesEnVente();
@@ -134,6 +132,7 @@ public class RechercherPar extends HttpServlet {
 			if (article.getDateFinEncheres().before(now)) {
 				if (article.getNoAcquereur() == 0) {
 				article = articleMgr.assignerAcquereur(article);
+				System.out.println("on a chnagé de mathieu entre temps"+article.getNoAcquereur());
 				} else if (utilisateurConnecte != null
 						&& utilisateurConnecte.getNoUtilisateur() == article.getNoAcquereur()) {
 					System.out.println("coucou");
@@ -156,7 +155,9 @@ public class RechercherPar extends HttpServlet {
 		}
 
 		session.setAttribute("userConnected", utilisateurConnecte);
+		System.out.println("user de fin"+utilisateurConnecte);
 		return listeArticleVendu;
+		
 
 	}
 
