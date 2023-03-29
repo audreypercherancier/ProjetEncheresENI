@@ -55,7 +55,8 @@ public class FaireEnchere extends HttpServlet {
 		int montant = Integer.parseInt(request.getParameter("monEnchere"));
 		EnchereManager enchereMgr = new EnchereManager();
 		Enchere nouvelleEnchere;
-
+		System.out.println(montant);
+		System.out.println(encherisseur);
 		try {
 
 			if (encherisseur.getCredit() >= montant && montant != article.getPrixVente()) {
