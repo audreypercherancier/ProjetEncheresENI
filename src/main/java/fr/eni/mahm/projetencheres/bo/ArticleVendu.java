@@ -21,6 +21,7 @@ public class ArticleVendu {
 	private int prixVente;
 	private int etatVente;
 	private int noVendeur;
+	private int noAcquereur;
 
 	// -----------------lien interclasses-----------------//
 	private Enchere enchereGagnante;
@@ -329,6 +330,14 @@ public class ArticleVendu {
 	 */
 	public void setPseudo(String pseudo) {
 		Pseudo = pseudo;
+	}
+
+	public int getNoAcquereur() {
+		return noAcquereur;
+	}
+
+	public void setNoAcquereur(int noAcquereur) {
+		this.noAcquereur = noAcquereur;
 	}
 
 	// --------------------------------------------------------------------------------------------------------------//

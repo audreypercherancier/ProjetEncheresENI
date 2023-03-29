@@ -1,7 +1,8 @@
 package fr.eni.mahm.projetencheres.ihm.servlet.article;
 
 import java.io.IOException;
-
+import java.sql.Date;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -43,15 +44,14 @@ public class Contient extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<ArticleVendu> listeArticleVendu=null;
-		ArticleManager articleMgr= new ArticleManager();
 		String nomArticle;
 		nomArticle = request.getParameter("nomArticle");
 	
 		if(nomArticle !=null ) {
-			listeArticleVendu = articleMgr.selectionArticleParNom(nomArticle);
+			listeArticleVendu = verifierArticlesContient(nomArticle);
 			
 		}else {
-			listeArticleVendu=articleMgr.articleEnVentePseudo();
+			listeArticleVendu=verifierArticles();
 		}
 		
 		request.setAttribute("listeArticleVendu", listeArticleVendu);
@@ -60,6 +60,54 @@ public class Contient extends HttpServlet {
 		
 		
 		
+		
+	}
+	
+	private static List<ArticleVendu> verifierArticles(){
+		List<ArticleVendu> listeArticleVendu;
+		ArticleManager articleMgr = new ArticleManager();
+		listeArticleVendu = articleMgr.articlesEnVente();
+
+		// -----------------boucle de tri ------------------//
+		/*
+		 * on enleve les articles vendus
+		 */
+		Date now = new Date(System.currentTimeMillis());
+	
+		Iterator<ArticleVendu> success = listeArticleVendu.iterator();
+		System.out.println(listeArticleVendu + "premier");
+		while (success.hasNext()) {
+			ArticleVendu article = success.next();
+			if(article.getDateFinEncheres().before(now)) {
+				success.remove();
+			}
+		}
+		System.out.println(listeArticleVendu + "avant");
+		return listeArticleVendu;
+		
+	}
+
+	private static List<ArticleVendu> verifierArticlesContient(String nomArticle){
+		List<ArticleVendu> listeArticleVendu;
+		ArticleManager articleMgr = new ArticleManager();
+		listeArticleVendu = articleMgr.selectionArticleParNom(nomArticle);
+		
+		// -----------------boucle de tri ------------------//
+		/*
+		 * on enleve les articles vendus
+		 */
+		Date now = new Date(System.currentTimeMillis());
+		
+		Iterator<ArticleVendu> success = listeArticleVendu.iterator();
+		System.out.println(listeArticleVendu + "premier");
+		while (success.hasNext()) {
+			ArticleVendu article = success.next();
+			if(article.getDateFinEncheres().before(now)) {
+				success.remove();
+			}
+		}
+		System.out.println(listeArticleVendu + "avant");
+		return listeArticleVendu;
 		
 	}
 

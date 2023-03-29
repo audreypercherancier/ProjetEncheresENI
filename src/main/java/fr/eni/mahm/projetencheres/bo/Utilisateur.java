@@ -5,10 +5,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import fr.eni.mahm.projetencheres.exceptions.CodePostalException;
-import fr.eni.mahm.projetencheres.exceptions.NoRetraitExeption;
-
 /**
  * Classe permettant la création d'un utilisateur
  * @author Audrey & Mathieu Perin
@@ -33,7 +29,6 @@ public class Utilisateur {
 
 	// --------lien interclasses---------//
 	private List<ArticleVendu> articlesAVendre = new ArrayList<>(); // liste d'articles vendu par l'utilisateur
-	private List<ArticleVendu> articleAchete = new ArrayList<>(); // liste des articles acquéris par l'utilisateur
 	private List<Enchere> encheresEffectuees = new ArrayList<>();
 
 	//--------------------------CONSTRUCTOR ZONE----------------------------//
@@ -80,7 +75,6 @@ public class Utilisateur {
 		this.credit = credit;
 		this.administrateur = administrateur;
 		this.articlesAVendre = articlesAVendre;
-		this.articleAchete = articleAchete;
 		this.encheresEffectuees = encheresEffectuees;
 	}
 	
@@ -304,9 +298,6 @@ public void annulerVente(ArticleVendu article) {
 		}
 	}
 
-	public void gagneEnchere(ArticleVendu articleAcqueris) {
-		this.articleAchete.add(articleAcqueris);
-	}
 
 //---------------------------------------------GETTER SETTER ZONE-------------------------------------------------------//
 

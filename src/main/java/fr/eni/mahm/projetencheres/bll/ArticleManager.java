@@ -63,13 +63,7 @@ public class ArticleManager {
 		articleDAO.modifier(articleAModifie);
 	}
 	
-	/**
-	 * recupere tout les articles en BD
-	 * @return
-	 */
-	public List<ArticleVendu>articleEnVentePseudo(){	
-		 return articleDAO.selectionParNoArticlePseudo();
-	}
+
 	public List<ArticleVendu>selectionParcategorie(int categorie){	
 		 return articleDAO.selectionParcategorie(categorie);
 	}
@@ -80,6 +74,11 @@ public class ArticleManager {
 	
 	public void faireEnchere(int montant, int noArticle) {
 		articleDAO.nouvelleEnchere(montant, noArticle);
+	}
+
+	public void assignerAcquereur(ArticleVendu articleVendu) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
