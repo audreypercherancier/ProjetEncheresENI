@@ -24,14 +24,6 @@ import fr.eni.mahm.projetencheres.bo.Utilisateur;
 public class Contient extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Contient() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -66,9 +58,9 @@ public class Contient extends HttpServlet {
 	}
 	
 	private static List<ArticleVendu> verifierArticles(HttpServletRequest request) {
+
 		HttpSession session = request.getSession();
 		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("userConnected");
-
 		List<ArticleVendu> listeArticleVendu;
 		ArticleManager articleMgr = new ArticleManager();
 		listeArticleVendu = articleMgr.articlesEnVente();
@@ -87,32 +79,31 @@ public class Contient extends HttpServlet {
 			ArticleVendu article = success.next();
 			if (article.getDateFinEncheres().before(now)) {
 				if (article.getNoAcquereur() == 0) {
-					System.out.println(article.getNoVendeur());
-					articleMgr.assignerAcquereur(article);
-				} else if (utilisateurConnecte != null
-						&& utilisateurConnecte.getNoUtilisateur() == article.getNoAcquereur()) {
+					article = articleMgr.assignerAcquereur(article);
+				}
+				if (utilisateurConnecte != null && utilisateurConnecte.getNoUtilisateur() == article.getNoAcquereur()) {
 					utilisateurConnecte.ajoutArticleAchete(article);
-				} else if (utilisateurConnecte != null
-						&& utilisateurConnecte.getNoUtilisateur() == article.getNoVendeur()) {
+				}
+				if (utilisateurConnecte != null && utilisateurConnecte.getNoUtilisateur() == article.getNoVendeur()) {
 					utilisateurConnecte.ajoutArticlesVendus(article);
+					int credit = utilisateurConnecte.getCredit();
+					utilisateurConnecte.setCredit(credit + article.getPrixVente());
 				}
 
 				success.remove();
+
 			}
 		}
-
 		session.setAttribute("userConnected", utilisateurConnecte);
 		return listeArticleVendu;
-
 	}
 
 	private static List<ArticleVendu> verifierArticlesContient(String nomArticle, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("userConnected");
-
 		List<ArticleVendu> listeArticleVendu;
 		ArticleManager articleMgr = new ArticleManager();
-		listeArticleVendu = articleMgr.selectionArticleParNom(nomArticle);
+		listeArticleVendu = articleMgr.articlesEnVente();
 		// -----------------boucle de tri ------------------//
 		/*
 		 * on enleve les articles vendus
@@ -128,16 +119,21 @@ public class Contient extends HttpServlet {
 			ArticleVendu article = success.next();
 			if (article.getDateFinEncheres().before(now)) {
 				if (article.getNoAcquereur() == 0) {
-					System.out.println(article.getNoVendeur());
 					article = articleMgr.assignerAcquereur(article);
-				} else if (utilisateurConnecte != null
-						&& utilisateurConnecte.getNoUtilisateur() == article.getNoAcquereur()) {
+				}
+				if (utilisateurConnecte != null && utilisateurConnecte.getNoUtilisateur() == article.getNoAcquereur()) {
 					utilisateurConnecte.ajoutArticleAchete(article);
-				} else if (utilisateurConnecte != null
-						&& utilisateurConnecte.getNoUtilisateur() == article.getNoVendeur()) {
+				}
+				if (utilisateurConnecte != null && utilisateurConnecte.getNoUtilisateur() == article.getNoVendeur()) {
 					utilisateurConnecte.ajoutArticlesVendus(article);
+					int credit = utilisateurConnecte.getCredit();
+					utilisateurConnecte.setCredit(credit + article.getPrixVente());
 				}
 
+				success.remove();
+
+			}
+			if (!article.getNomArticle().contains(nomArticle) && listeArticleVendu.contains(article)) {
 				success.remove();
 			}
 		}

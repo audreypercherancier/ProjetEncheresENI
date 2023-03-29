@@ -77,25 +77,25 @@ public class RechercherPar extends HttpServlet {
 			if (article.getDateFinEncheres().before(now)) {
 				if (article.getNoAcquereur() == 0) {
 					article = articleMgr.assignerAcquereur(article);
-				} else if (utilisateurConnecte != null
-						&& utilisateurConnecte.getNoUtilisateur() == article.getNoAcquereur()) {
+				}
+				if (utilisateurConnecte != null && utilisateurConnecte.getNoUtilisateur() == article.getNoAcquereur()) {
 					utilisateurConnecte.ajoutArticleAchete(article);
-				} else if (utilisateurConnecte != null
-						&& utilisateurConnecte.getNoUtilisateur() == article.getNoVendeur()) {
+				}
+				if (utilisateurConnecte != null && utilisateurConnecte.getNoUtilisateur() == article.getNoVendeur()) {
 					utilisateurConnecte.ajoutArticlesVendus(article);
+					int credit = utilisateurConnecte.getCredit();
+					utilisateurConnecte.setCredit(credit + article.getPrixVente());
 				}
 
 				success.remove();
+
 			}
 		}
-
 		session.setAttribute("userConnected", utilisateurConnecte);
 		return listeArticleVendu;
-
 	}
 
 	private static List<ArticleVendu> verifierArticlesCategorie(int noCategorie, HttpServletRequest request) {
-		System.out.println("----------------------------------------------------------------");
 		HttpSession session = request.getSession();
 		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("userConnected");
 		List<ArticleVendu> listeArticleVendu;
@@ -116,30 +116,27 @@ public class RechercherPar extends HttpServlet {
 			ArticleVendu article = success.next();
 			if (article.getDateFinEncheres().before(now)) {
 				if (article.getNoAcquereur() == 0) {
-				article = articleMgr.assignerAcquereur(article);
-				} 
-				if (utilisateurConnecte != null
-						&& utilisateurConnecte.getNoUtilisateur() == article.getNoAcquereur()) {
+					article = articleMgr.assignerAcquereur(article);
+				}
+				if (utilisateurConnecte != null && utilisateurConnecte.getNoUtilisateur() == article.getNoAcquereur()) {
 					utilisateurConnecte.ajoutArticleAchete(article);
-					}
-				 if (utilisateurConnecte != null
-						&& utilisateurConnecte.getNoUtilisateur() == article.getNoVendeur()) {
+				}
+				if (utilisateurConnecte != null && utilisateurConnecte.getNoUtilisateur() == article.getNoVendeur()) {
 					utilisateurConnecte.ajoutArticlesVendus(article);
 					int credit = utilisateurConnecte.getCredit();
 					utilisateurConnecte.setCredit(credit + article.getPrixVente());
 				}
-				
-					success.remove();
-				
+
+				success.remove();
+
 			}
-			if(article.getCategorie().getNoCategorie() != noCategorie && listeArticleVendu.contains(article)) {
+			if (article.getCategorie().getNoCategorie() != noCategorie && listeArticleVendu.contains(article)) {
 				success.remove();
 			}
 		}
 
 		session.setAttribute("userConnected", utilisateurConnecte);
 		return listeArticleVendu;
-		
 
 	}
 
