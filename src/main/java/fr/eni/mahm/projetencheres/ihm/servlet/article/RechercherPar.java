@@ -125,6 +125,8 @@ public class RechercherPar extends HttpServlet {
 				 if (utilisateurConnecte != null
 						&& utilisateurConnecte.getNoUtilisateur() == article.getNoVendeur()) {
 					utilisateurConnecte.ajoutArticlesVendus(article);
+					int credit = utilisateurConnecte.getCredit();
+					utilisateurConnecte.setCredit(credit + article.getPrixVente());
 				}
 				
 					success.remove();
