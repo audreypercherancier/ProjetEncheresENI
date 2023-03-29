@@ -79,7 +79,7 @@ public class ArticleManager {
 		articleDAO.nouvelleEnchere(montant, noArticle);
 	}
 
-	public void assignerAcquereur(ArticleVendu articleVendu) {
+	public ArticleVendu assignerAcquereur(ArticleVendu articleVendu) {
 		Enchere derniereEnchere = enchereMgr.recupererDerniereEnchere(articleVendu);
 		System.out.println(articleVendu.getNoVendeur());
 		Utilisateur vendeur = utilisateurMgr.selectionnerParId(articleVendu.getNoVendeur());
@@ -88,6 +88,8 @@ public class ArticleManager {
 		utilisateurMgr.miseAJourSolde(nouveauSoldeVendeur, vendeur.getNoUtilisateur());
 		
 		articleDAO.assignerAcquereur(derniereEnchere.getNoArticle(), derniereEnchere.getEncherisseur().getNoUtilisateur());
+		
+		return articleDAO.selectionParNoArticle(articleVendu.getNoArticle());
 	}
 
 }

@@ -441,15 +441,22 @@ public Utilisateur(String pseudo, int noUtilisateur, int credit) {
 		}
 		return sb.toString();
 	}
+
+
+	@Override
+	public String toString() {
+		return "Utilisateur [noUtilisateur=" + noUtilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
+				+ prenom + ", email=" + email + ", telephone=" + telephone + ", rue=" + rue + ", codePostal="
+				+ codePostal + ", ville=" + ville + ", motDePasse=" + motDePasse + ", credit=" + credit
+				+ ", administrateur=" + administrateur + ", articlesVendus=" + articlesVendus + ", articlesAchetes="
+				+ articlesAchetes + ", encheresEffectuees=" + encheresEffectuees + "]";
+	}
 	
 
 	// --------------------------------------------------------------------------------------------------------------//
 
 
 
-	@Override
-	public String toString() {
-		return this.getPrenom()+" "+this.getNom();
-	}
+	
 
 }

@@ -61,7 +61,7 @@ public class Retrait {
 	}
 
 	public void setCodePostal(String codePostal) throws CodePostalException {
-		if (Integer.parseInt(codePostal) > 1000 && Integer.parseInt(codePostal) < 98999) {
+		if (Integer.parseInt(codePostal) > 1000 && Integer.parseInt(codePostal) <= 99999) {
 			this.codePostal = codePostal;
 		} else {
 			throw new CodePostalException("erreur sur le code postal");

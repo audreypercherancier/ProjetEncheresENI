@@ -168,6 +168,12 @@
 			</div>
 		</div>
 	</div>
+	
+	nombre articles achetés : ${userConnected.articlesAchetes.size()}
+	nombre articles vendus : ${userConnected.articlesVendus.size()}
+	credit : ${userConnected.credit}
+	${userConnected}
+
 
 	<%@ include file="/WEB-INF/html/piedDePage.html"%>
 	<script type="text/javascript"

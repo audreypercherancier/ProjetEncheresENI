@@ -12,9 +12,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.mahm.projetencheres.bll.ArticleManager;
 import fr.eni.mahm.projetencheres.bo.ArticleVendu;
+import fr.eni.mahm.projetencheres.bo.Utilisateur;
 
 /**
  * Servlet implementation class RechercherPar
@@ -48,9 +50,9 @@ public class RechercherPar extends HttpServlet {
 		int categorie;
 		categorie = Integer.parseInt(request.getParameter("categories"));
 		if(categorie !=0 ) {
-			listeArticleVendu = verifierArticlesCategorie(categorie);
+			listeArticleVendu = verifierArticlesCategorie(categorie , request);
 		}else {
-			listeArticleVendu=verifierArticles();
+			listeArticleVendu=verifierArticles(request);
 		}
 		
 		request.setAttribute("listeArticleVendu", listeArticleVendu);
@@ -62,52 +64,100 @@ public class RechercherPar extends HttpServlet {
 		
 	}
 	
-	private static List<ArticleVendu> verifierArticles(){
+	private static List<ArticleVendu> verifierArticles(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("userConnected");
+
 		List<ArticleVendu> listeArticleVendu;
 		ArticleManager articleMgr = new ArticleManager();
 		listeArticleVendu = articleMgr.articlesEnVente();
-
 		// -----------------boucle de tri ------------------//
 		/*
 		 * on enleve les articles vendus
 		 */
 		Date now = new Date(System.currentTimeMillis());
-	
+
 		Iterator<ArticleVendu> success = listeArticleVendu.iterator();
-		System.out.println(listeArticleVendu + "premier");
+		if (utilisateurConnecte != null) {
+			utilisateurConnecte.getArticlesAchetes().clear();
+			utilisateurConnecte.getArticlesVendus().clear();
+		}
 		while (success.hasNext()) {
 			ArticleVendu article = success.next();
-			if(article.getDateFinEncheres().before(now)) {
+			if (article.getDateFinEncheres().before(now)) {
+				System.out.println(article.getNoAcquereur() + "mais quel est donc ce numero ?");
+				if (article.getNoAcquereur() == 0) {
+					System.out.println(article.getNoVendeur());
+					article = articleMgr.assignerAcquereur(article);
+					System.out.println(article.getNoAcquereur() + "ca me gave la");
+				} else if (utilisateurConnecte != null
+						&& utilisateurConnecte.getNoUtilisateur() == article.getNoAcquereur()) {
+					utilisateurConnecte.ajoutArticleAchete(article);
+					System.out.println(article.getNoAcquereur() + " bis");
+				} else if (utilisateurConnecte != null
+						&& utilisateurConnecte.getNoUtilisateur() == article.getNoVendeur()) {
+					utilisateurConnecte.ajoutArticlesVendus(article);
+					System.out.println(article.getNoAcquereur() + " bisous");
+				}
+
 				success.remove();
 			}
 		}
-		System.out.println(listeArticleVendu + "avant");
+
+		session.setAttribute("userConnected", utilisateurConnecte);
 		return listeArticleVendu;
-		
+
 	}
 
-	private static List<ArticleVendu> verifierArticlesCategorie(int noCategorie){
+	private static List<ArticleVendu> verifierArticlesCategorie(int noCategorie, HttpServletRequest request) {
+		System.out.println("----------------------------------------------------------------");
+		HttpSession session = request.getSession();
+		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("userConnected");
+
 		List<ArticleVendu> listeArticleVendu;
 		ArticleManager articleMgr = new ArticleManager();
-		listeArticleVendu = articleMgr.selectionParcategorie(noCategorie);
-		
+		listeArticleVendu = articleMgr.articlesEnVente();
 		// -----------------boucle de tri ------------------//
 		/*
 		 * on enleve les articles vendus
 		 */
 		Date now = new Date(System.currentTimeMillis());
-		
+
 		Iterator<ArticleVendu> success = listeArticleVendu.iterator();
-		System.out.println(listeArticleVendu + "premier");
+		if (utilisateurConnecte != null) {
+			utilisateurConnecte.getArticlesAchetes().clear();
+			utilisateurConnecte.getArticlesVendus().clear();
+		}
 		while (success.hasNext()) {
 			ArticleVendu article = success.next();
-			if(article.getDateFinEncheres().before(now)) {
+			System.out.println(article.getCategorie().getNoCategorie() + "test article succes");
+			if (article.getDateFinEncheres().before(now)) {
+				if (article.getNoAcquereur() == 0) {
+				article = articleMgr.assignerAcquereur(article);
+				} else if (utilisateurConnecte != null
+						&& utilisateurConnecte.getNoUtilisateur() == article.getNoAcquereur()) {
+					System.out.println("coucou");
+					utilisateurConnecte.ajoutArticleAchete(article);
+				} else if (utilisateurConnecte != null
+						&& utilisateurConnecte.getNoUtilisateur() == article.getNoVendeur()) {
+					System.out.println("coucou2");
+					utilisateurConnecte.ajoutArticlesVendus(article);
+				}
+				
+					System.out.println(article.getNoArticle() + "removed");
+					success.remove();
+				
+			}
+			System.out.println(noCategorie + "value entrante");
+			if(article.getCategorie().getNoCategorie() != noCategorie && listeArticleVendu.contains(article)) {
+				System.out.println(article.getNoArticle() + "removed");
 				success.remove();
 			}
 		}
-		System.out.println(listeArticleVendu + "avant");
+
+		session.setAttribute("userConnected", utilisateurConnecte);
 		return listeArticleVendu;
-		
+
 	}
 
 }

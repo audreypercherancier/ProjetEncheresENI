@@ -201,8 +201,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	}
 
 	@Override
-	public void assignerAcquereur(int noArticle, int noAcquereur) {
-
+	public ArticleVendu assignerAcquereur(int noArticle, int noAcquereur) {
+		ArticleVendu article = null;
 		try (Connection cnx = ConnectBDD.getConnection()){
 			PreparedStatement pstmt = cnx.prepareStatement(ASSIGNER_ACQUEREUR);
 			pstmt.setInt(1, noAcquereur);
@@ -213,6 +213,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			e.printStackTrace();
 		}
 		
+		return article;
 	}
 
 }

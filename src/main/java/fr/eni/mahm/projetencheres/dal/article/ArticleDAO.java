@@ -18,5 +18,5 @@ public interface ArticleDAO {
 	List<ArticleVendu> selectionArticleParNom(String nomArticle);
 	ArticleVendu selectionParNoArticle(int noArticle);
 	void nouvelleEnchere(int montant, int noArticle);
-	void assignerAcquereur(int noArticle, int noAcquereur);
+	ArticleVendu assignerAcquereur(int noArticle, int noAcquereur);
 }
