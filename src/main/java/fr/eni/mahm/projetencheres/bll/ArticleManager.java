@@ -83,11 +83,14 @@ public class ArticleManager {
 		Enchere derniereEnchere = enchereMgr.recupererDerniereEnchere(articleVendu);
 		System.out.println(articleVendu.getNoVendeur());
 		Utilisateur vendeur = utilisateurMgr.selectionnerParId(articleVendu.getNoVendeur());
-		int nouveauSoldeVendeur = vendeur.getCredit() + derniereEnchere.getMontantEnchere();
+		if (derniereEnchere != null) {
+			int nouveauSoldeVendeur = vendeur.getCredit() + derniereEnchere.getMontantEnchere();
+			
+			utilisateurMgr.miseAJourSolde(nouveauSoldeVendeur, vendeur.getNoUtilisateur());
+			
+			articleDAO.assignerAcquereur(derniereEnchere.getNoArticle(), derniereEnchere.getEncherisseur().getNoUtilisateur());
+		}
 		
-		utilisateurMgr.miseAJourSolde(nouveauSoldeVendeur, vendeur.getNoUtilisateur());
-		
-		articleDAO.assignerAcquereur(derniereEnchere.getNoArticle(), derniereEnchere.getEncherisseur().getNoUtilisateur());
 		
 		return articleDAO.selectionParNoArticle(articleVendu.getNoArticle());
 	}
