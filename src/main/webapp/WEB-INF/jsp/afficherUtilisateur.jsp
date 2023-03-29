@@ -9,6 +9,7 @@ import="java.util.List,fr.eni.mahm.projetencheres.bo.ArticleVendu" %>
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
   </head>
   <body>
+  <%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
     <section>
       <div class="container py-5">
         <div class="row">
@@ -30,6 +31,13 @@ import="java.util.List,fr.eni.mahm.projetencheres.bo.ArticleVendu" %>
               </div>
             </div>
           </div>
+          <div>
+          <form class="d-flex">
+					<a class="btn btn-secondary m-2 my-sm-0"
+						href="/ProjetEncheresENI/index" role="button">Retour</a>
+          </form>
+          </div>
+          
           <div class="col-lg-8">
             <div class="card mb-4">
               <div class="card-body">
@@ -102,24 +110,6 @@ import="java.util.List,fr.eni.mahm.projetencheres.bo.ArticleVendu" %>
                   </div>
                   <div class="col-sm-9">
                     <p class="text-muted mb-0">${utilisateur.ville}</p>
-                  </div>
-                </div>
-                <hr />
-                <div class="row">
-                  <div class="col-sm-3">
-                    <p class="mb-0">Nombres d'article achetés :</p>
-                  </div>
-                  <div class="col-sm-9">
-                    <p class="text-muted mb-0"></p>
-                  </div>
-                </div>
-                <hr />
-                <div class="row">
-                  <div class="col-sm-3">
-                    <p class="mb-0">Nombres d'article vendues :</p>
-                  </div>
-                  <div class="col-sm-9">
-                    <p class="text-muted mb-0"></p>
                   </div>
                 </div>
               </div>

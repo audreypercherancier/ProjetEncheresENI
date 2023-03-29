@@ -45,6 +45,7 @@
 				<div class="row">
 							<div class="col-md-6 mb-4">
 								<div class="form-outline">
+									<div class="invalid-feedback">
 									<label>Catégorie du produit</label>
 									
 									<select name="categorie" id="categorie" class="form-control" required>
@@ -64,8 +65,8 @@
 									
 											
 								</div>
-								<div class="invalid-feedback">
-						 				Veuillez saisir une catégorie d'articles
+								
+						 				
 									</div>
 							</div>
 							<div class="col-md-6 mb-4">
