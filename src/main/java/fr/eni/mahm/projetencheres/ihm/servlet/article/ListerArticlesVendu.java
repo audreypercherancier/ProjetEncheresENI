@@ -32,7 +32,6 @@ public class ListerArticlesVendu extends HttpServlet {
 		List<ArticleVendu> listeArticleVendu;
 		listeArticleVendu = verifierArticles();
 
-		System.out.println(listeArticleVendu + "test");
 		
 		// System.out.println("liste ici "+listeArticleVendu);
 		request.setAttribute("listeArticleVendu", listeArticleVendu);
@@ -50,6 +49,7 @@ public class ListerArticlesVendu extends HttpServlet {
 		doGet(request, response);
 	}
 	
+
 	private static List<ArticleVendu> verifierArticles(){
 		List<ArticleVendu> listeArticleVendu;
 		ArticleManager articleMgr = new ArticleManager();
@@ -62,14 +62,16 @@ public class ListerArticlesVendu extends HttpServlet {
 		Date now = new Date(System.currentTimeMillis());
 	
 		Iterator<ArticleVendu> success = listeArticleVendu.iterator();
-		System.out.println(listeArticleVendu + "premier");
 		while (success.hasNext()) {
 			ArticleVendu article = success.next();
 			if(article.getDateFinEncheres().before(now)) {
+				if(article.getNoAcquereur() == 0) {
+					System.out.println("tutut!");
+					articleMgr.assignerAcquereur(article);
+				}
 				success.remove();
 			}
 		}
-		System.out.println(listeArticleVendu + "avant");
 		return listeArticleVendu;
 		
 	}

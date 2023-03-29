@@ -3,6 +3,7 @@
  */
 package fr.eni.mahm.projetencheres.bll;
 
+import fr.eni.mahm.projetencheres.bo.ArticleVendu;
 import fr.eni.mahm.projetencheres.bo.Enchere;
 import fr.eni.mahm.projetencheres.dal.DAOFactory;
 import fr.eni.mahm.projetencheres.dal.enchere.EnchereDAO;
@@ -45,6 +46,10 @@ public class EnchereManager {
 		
 		utilisateurMgr.miseAJourSolde(credit, ancienneEnchere.getEncherisseur().getNoUtilisateur());
 		}
+	}
+
+	public Enchere recupererDerniereEnchere(ArticleVendu articleVendu) {
+		return enchereDAO.recupererDerniereEnchere(articleVendu.getNoArticle());
 	}
 
 }

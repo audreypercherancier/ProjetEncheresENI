@@ -75,7 +75,7 @@ public class ArticleVendu {
 	 */
 	public ArticleVendu(String Pseudo,int noArticle, String nomArticle, String description, Date dateDebutEncheres,
 			Date dateFinEncheres, int miseAPrix, int prixVente, 
-			int noVendeur, Retrait lieuRetrait, Categorie categorie) {
+			int noVendeur, Retrait lieuRetrait, Categorie categorie, int noAcquereur) {
 		this.Pseudo = Pseudo;
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -87,6 +87,7 @@ public class ArticleVendu {
 		this.noVendeur = noVendeur;
 		this.lieuRetrait = lieuRetrait;
 		this.categorie = categorie;
+		this.noAcquereur = noAcquereur;
 	}
 	
 	/**
@@ -119,23 +120,6 @@ public class ArticleVendu {
 	 */
 	public ArticleVendu() {
 	}
-
-	// --------------------------------------------METHOD/FUNCTION ZONE----------------------------------------//
-	
-
-		/**
-	 	* tu casses les couilles mathieuP
-	 	*/
-	//public void finEnchere() {
-	//	Date now = new Date(System.currentTimeMillis());
-	//	int creditVendeur = this.getVendeur().getCredit();
-	//	if (this.getDateFinEncheres().equals(now) || this.getDateFinEncheres().before(now)) {
-	//		if (this.getPrixVente() > 0) {
-	//			this.vendeur.setCredit(creditVendeur += this.prixVente);
-	//			this.getEnchereGagnante().getEncherisseur().gagneEnchere(this);
-	//		}
-	//	}
-//	}
 	
 
 	// -----------------------------------------GETTER SETTER ZONE----------------------------------------//

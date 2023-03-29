@@ -29,7 +29,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 			ResultSet rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				derniereEnchere = new Enchere(new Utilisateur(rs.getString("pseudo"), rs.getInt("no_utilisateur"), rs.getInt("credit")), rs.getInt("montant_enchere"), rs.getDate("date_enchere"));
+				derniereEnchere = new Enchere(new Utilisateur(rs.getString("pseudo"), rs.getInt("no_utilisateur"), rs.getInt("credit")), rs.getInt("montant_enchere"), rs.getDate("date_enchere"), noArticle);
 			}
 			
 		}catch (Exception e) {

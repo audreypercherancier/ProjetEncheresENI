@@ -32,6 +32,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	private final String SELECTION_ARTICLE = "SELECT av.*, c.libelle, r.rue, r.code_postal, r.ville, u.pseudo FROM articles_vendus av INNER JOIN retraits r ON r.no_article = av.no_article INNER JOIN categories c ON c.no_categorie = av.no_categorie INNER JOIN utilisateurs u  ON u.no_utilisateur=av.no_utilisateur WHERE av.no_article=?";
 	private final String SELECTION_ARTICLE_PAR_CATEGORIE ="SELECT av.*, c.libelle, r.rue, r.code_postal, r.ville, u.pseudo FROM articles_vendus av INNER JOIN retraits r ON r.no_article = av.no_article INNER JOIN categories c ON c.no_categorie = av.no_categorie INNER JOIN utilisateurs u  ON u.no_utilisateur=av.no_utilisateur WHERE av.no_categorie=?";
 	private final String SELECTION_ARTICLE_PAR_NOM ="SELECT av.*, c.libelle, r.rue, r.code_postal, r.ville, u.pseudo FROM articles_vendus av INNER JOIN retraits r ON r.no_article = av.no_article INNER JOIN categories c ON c.no_categorie = av.no_categorie INNER JOIN utilisateurs u  ON u.no_utilisateur=av.no_utilisateur WHERE av.nom_article LIKE ? ";
+	private final String ASSIGNER_ACQUEREUR = "UPDATE articles_vendus SET no_acquereur = ? WHERE (no_article = ?)";
 	@Override
 	public void supprimer(int noArticle) {
 		Connection cnx = ConnectBDD.getConnection();
@@ -104,7 +105,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 						rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"),
 						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_utilisateur"),
 						new Retrait(rs.getInt("no_article"), rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville")),
-						new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"))));
+						new Categorie(rs.getInt("no_categorie"), rs.getString("libelle")), rs.getInt("no_acquereur")));
 			}
 		} catch (SQLException | CodePostalException | NoRetraitExeption e) {
 			e.printStackTrace();
@@ -127,7 +128,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_utilisateur"),
 						new Retrait(rs.getInt("no_article"), rs.getString("rue"), rs.getString("code_postal"),
 								rs.getString("ville")),
-						new Categorie(rs.getInt("no_categorie"), rs.getString("libelle")));
+						new Categorie(rs.getInt("no_categorie"), rs.getString("libelle")), rs.getInt("no_acquereur"));
 
 			}
 
@@ -153,7 +154,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 						rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"),
 						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_utilisateur"),
 						new Retrait(rs.getInt("no_article"), rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville")),
-						new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"))));
+						new Categorie(rs.getInt("no_categorie"), rs.getString("libelle")),rs.getInt("no_acquereur")));
 			}
 		} catch (SQLException | CodePostalException | NoRetraitExeption e) {
 			e.printStackTrace();
@@ -177,7 +178,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 						rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"),
 						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_utilisateur"),
 						new Retrait(rs.getInt("no_article"), rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville")),
-						new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"))));
+						new Categorie(rs.getInt("no_categorie"), rs.getString("libelle")), rs.getInt("no_acquereur")));
 			}
 		} catch (SQLException | CodePostalException | NoRetraitExeption e) {
 			e.printStackTrace();
@@ -199,4 +200,38 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		
 	}
 
+	@Override
+	public void assignerAcquereur(int noArticle, int noAcquereur) {
+
+		try (Connection cnx = ConnectBDD.getConnection()){
+			PreparedStatement pstmt = cnx.prepareStatement(ASSIGNER_ACQUEREUR);
+			pstmt.setInt(1, noAcquereur);
+			pstmt.setInt(2, noArticle);
+			
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

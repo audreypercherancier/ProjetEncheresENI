@@ -3,13 +3,14 @@ package fr.eni.mahm.projetencheres.bll;
 import java.util.List;
 
 import fr.eni.mahm.projetencheres.bo.ArticleVendu;
-
+import fr.eni.mahm.projetencheres.bo.Enchere;
 import fr.eni.mahm.projetencheres.dal.DAOFactory;
 import fr.eni.mahm.projetencheres.dal.article.ArticleDAO;
 
 public class ArticleManager {
 
 	private static ArticleDAO articleDAO;
+	private static EnchereManager enchereMgr = new EnchereManager();
 
 	// -----------CONSTRUCTEUR ZONE-----------//
 	public ArticleManager() {
@@ -77,8 +78,8 @@ public class ArticleManager {
 	}
 
 	public void assignerAcquereur(ArticleVendu articleVendu) {
-		// TODO Auto-generated method stub
-		
+		Enchere derniereEnchere = enchereMgr.recupererDerniereEnchere(articleVendu);
+		articleDAO.assignerAcquereur(derniereEnchere.getNoArticle(), derniereEnchere.getEncherisseur().getNoUtilisateur());
 	}
 
 }

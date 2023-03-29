@@ -12,6 +12,7 @@ import java.sql.Date;
 public class Enchere {
 	private Date dateEnchere;
 	private int montantEnchere;
+	private int noArticle;
 
 	// ---------lien interclasses---------//
 
@@ -42,10 +43,11 @@ public class Enchere {
 	 * @param montantEnchere
 	 * @param encherisseur
 	 */
-	public Enchere(Utilisateur encherisseur, int montantEnchere, Date dateEnchere) {
+	public Enchere(Utilisateur encherisseur, int montantEnchere, Date dateEnchere, int noArticle) {
 		this.dateEnchere = dateEnchere;
 		this.montantEnchere = montantEnchere;
 		this.encherisseur = encherisseur;
+		this.noArticle = noArticle;
 	}
 
 	/**
@@ -102,12 +104,26 @@ public class Enchere {
 	public Utilisateur getEncherisseur() {
 		return encherisseur;
 	}
+	
+	/**
+	 * @return the noArticle
+	 */
+	public int getNoArticle() {
+		return noArticle;
+	}
 
+	/**
+	 * @param noArticle the noArticle to set
+	 */
+	public void setNoArticle(int noArticle) {
+		this.noArticle = noArticle;
+	}
+
+	// ------------------to string-----------------//
 	@Override
 	public String toString() {
 		return "le :" + dateEnchere + "pour" + article.getNomArticle() + " : " + montantEnchere + "crédit";
 	}
 
-	// ------------------to string-----------------//
 
 }
