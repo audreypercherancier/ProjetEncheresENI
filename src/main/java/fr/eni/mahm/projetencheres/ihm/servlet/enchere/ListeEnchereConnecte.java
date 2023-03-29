@@ -63,6 +63,8 @@ public class ListeEnchereConnecte extends HttpServlet {
 		dateDujour = new Date(System.currentTimeMillis());
 		System.out.println(dateDujour);
 
+		
+		//---------------------------recherche pour achat-------------------------------//
 		if (achatsEncheresOuvertes != null) {
 			listeArticleVendu = verifierArticles(request);
 
@@ -86,20 +88,30 @@ public class ListeEnchereConnecte extends HttpServlet {
 				listeArticleVendu.add(articleGagne);
 			}
 		}
+		
+		//-----------------------------recherche vente -----------------------------------//
 		if (ventesEnCours != null) {
-			// tout les articles ou no_utilisateur=userconnected et la date de debut<date du
-			// jour< date de fin
-			// SELECT * FROM encheres.articles_vendus where
-			// no_utilisateur=idUtilisateurConnecte and
-			// date_debut_encheres<="dateDujour"<=date_fin_encheres
-			System.out.println("affiche param4 " + ventesEnCours);
+			listeArticleVendu.addAll(verifierArticles(request));
+
+			Iterator<ArticleVendu> idVendeurOk = listeArticleVendu.iterator();
+			while (idVendeurOk.hasNext()) {
+				ArticleVendu articleAVerifie = idVendeurOk.next();
+				if (articleAVerifie.getNoVendeur() != utilisateurConnecte.getNoUtilisateur() || articleAVerifie.getDateDebutEncheres().after(dateDujour)) {
+					idVendeurOk.remove();
+				}
+			}
 		}
 		if (ventesNonCommences != null) {
-			// tout les articles ou no_utilisateur=userconnected et la date du jour<date de
-			// debut
-			// SELECT * FROM encheres.articles_vendus where
-			// no_utilisateur=idUtilisateurConnecte and "dateDujour"<=date_debut_encheres
-			System.out.println("affiche param5 " + ventesNonCommences);
+			if(listeArticleVendu.isEmpty()) {
+			listeArticleVendu.addAll(verifierArticles(request));
+			}
+			Iterator<ArticleVendu> idVendeurOk = listeArticleVendu.iterator();
+			while (idVendeurOk.hasNext()) {
+				ArticleVendu articleAVerifie = idVendeurOk.next();
+				if (articleAVerifie.getNoVendeur() != utilisateurConnecte.getNoUtilisateur() || articleAVerifie.getDateDebutEncheres().after(dateDujour)) {
+					idVendeurOk.remove();
+				}
+			}
 		}
 		if (ventesTerminees != null) {
 			// tout les articles ou no_utilisateur=userconnected et la date de fin > date du
