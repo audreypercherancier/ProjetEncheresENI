@@ -46,6 +46,8 @@ public class RechercheArticle extends HttpServlet {
 		listeArticleVendu.clear();
 		HttpSession session = request.getSession();
 		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("userConnected");
+		Boolean listeVide = true;
+		
 		if (utilisateurConnecte != null) {
 			EnchereManager enchereMgr = new EnchereManager();
 			Date dateDujour;
@@ -62,6 +64,7 @@ public class RechercheArticle extends HttpServlet {
 			// ---------------------------recherche pour
 			// achat-------------------------------//
 			if (achatsEncheresOuvertes != null) {
+				listeVide = false;
 				listeArticleVendu.addAll(verifierArticles(request));
 
 				Iterator<ArticleVendu> ouvertureOk = listeArticleVendu.iterator();
@@ -74,6 +77,7 @@ public class RechercheArticle extends HttpServlet {
 				}
 			}
 			if (achatsDejaEncherie != null) {
+				listeVide = false;
 				List<Enchere> verifEnchere = enchereMgr.recupererMesEncheres(utilisateurConnecte.getNoUtilisateur());
 				if (listeArticleVendu.isEmpty()) {
 					listeArticleVendu.addAll(verifierArticles(request));
@@ -96,14 +100,25 @@ public class RechercheArticle extends HttpServlet {
 
 			}
 			if (achatsEncheresGagnantes != null) {
+				
+				System.out.println("mes achats :");
+				
+				listeVide = false;
 				for (ArticleVendu articleGagne : utilisateurConnecte.getArticlesAchetes()) {
+					System.out.println(articleGagne.getNomArticle());
 					listeArticleVendu.add(articleGagne);
+				}
+				
+				System.out.println("liste : ");
+				for (ArticleVendu articleVendu : listeArticleVendu) {
+					System.out.println(articleVendu.getNomArticle());
 				}
 			}
 
 			// -----------------------------recherche vente
 			// -----------------------------------//
 			if (ventesEnCours != null) {
+				listeVide = false;
 				listeArticleVendu.addAll(verifierArticles(request));
 
 				Iterator<ArticleVendu> idVendeurOk = listeArticleVendu.iterator();
@@ -122,6 +137,7 @@ public class RechercheArticle extends HttpServlet {
 				}
 			}
 			if (ventesNonCommences != null) {
+				listeVide = false;
 				if (ventesEnCours == null) {
 					listeArticleVendu.addAll(verifierArticles(request));
 
@@ -136,30 +152,43 @@ public class RechercheArticle extends HttpServlet {
 				}
 			}
 			if (ventesTerminees != null) {
+				listeVide = false;
 				for (ArticleVendu articleVendu : utilisateurConnecte.getArticlesVendus()) {
+					System.out.println("wow j'ai des ventes !!!");
 					listeArticleVendu.add(articleVendu);
 				}
 			}
 
 		}
+		
 
 		// --------------------------fonctionne meme en deco------------------------//
 
 		String nomArticle = request.getParameter("nomArticle");
+		System.out.println("nom article :");
+		System.out.println(nomArticle);
 		int categorie = 0;
-		if (nomArticle != null) {
+		if (nomArticle != null && !nomArticle.isBlank() && !nomArticle.isEmpty()) {
+			listeVide = false;
 			listeArticleVendu = verifierArticlesContient(nomArticle, request);
 		}
-		
+		System.out.println("liste avant insertion :");
+		for (ArticleVendu articleVendu : listeArticleVendu) {
+			System.out.println(articleVendu.getNomArticle());
+		}
 		if (request.getParameter("categories") != null) {
 			categorie = Integer.parseInt(request.getParameter("categories"));
 		}
 		if (categorie != 0) {
+			listeVide = false;
 			listeArticleVendu = verifierArticlesCategorie(categorie, request);
-		} else if (listeArticleVendu.isEmpty()) {
+		}
+		if (listeVide) {
 			listeArticleVendu = verifierArticles(request);
 		}
 
+		
+		
 		request.setAttribute("listeArticleVendu", listeArticleVendu);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 
