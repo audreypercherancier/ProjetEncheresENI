@@ -22,8 +22,8 @@
 			<div class="input-group">
 				<div class="input-group-prepend">
 					<select name="categories" id="categories" class=" form-select">
-						<option value="" selected disabled>CATÉGORIES :</option>
-						<option value="0">Toutes</option>
+						
+						<option value="0" selected disabled>Toutes catégories :</option>
 						<option value="1">Hygiène et Santé</option>
 						<option value="2">Animalerie</option>
 						<option value="3">Maison</option>
