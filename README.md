@@ -1,10 +1,13 @@
-#ENI-Encheres
+# ENI-Encheres
+
 ENI-Encheres est une application développée pour l'association « Les objets sont nos amis ». Cette plateforme web permet de céder des objets de seconde main sans transaction financière. La valeur des articles est déterminée par un système d'enchères basé sur un nombre de points. Les points sont gagnés en vendant des objets, puis peuvent être utilisés pour acquérir d'autres objets.
 
-#Fonctionnalités
+# Fonctionnalités
+
 Les fonctionnalités de l'application sont présentées dans le document DescriptionProduit.ods. Les fonctionnalités sont classées par itération. Une itération est une période de travail aboutissant à un logiciel potentiellement livrable.
 
-#Documentation
+# Documentation
+
 La documentation du projet comprend plusieurs documents de conception qui ont été fournis :
 
 Document de vision : présentation du projet, ses objectifs, ainsi qu'une vision globale des fonctionnalités attendues.
@@ -12,7 +15,8 @@ Diagramme de classe du domaine : présentation de la structure des classes du pr
 Cycle de vie d'une vente : présentation du cycle de vie d'une vente dans l'application.
 Modèle physique : script de création de la base de données.
 
-#Technologie utilisée
+# Technologie utilisée
+
 Les technologies utilisées pour ce projet sont :
 
 - Java 8 : langage de programmation utilisé pour la logique métier de l'application.
@@ -24,7 +28,8 @@ Les technologies utilisées pour ce projet sont :
 
 Ces technologies ont été choisies pour leur fiabilité, leur popularité et leur compatibilité avec les besoins du projet.
 
-#Comment cloner et faire fonctionner le projet
+# Comment cloner et faire fonctionner le projet
+
 Pour cloner le projet, suivez les étapes suivantes :
 
 - Ouvrez un terminal et déplacez-vous dans le répertoire où vous souhaitez cloner le projet.
@@ -40,9 +45,9 @@ Pour faire fonctionner le projet, suivez les étapes suivantes :
 
 Vous devriez maintenant pouvoir utiliser l'application ENI-Encheres sur votre machine locale.
 
-#Auteurs
+# Auteurs
 
-- PERIN Mathieu @<Ragnarohf>
-- THOUMIRE Mathieu @<Ragnarohf>
-- EL MOUTAWAKIL Hind @<Ragnarohf>
-- PERCHERANCIER Audrey @<Ragnarohf>
+- PERIN Mathieu
+- THOUMIRE Mathieu
+- EL MOUTAWAKIL Hind
+- PERCHERANCIER Audrey
