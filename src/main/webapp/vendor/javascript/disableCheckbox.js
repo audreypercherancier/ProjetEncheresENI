@@ -6,7 +6,7 @@ ce sont des balise lié a la vente
 La fonction est appelé via le parametre onClick =""
  */
 function disableVenteRadios() {
-
+	
 	document.getElementById("inputCheckVente1").disabled = true;
 	document.getElementById("inputCheckVente2").disabled = true;
 	document.getElementById("inputCheckVente3").disabled = true;
@@ -32,3 +32,7 @@ function disableAchatRadios() {
 	document.getElementById("inputCheckVente2").disabled = false;
 	document.getElementById("inputCheckVente3").disabled = false;
 }
+
+
+	
+	

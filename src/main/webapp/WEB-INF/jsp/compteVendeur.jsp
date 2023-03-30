@@ -25,7 +25,7 @@
 					</div>
 					<div>
           				<form class="d-flex">
-							<a class="btn btn-secondary m-2 my-sm-0" href="/ProjetEncheresENI/accueil" role="button">Retour</a>
+							<a class="btn btn-secondary m-2 my-sm-0" href="<%=request.getContextPath()%>/detailsArticle?noArticle=${utilisateur}" role="button">Retour</a>
          				 </form>
           			</div>
 				</div>
