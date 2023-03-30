@@ -27,6 +27,7 @@ public class RechercheArticle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static List<ArticleVendu> listeArticleVendu = new ArrayList<>();
+	private static Boolean listeVide = true;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -46,7 +47,6 @@ public class RechercheArticle extends HttpServlet {
 		listeArticleVendu.clear();
 		HttpSession session = request.getSession();
 		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("userConnected");
-		Boolean listeVide = true;
 		
 		if (utilisateurConnecte != null) {
 			EnchereManager enchereMgr = new EnchereManager();
@@ -229,7 +229,7 @@ public class RechercheArticle extends HttpServlet {
 		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("userConnected");
 		ArticleManager articleMgr = new ArticleManager();
 
-		if (listeArticleVendu.isEmpty()) {
+		if (listeArticleVendu.isEmpty() && listeVide ) {
 			listeArticleVendu = verifierArticles(request);
 		}
 		// -----------------boucle de tri ------------------//
@@ -264,7 +264,7 @@ public class RechercheArticle extends HttpServlet {
 		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("userConnected");
 		ArticleManager articleMgr = new ArticleManager();
 
-		if (listeArticleVendu.isEmpty()) {
+		if (listeArticleVendu.isEmpty() && listeVide) {
 			listeArticleVendu = verifierArticles(request);
 		}
 		// -----------------boucle de tri ------------------//
