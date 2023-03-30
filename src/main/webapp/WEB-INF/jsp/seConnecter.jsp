@@ -21,7 +21,8 @@
 				</div>
 				<div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
 				<br>
-				<h3 class="text-center">Inscrivez vous si vous n'avez pas de compte !</h3>
+				<h3 class="text-center">Connectez vous ou <a href="/ProjetEncheresENI/inscription" role="button">creez un compte</a></h3>
+				<br>
 					<%
 					if (request.getAttribute("alert alert-danger") != null) {
 					%>  
@@ -54,8 +55,17 @@
 									name="sesouvenirdemoi" value="coche" id="form2Example3" />
 								<label class="form-check-label" for="form2Example3"> Se
 									souvenir de moi </label>
+									
 							</div>
-							<a href="#!" class="text-body">Mot de passe oublié</a>
+							<a href="/ProjetEncheresENI/inscription" class="text-body">Mot de passe oublié</a>
+						</div>
+						<div class="d-flex justify-content-between align-items-center">
+							<!-- Checkbox -->
+							<div class="form-check mb-0">
+								
+									
+							</div>
+							<a href="#!" class="text-body">Nouveau compte ?</a>
 						</div>
 						<div class="text-center text-lg-start mt-4 pt-2">
 							<button type="submit" class="btn btn-primary btn-md"
