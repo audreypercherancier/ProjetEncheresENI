@@ -8,9 +8,7 @@
 <head>
 <meta charset="UTF-8" />
 <title>Page d'accueil</title>
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+<%@ include file="/WEB-INF/html/link.html"%>
 </head>
 <body>
 
@@ -22,7 +20,6 @@
 			<div class="input-group">
 				<div class="input-group-prepend">
 					<select name="categories" id="categories" class=" form-select">
-						
 						<option value="0" selected disabled>Toutes catégories :</option>
 						<option value="1">Hygiène et Santé</option>
 						<option value="2">Animalerie</option>
@@ -33,7 +30,7 @@
 						<option value="7">Bricolage</option>
 						<option value="8">Mode</option>
 						<option value="9">High-Tech</option>
-						<option value="10">Vehicules</option>
+						<option value="10">Véhicules</option>
 						<option value="11">Autres</option>
 					</select>
 				</div>
@@ -62,7 +59,7 @@
 									value="achatsEncheresOuvertes" id="inputCheckAchat1"
 									name="achatsEncheresOuvertes"> <label
 									class="form-check-label" for="flexCheckDefault">
-									enchéres ouvertes </label>
+									enchères ouvertes </label>
 							</div>
 							<div class="form-check">
 								<input class="form-check-input" type="checkbox"
@@ -84,8 +81,7 @@
 								<input class="form-check-input" type="radio"
 									name="optionsRadios" id="optionsRadios2" value="vente"
 									onclick="disableAchatRadios()"> <label
-									class="form-check-label" for="optionsRadios2"> Ventes
-								</label>
+									class="form-check-label" for="optionsRadios2"> Ventes </label>
 							</div>
 							<div class="form-check">
 								<input class="form-check-input" type="checkbox"
@@ -116,6 +112,20 @@
 		</form>
 	</div>
 	<br>
+	<c:if test="${empty listeArticleVendu}">
+		<div class="container">
+			<div class="card">
+				<div class="card-header">Attention</div>
+				<div class="card-body">
+					<h5 class="card-title">Aucune enchere</h5>
+					<p class="card-text">Aucune enchere ne correspond a vos
+						criteres de recherches actuellement</p>
+					<a href="<%=request.getContextPath()%>" class="btn btn-primary">Retour</a>
+				</div>
+			</div>
+		</div>
+	</c:if>
+
 	<div class="container">
 		<div class="col-8 offset-2">
 			<div class="row justify-content-evenly">
