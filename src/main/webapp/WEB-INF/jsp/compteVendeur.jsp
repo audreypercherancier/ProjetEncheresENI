@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +9,6 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
-
 	<section>
 		<div class="container py-5">
 			<div class="row">
@@ -20,14 +19,16 @@
 								src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2.webp"
 								alt="avatar" class="rounded-circle img-fluid"
 								style="width: 150px;">
-							<h5 class="my-3">${utilisateur.pseudo} ${utilisateur.prenom}</h5>
+							<h5 class="my-3">${utilisateur.pseudo}${utilisateur.prenom}</h5>
 						</div>
 					</div>
 					<div>
-          				<form class="d-flex">
-							<a class="btn btn-secondary m-2 my-sm-0" href="<%=request.getContextPath()%>/detailsArticle?noArticle=${utilisateur}" role="button">Retour</a>
-         				 </form>
-          			</div>
+						<form class="d-flex">
+							<a class="btn btn-secondary m-2 my-sm-0"
+								href="<%=request.getContextPath()%>/detailsArticle?noArticle=${utilisateur}"
+								role="button">Retour</a>
+						</form>
+					</div>
 				</div>
 				<div class="col-lg-8">
 					<div class="card mb-4">
@@ -109,8 +110,6 @@
 			</div>
 		</div>
 	</section>
-	<div class="fixed-bottom">
-		<%@ include file="/WEB-INF/html/piedDePage.html"%>
-	</div>
+	<%@ include file="/WEB-INF/html/piedDePage.html"%>
 </body>
 </html>
