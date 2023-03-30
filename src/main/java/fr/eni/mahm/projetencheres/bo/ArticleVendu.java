@@ -29,6 +29,7 @@ public class ArticleVendu {
 	private Retrait lieuRetrait;
 	private Categorie categorie;
 	private String Pseudo;
+	private Date tempRestant;
 
 	// -------------------- CONSTRUCTOR ZONE --------------------//
 
@@ -331,6 +332,20 @@ public class ArticleVendu {
 
 	public void setNoAcquereur(int noAcquereur) {
 		this.noAcquereur = noAcquereur;
+	}
+	
+	/**
+	 * @return the tempRestant
+	 */
+	public Date getTempRestant() {
+		return tempRestant;
+	}
+
+	/**
+	 * @param tempRestant th tempRestant to set
+	 */
+	public void setTempRestant(Date tempRestant) {
+		this.tempRestant = tempRestant;
 	}
 
 	// --------------------------------------------------------------------------------------------------------------//

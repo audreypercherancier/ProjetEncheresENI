@@ -169,7 +169,9 @@
 									class="btn btn-primary">Voir l'enchère</a>
 							</c:if>
 						</div>
-						<div class="card-footer text-muted">temps restant enchere</div>
+						<c:if test="${ArticleVendu.dateFinEncheres}>LocalDate.now" >
+						</c:if>
+						<div class="card-footer text-muted">${ArticleVendu.tempRestant} </div>
 					</div>
 				</c:forEach>
 			</div>
