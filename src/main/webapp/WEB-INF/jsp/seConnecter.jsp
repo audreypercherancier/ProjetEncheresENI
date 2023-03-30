@@ -65,7 +65,7 @@
 								
 									
 							</div>
-							<a href="#!" class="text-body">Nouveau compte ?</a>
+							<a href="/ProjetEncheresENI/inscription" class="text-body">Nouveau compte ?</a>
 						</div>
 						<div class="text-center text-lg-start mt-4 pt-2">
 							<button type="submit" class="btn btn-primary btn-md"
