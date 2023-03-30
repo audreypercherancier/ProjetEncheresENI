@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Compte Vendeur</title>
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<%@ include file="/WEB-INF/html/link.html"%>
 </head>
 <body style="background-color: #eee;">
 	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
@@ -26,7 +26,8 @@
 					</div>
 					<div>
 						<div class="card-body text-center">
-							<a class="btn btn-secondary m-2 my-sm-0" href="/ProjetEncheresENI/accueil" role="button">Retour</a>
+							<a class="btn btn-secondary m-2 my-sm-0"
+								href="/ProjetEncheresENI/accueil" role="button">Retour</a>
 						</div>
 					</div>
 				</div>

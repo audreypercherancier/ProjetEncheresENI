@@ -5,8 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Ajouter un Article</title>
-
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<%@ include file="/WEB-INF/html/link.html"%>
 </head>
 <body style="background-color: #eee;">
 	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>

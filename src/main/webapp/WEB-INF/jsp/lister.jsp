@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Liste utilisateur</title>
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<%@ include file="/WEB-INF/html/link.html"%>
 </head>
 <body>
 	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>

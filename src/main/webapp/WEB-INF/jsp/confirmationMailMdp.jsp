@@ -4,8 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
+<%@ include file="/WEB-INF/html/link.html"%>
 <title>Confirmation d'envoi du mail de réinitilisation du mot de
 	passe</title>
 </head>

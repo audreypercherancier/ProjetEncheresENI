@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<%@ include file="/WEB-INF/html/link.html"%>
 <title>Mon compte</title>
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body style="background-color: #eee;">
 	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
 	<br>
-		<h1 class="text-center">Mon Compte </h1>
+	<h1 class="text-center">Mon Compte</h1>
 	<section>
 		<div class="container py-5">
 			<div class="row">

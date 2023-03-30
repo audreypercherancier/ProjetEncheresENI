@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Liste Utilisateur</title>
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<%@ include file="/WEB-INF/html/link.html"%>
 </head>
 <body style="background-color: #eee;">
 	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>

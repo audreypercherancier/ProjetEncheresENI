@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<%@ include file="/WEB-INF/html/link.html"%>
 <title>Réinitialisez votre mot de passe</title>
 </head>
 <%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
@@ -22,7 +22,6 @@
 				<form method="post" action="reinitialisermdp">
 					<label> Veuillez saisir votre adresse mail </label> <input
 						type="email" name="email" required>
-
 					<button type="submit" class="btn btn-primary btn-block mb-4">
 						Valider</button>
 				</form>

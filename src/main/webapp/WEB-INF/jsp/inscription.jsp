@@ -7,11 +7,10 @@
 <head>
 <meta charset="UTF-8" />
 <title>Inscription</title>
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<%@ include file="/WEB-INF/html/link.html"%>
 </head>
 <body style="background-color: #eee;">
 	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
-
 	<section class="background-radial-gradient overflow-hidden">
 		<div
 			class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">

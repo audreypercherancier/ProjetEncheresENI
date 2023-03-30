@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<%@ include file="/WEB-INF/html/link.html"%>
 <title>vente</title>
 </head>
 <body style="background-color: #eee;">
@@ -26,7 +26,7 @@
 					<div class="form-outline">
 						<label style="vertical-align: top"> Description Article </label>
 						<textarea rows="5" cols="20" name="descriptionArticle"
-							class="form-control" minlength="10" maxlength="300"
+							class="form-control" maxlength="300"
 							placeholder="Veuillez saisir au moins 10 caractères" required></textarea>
 						<br>
 					</div>
@@ -111,8 +111,6 @@
 	</div>
 	<%@ include file="/WEB-INF/html/piedDePage.html"%>
 </body>
-
-
 <script type="text/javascript" src="vendor/javascript/checkConfirmationPassword.js"></script>
 <script type="text/javascript" src="vendor/javascript/checkRequired.js"></script>
 <style type="text/css"> .form-control { border-width: 1.5px;} </style>

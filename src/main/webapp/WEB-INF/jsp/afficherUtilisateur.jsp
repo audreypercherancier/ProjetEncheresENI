@@ -7,13 +7,13 @@
 <head>
 <meta charset="UTF-8" />
 <title>Vendeur</title>
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<%@ include file="/WEB-INF/html/link.html"%>
 </head>
 <body style="background-color: #eee;">
 	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
 	<section>
-	<br>
-		<h1 class="text-center">Utilisateur </h1>
+		<br>
+		<h1 class="text-center">Utilisateur</h1>
 		<div class="container py-5">
 			<div class="row">
 				<div class="col-lg-4">
@@ -33,7 +33,8 @@
 				</div>
 				<div>
 					<div class="card-body text-center">
-						<a class="btn btn-secondary m-2 my-sm-0" href="/ProjetEncheresENI/accueil" role="button">Retour</a>
+						<a class="btn btn-secondary m-2 my-sm-0"
+							href="/ProjetEncheresENI/accueil" role="button">Retour</a>
 					</div>
 				</div>
 				<div class="col-lg-8">
