@@ -45,6 +45,7 @@ public class RechercheArticle extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		listeArticleVendu.clear();
+		listeVide = true;
 		HttpSession session = request.getSession();
 		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("userConnected");
 		
@@ -53,6 +54,10 @@ public class RechercheArticle extends HttpServlet {
 			Date dateDujour;
 			String achatsEncheresOuvertes, achatsDejaEncherie, achatsEncheresGagnantes, ventesEnCours,
 					ventesNonCommences, ventesTerminees;
+			
+		
+			
+			
 			achatsEncheresOuvertes = request.getParameter("achatsEncheresOuvertes");
 			achatsDejaEncherie = request.getParameter("achatsDejaEncherie");
 			achatsEncheresGagnantes = request.getParameter("achatsEncheresGagnantes");
@@ -61,10 +66,8 @@ public class RechercheArticle extends HttpServlet {
 			ventesTerminees = request.getParameter("ventesTerminees");
 			dateDujour = new Date(System.currentTimeMillis());
 
-			// ---------------------------recherche pour
-			// achat-------------------------------//
+			// ---------------------------recherche pour  achat-------------------------------//
 			if (achatsEncheresOuvertes != null) {
-				listeVide = false;
 				listeArticleVendu.addAll(verifierArticles(request));
 
 				Iterator<ArticleVendu> ouvertureOk = listeArticleVendu.iterator();
@@ -75,9 +78,9 @@ public class RechercheArticle extends HttpServlet {
 						ouvertureOk.remove();
 					}
 				}
+				listeVide = false;
 			}
 			if (achatsDejaEncherie != null) {
-				listeVide = false;
 				List<Enchere> verifEnchere = enchereMgr.recupererMesEncheres(utilisateurConnecte.getNoUtilisateur());
 				if (listeArticleVendu.isEmpty()) {
 					listeArticleVendu.addAll(verifierArticles(request));
@@ -95,25 +98,21 @@ public class RechercheArticle extends HttpServlet {
 					if (nonContenue) {
 						articleEncherieOk.remove();
 					}
-
 				}
-
+				listeVide = false;
 			}
 			if (achatsEncheresGagnantes != null) {
 				
-				System.out.println("mes achats :");
 				
-				listeVide = false;
 				for (ArticleVendu articleGagne : utilisateurConnecte.getArticlesAchetes()) {
 					listeArticleVendu.add(articleGagne);
 				}
-				
+				listeVide = false;
 			}
 
 			// -----------------------------recherche vente
 			// -----------------------------------//
 			if (ventesEnCours != null) {
-				listeVide = false;
 				listeArticleVendu.addAll(verifierArticles(request));
 
 				Iterator<ArticleVendu> idVendeurOk = listeArticleVendu.iterator();
@@ -130,9 +129,9 @@ public class RechercheArticle extends HttpServlet {
 						}
 					}
 				}
+				listeVide = false;
 			}
 			if (ventesNonCommences != null) {
-				listeVide = false;
 				if (ventesEnCours == null) {
 					listeArticleVendu.addAll(verifierArticles(request));
 
@@ -145,12 +144,13 @@ public class RechercheArticle extends HttpServlet {
 						}
 					}
 				}
+				listeVide = false;
 			}
 			if (ventesTerminees != null) {
-				listeVide = false;
 				for (ArticleVendu articleVendu : utilisateurConnecte.getArticlesVendus()) {
 					listeArticleVendu.add(articleVendu);
 				}
+				listeVide = false;
 			}
 
 		}
@@ -160,16 +160,17 @@ public class RechercheArticle extends HttpServlet {
 
 		String nomArticle = request.getParameter("nomArticle");
 		int categorie = 0;
+		
 		if (nomArticle != null && !nomArticle.isBlank() && !nomArticle.isEmpty()) {
-			listeVide = false;
 			listeArticleVendu = verifierArticlesContient(nomArticle, request);
+			listeVide = false;
 		}
 		if (request.getParameter("categories") != null) {
 			categorie = Integer.parseInt(request.getParameter("categories"));
 		}
 		if (categorie != 0) {
-			listeVide = false;
 			listeArticleVendu = verifierArticlesCategorie(categorie, request);
+			listeVide = false;
 		}
 		if (listeVide) {
 			listeArticleVendu = verifierArticles(request);
@@ -227,16 +228,11 @@ public class RechercheArticle extends HttpServlet {
 	private static List<ArticleVendu> verifierArticlesCategorie(int noCategorie, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("userConnected");
-		ArticleManager articleMgr = new ArticleManager();
 
 		if (listeArticleVendu.isEmpty() && listeVide ) {
 			listeArticleVendu = verifierArticles(request);
 		}
 		// -----------------boucle de tri ------------------//
-		/*
-		 * on enleve les articles vendus
-		 */
-		Date now = new Date(System.currentTimeMillis());
 
 		Iterator<ArticleVendu> success = listeArticleVendu.iterator();
 		if (utilisateurConnecte != null) {
@@ -245,7 +241,7 @@ public class RechercheArticle extends HttpServlet {
 		}
 		while (success.hasNext()) {
 			ArticleVendu article = success.next();
-			listeVide = false;
+			
 				
 			if (article.getCategorie().getNoCategorie() != noCategorie && listeArticleVendu.contains(article)) {
 				success.remove();
@@ -257,22 +253,15 @@ public class RechercheArticle extends HttpServlet {
 
 	}
 
-	// ------------------------------------------------- PAR NOM ARTICLE
-	// CONTENU--------------------------------------------//
+	// ------------------------------------------------- PAR NOM ARTICLE CONTENU--------------------------------------------//
 
 	private static List<ArticleVendu> verifierArticlesContient(String nomArticle, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("userConnected");
-		ArticleManager articleMgr = new ArticleManager();
-
 		if (listeArticleVendu.isEmpty() && listeVide) {
 			listeArticleVendu = verifierArticles(request);
 		}
 		// -----------------boucle de tri ------------------//
-		/*
-		 * on enleve les articles vendus
-		 */
-		Date now = new Date(System.currentTimeMillis());
 
 		Iterator<ArticleVendu> success = listeArticleVendu.iterator();
 		if (utilisateurConnecte != null) {
@@ -280,7 +269,7 @@ public class RechercheArticle extends HttpServlet {
 			utilisateurConnecte.getArticlesVendus().clear();
 		}
 		while (success.hasNext()) {
-			listeVide = false;
+		
 			ArticleVendu article = success.next();
 
 
