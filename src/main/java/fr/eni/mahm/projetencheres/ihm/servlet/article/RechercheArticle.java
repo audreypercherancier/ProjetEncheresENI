@@ -245,6 +245,7 @@ public class RechercheArticle extends HttpServlet {
 		}
 		while (success.hasNext()) {
 			ArticleVendu article = success.next();
+			listeVide = false;
 				
 			if (article.getCategorie().getNoCategorie() != noCategorie && listeArticleVendu.contains(article)) {
 				success.remove();
@@ -279,6 +280,7 @@ public class RechercheArticle extends HttpServlet {
 			utilisateurConnecte.getArticlesVendus().clear();
 		}
 		while (success.hasNext()) {
+			listeVide = false;
 			ArticleVendu article = success.next();
 
 
