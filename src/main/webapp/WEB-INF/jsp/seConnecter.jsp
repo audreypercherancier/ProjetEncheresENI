@@ -8,7 +8,7 @@
 <title>Page de connexion</title>
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 </head>
-<body>
+<body style="background-color: #eee;">
 	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
 	<section class="vh-100">
 		<div class="container-fluid h-custom">
@@ -20,6 +20,8 @@
 						class="img-fluid" alt="Sample image" />
 				</div>
 				<div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+				<br>
+				<h5 class="text-center">Inscrivez vous si vous n'avez pas de compte !</h3>
 					<%
 					if (request.getAttribute("alert alert-danger") != null) {
 					%>  

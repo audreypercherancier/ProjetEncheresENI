@@ -8,7 +8,7 @@
 
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 </head>
-<body>
+<body style="background-color: #eee;">
 	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
 	<br>
 	<form action="Contient" method="post">

@@ -8,7 +8,7 @@
 <meta charset="UTF-8" />
 <title>Détail enchere</title>
 </head>
-<body>
+<body style="background-color: #eee;">
 	<%@include file="/WEB-INF/jsp/insertion/entete.jsp"%>
 	<h1>Détail de l'enchère</h1>
 	<form action="<%=request.getContextPath()%>/enchereEffectuee"

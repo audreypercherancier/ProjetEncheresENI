@@ -9,7 +9,7 @@
 <title>Inscription</title>
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 </head>
-<body>
+<body style="background-color: #eee;">
 	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
 
 	<section class="background-radial-gradient overflow-hidden">

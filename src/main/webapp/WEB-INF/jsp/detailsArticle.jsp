@@ -9,9 +9,9 @@
 </head>
 <body style="background-color: #eee;">
 	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
-	<section>
-		<form action="<%=request.getContextPath()%>/enchereEffectuee"
-			method="post">
+	<br>
+	<h1 class="text-center">Details Article</h1>
+		<form action="<%=request.getContextPath()%>/enchereEffectuee"method="post">
 			<div class="container py-5">
 				<div class="row">
 					<div class="col-lg-8">
@@ -103,10 +103,9 @@
 					<div class="col-lg-4">
 						<div class="card mb-4">
 							<div class="card-body text-center">
-								<img
-									src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2.webp"
-									alt="avatar" class="rounded-circle img-fluid"
-									style="width: 150px;">
+								<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2.webp"
+										alt="avatar" class="rounded-circle img-fluid"
+										style="width: 150px;">
 								<p class="text-muted mb-1">${article.pseudo}</p>
 								<div class="d-flex justify-content-center mb-2">
 									<a type="button" class="btn btn-secondary my-2 my-sm-0"
@@ -127,24 +126,31 @@
 						</div>
 						<div class="card mb-5">
 							<div class="card-body text-center">
-								<label for="monEnchere">Ma proposition : </label> <input
-									type="number" value="${article.getPrixVente() }"
-									id="monEnchere" name="monEnchere" /> <input type="submit"
-									class="btn btn-secondary" value="Enchérir" />
+								<div class="row">
+									
+									<div class="nav-item">
+										<p>Mon crédit : ${userConnected.credit}</p>
+									</div>
+									<hr>
+									<label class="mb-0" for="monEnchere">Ma proposition : </label> 
+
+									<br>
+									<input class="text-center" type="number" value="${article.getPrixVente() }" id="monEnchere" name="monEnchere" /> 
+									<input type="submit" class="btn btn-secondary" value="Enchérir" />
+								</div>
+								
 							</div>
 						</div>
 						<div>
-							<form class="d-flex">
-								<a class="btn btn-secondary m-2 my-sm-0"
-									href="/ProjetEncheresENI/accueil" role="button">Retour</a>
-							</form>
+							<div class="card-body text-center">
+								<a class="btn btn-secondary m-2 my-sm-0" href="/ProjetEncheresENI/accueil" role="button">Retour</a>
+							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>
 		</form>
-	</section>
+
 	<%@ include file="/WEB-INF/html/piedDePage.html"%>
 </body>
 </html>
