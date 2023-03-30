@@ -27,7 +27,6 @@
 				<th scope="col">Credit</th>
 				<th scope="col">Role</th>
 				<th scope="col">action</th>
-
 			</tr>
 		</thead>
 		<tbody>
@@ -93,8 +92,6 @@
 			</tr>
 		</tbody>
 	</table>
-	<div class="fixed-bottom">
-		<%@ include file="/WEB-INF/html/piedDePage.html"%>
-	</div>
+	<%@ include file="/WEB-INF/html/piedDePage.html"%>
 </body>
 </html>

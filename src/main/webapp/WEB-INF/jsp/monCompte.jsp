@@ -9,7 +9,6 @@
 </head>
 <body style="background-color: #eee;">
 	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
-
 	<section>
 		<div class="container py-5">
 			<div class="row">
@@ -112,9 +111,13 @@
 									<p class="mb-0">Nombres d'article achetés :</p>
 								</div>
 								<div class="col-sm-9">
-								<c:if test="${userConnected.articlesAchetes.size() > 0 }">
-									<p class="text-muted mb-0">Vous avez acheté ${userConnected.articlesAchetes.size()} article<c:if test="${userConnected.articlesAchetes.size() > 1 }">s</c:if></p>
-								</c:if>
+									<c:if test="${userConnected.articlesAchetes.size() > 0 }">
+										<p class="text-muted mb-0">
+											Vous avez acheté ${userConnected.articlesAchetes.size()}
+											article
+											<c:if test="${userConnected.articlesAchetes.size() > 1 }">s</c:if>
+										</p>
+									</c:if>
 								</div>
 							</div>
 							<hr>
@@ -124,8 +127,12 @@
 								</div>
 								<div class="col-sm-9">
 									<c:if test="${userConnected.articlesVendus.size() > 0 }">
-									<p class="text-muted mb-0">Vous avez vendus ${userConnected.articlesVendus.size()} article<c:if test="${userConnected.articlesVendus.size() > 1 }">s</c:if></p>
-								</c:if>
+										<p class="text-muted mb-0">
+											Vous avez vendus ${userConnected.articlesVendus.size()}
+											article
+											<c:if test="${userConnected.articlesVendus.size() > 1 }">s</c:if>
+										</p>
+									</c:if>
 								</div>
 							</div>
 						</div>
@@ -134,8 +141,6 @@
 			</div>
 		</div>
 	</section>
-	<div class="fixed-bottom">
-		<%@ include file="/WEB-INF/html/piedDePage.html"%>
-	</div>
+	<%@ include file="/WEB-INF/html/piedDePage.html"%>
 </body>
 </html>

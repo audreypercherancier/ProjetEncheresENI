@@ -7,10 +7,7 @@
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 <title>Réinitialisez votre mot de passe</title>
 </head>
-
 <%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
-
-
 <body>
 	<section class="vh-100">
 		<div class="container-fluid h-custom">
@@ -32,10 +29,6 @@
 			</div>
 		</div>
 	</section>
-</body>
-
-<div class="fixed-bottom">
 	<%@ include file="/WEB-INF/html/piedDePage.html"%>
-</div>
-
+</body>
 </html>

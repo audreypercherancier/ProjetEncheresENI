@@ -28,9 +28,5 @@
 		</div>
 	</section>
 </body>
-
-<div class="fixed-bottom">
-	<%@ include file="/WEB-INF/html/piedDePage.html"%>
-</div>
-
+<%@ include file="/WEB-INF/html/piedDePage.html"%>
 </html>

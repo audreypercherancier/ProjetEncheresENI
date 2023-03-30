@@ -11,7 +11,7 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
-	<!-- Section: Design Block -->
+
 	<section class="background-radial-gradient overflow-hidden">
 		<div
 			class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
@@ -23,7 +23,6 @@
 							d'enchere </span>
 					</h1>
 				</div>
-
 				<div class="col-lg-6 mb-5 mb-lg-0 position-relative">
 					<div id="radius-shape-1"
 						class="position-absolute rounded-circle shadow-5-strong"></div>
@@ -41,7 +40,6 @@
 								<p class="text-danger fs-5">${usedEmail}</p>
 							</c:if>
 							<form method="POST" action="inscription">
-								<!-- 2 column grid layout with text inputs for the first and last names -->
 								<div class="row pt-2">
 									<div class="col-md-6 mb-4">
 										<div class="form-outline">
@@ -75,22 +73,16 @@
 										</div>
 									</div>
 								</div>
-
-								<!-- Email input -->
 								<div class="form-outline mb-4">
 									<input type="email" name="email" id="form3Example5"
 										class="form-control" required /> <label class="form-label"
 										for="form3Example5">Adresse Email</label>
 								</div>
-
-								<!-- Password input -->
 								<div class="form-outline mb-4">
 									<input type="password" name="motDePasse" id="form3Example6"
 										class="form-control" required /> <label class="form-label"
 										for="form3Example6">Mot de passe</label>
 								</div>
-
-								<!-- Email input -->
 								<div class="form-outline mb-4">
 									<input type="text" name="rue" id="form3Example7"
 										class="form-control" required /> <label class="form-label"
@@ -112,7 +104,6 @@
 										</div>
 									</div>
 								</div>
-								<!-- Submit button -->
 								<button type="submit" class="btn btn-primary btn-block mb-4">
 									S'inscrire</button>
 							</form>
@@ -121,12 +112,7 @@
 				</div>
 			</div>
 		</div>
-
-
 	</section>
-
-	<div class="fixed-bottom">
-		<%@ include file="/WEB-INF/html/piedDePage.html"%>
-	</div>
+	<%@ include file="/WEB-INF/html/piedDePage.html"%>
 </body>
 </html>

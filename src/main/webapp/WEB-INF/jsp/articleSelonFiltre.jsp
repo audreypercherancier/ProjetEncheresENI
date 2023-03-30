@@ -4,40 +4,48 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Ajouter un Article</title>
 
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
 	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
-	 <br>
-<form action="Contient" method="post">
-	<label for="Filtre">Le nom de l'article contient:</label>
-	<input type="search" id="nomArticle" name="nomArticle"  placeholder="le nom de l'article contient">
-	<c:if test="${empty userConnected}"><button class="btn btn-primary" type="submit">rechercher</button></c:if>
-	<c:if test="${!empty userConnected}"><button class="btn btn-primary" type="submit">rechercher</button> </c:if>
-</form>
-<br>
-<form action="RechercherPar" method ="post">
-<label for="categories">catégories:</label>
-	<select name="categories" id="categories">
-		
-		<option value="0">Toutes</option>
-		<option value="1">Hygiène et Santé</option>
-		<option value="2">Animalerie</option>
-		<option value="3">Maison</option>
-		<option value="4">Jardin</option>
-		<option value="5">Sports et Loisirs</option>
-		<option value="6">Jeux et Jouets</option>
-		<option value="7">Bricolage</option>
-		<option value="8">Mode</option>
-		<option value="9">High-Tech</option>
-		<option value="10">Vehicules</option>
-		<option value="11">Autres</option>
-	</select>	
-	<c:if test="${empty userConnected}"><button class="btn btn-primary" type="submit">rechercher</button>  </c:if>
-	<c:if test="${!empty userConnected}"><button class="btn btn-primary" type="submit">rechercher</button> </c:if>
-</form>
+	<br>
+	<form action="Contient" method="post">
+		<label for="Filtre">Le nom de l'article contient:</label> <input
+			type="search" id="nomArticle" name="nomArticle"
+			placeholder="le nom de l'article contient">
+		<c:if test="${empty userConnected}">
+			<button class="btn btn-primary" type="submit">rechercher</button>
+		</c:if>
+		<c:if test="${!empty userConnected}">
+			<button class="btn btn-primary" type="submit">rechercher</button>
+		</c:if>
+	</form>
+	<br>
+	<form action="RechercherPar" method="post">
+		<label for="categories">catégories:</label> <select name="categories"
+			id="categories">
+			<option value="0">Toutes</option>
+			<option value="1">Hygiène et Santé</option>
+			<option value="2">Animalerie</option>
+			<option value="3">Maison</option>
+			<option value="4">Jardin</option>
+			<option value="5">Sports et Loisirs</option>
+			<option value="6">Jeux et Jouets</option>
+			<option value="7">Bricolage</option>
+			<option value="8">Mode</option>
+			<option value="9">High-Tech</option>
+			<option value="10">Vehicules</option>
+			<option value="11">Autres</option>
+		</select>
+		<c:if test="${empty userConnected}">
+			<button class="btn btn-primary" type="submit">rechercher</button>
+		</c:if>
+		<c:if test="${!empty userConnected}">
+			<button class="btn btn-primary" type="submit">rechercher</button>
+		</c:if>
+	</form>
 	<div class="container">
 		<div class="col-8 offset-2">
 			<div class="row justify-content-evenly">
@@ -86,8 +94,6 @@
 			</div>
 		</div>
 	</div>
-	<div class="fixed-bottom">
-		<%@ include file="/WEB-INF/html/piedDePage.html"%>
-	</div>
+	<%@ include file="/WEB-INF/html/piedDePage.html"%>
 </body>
 </html>
