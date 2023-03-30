@@ -7,12 +7,12 @@ import java.util.List;
 
 /**
  * Classe permettant la création d'un utilisateur
+ * 
  * @author Audrey & Mathieu Perin
  * @version 1.2.0
  */
 
 public class Utilisateur {
-	
 
 	private int noUtilisateur;
 	private String pseudo;
@@ -28,21 +28,21 @@ public class Utilisateur {
 	private boolean administrateur = false;
 
 	// --------lien interclasses---------//
-	private List<ArticleVendu> articlesVendus= new ArrayList<>(); // liste d'articles vendu par l'utilisateur
+	private List<ArticleVendu> articlesVendus = new ArrayList<>(); // liste d'articles vendu par l'utilisateur
 	private List<ArticleVendu> articlesAchetes = new ArrayList<>(); // liste d'articles vendu par l'utilisateur
 	private List<Enchere> encheresEffectuees = new ArrayList<>();
 
-	//--------------------------CONSTRUCTOR ZONE----------------------------//
+	// --------------------------CONSTRUCTOR ZONE----------------------------//
 	/**
 	 * Constructeur par défault
 	 */
 	public Utilisateur() {
-		
+
 	}
-	
-	
+
 	/**
 	 * Constructeur pour recuperation DATABASE
+	 * 
 	 * @param noUtilisateur
 	 * @param pseudo
 	 * @param nom
@@ -74,8 +74,10 @@ public class Utilisateur {
 		this.credit = credit;
 		this.administrateur = administrateur;
 	}
-	
-	/**  Constructeur inscription et modification, 
+
+	/**
+	 * Constructeur inscription et modification,
+	 * 
 	 * @param pseudo
 	 * @param nom
 	 * @param prenom
@@ -88,7 +90,7 @@ public class Utilisateur {
 	 * @param administrateur
 	 */
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville, String motDePasse, boolean administrateur){
+			String codePostal, String ville, String motDePasse, boolean administrateur) {
 		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -103,7 +105,8 @@ public class Utilisateur {
 	}
 
 	/**
-	 *  Constructeur surchargé sans id et sans admin pour inscription
+	 * Constructeur surchargé sans id et sans admin pour inscription
+	 * 
 	 * @param pseudo
 	 * @param nom
 	 * @param prenom
@@ -128,10 +131,10 @@ public class Utilisateur {
 		this.ville = ville;
 		this.setMotDePasse(motDePasse);
 	}
-		
 
 	/**
 	 * CONSTRUCTEUR SPECIALEMENT CONCU POUR AUDREY
+	 * 
 	 * @param pseudo
 	 * @param nom
 	 * @param prenom
@@ -158,9 +161,10 @@ public class Utilisateur {
 		this.ville = ville;
 		this.credit = credit;
 	}
-	
-	
-/**   CONSTRUCTEUR ENCORE POUR AUDREY
+
+	/**
+	 * CONSTRUCTEUR ENCORE POUR AUDREY
+	 * 
 	 * @param pseudo
 	 * @param nom
 	 * @param prenom
@@ -182,10 +186,10 @@ public class Utilisateur {
 		this.codePostal = codePostal;
 		this.ville = ville;
 	}
-	
-	
 
-/** 	CONSTRUCTEUR ENCORE ET TOUJOURS POUR AUDREY
+	/**
+	 * CONSTRUCTEUR ENCORE ET TOUJOURS POUR AUDREY
+	 * 
 	 * @param noUtilisateur
 	 * @param pseudo
 	 * @param nom
@@ -202,79 +206,85 @@ public class Utilisateur {
 		this.email = email;
 		this.motDePasse = motDePasse;
 	}
-	
-	
-	
 
-/**  Constructeur pour Audrey modification profil
- * @param noUtilisateur
- * @param pseudo
- * @param nom
- * @param prenom
- * @param email
- * @param telephone
- * @param rue
- * @param codePostal
- * @param ville
- * @param motDePasse
- */
-public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
-		String rue, String codePostal, String ville, String motDePasse) {
-	super();
-	this.noUtilisateur = noUtilisateur;
-	this.pseudo = pseudo;
-	this.nom = nom;
-	this.prenom = prenom;
-	this.email = email;
-	this.telephone = telephone;
-	this.rue = rue;
-	this.codePostal = codePostal;
-	this.ville = ville;
-	this.motDePasse = motDePasse;
-}
+	/**
+	 * Constructeur pour Audrey modification profil
+	 * 
+	 * @param noUtilisateur
+	 * @param pseudo
+	 * @param nom
+	 * @param prenom
+	 * @param email
+	 * @param telephone
+	 * @param rue
+	 * @param codePostal
+	 * @param ville
+	 * @param motDePasse
+	 */
+	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
+			String rue, String codePostal, String ville, String motDePasse) {
+		super();
+		this.noUtilisateur = noUtilisateur;
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.motDePasse = motDePasse;
+	}
 
-/**
- * @param noUtilisateur
- * @param pseudo
- * @param nom
- * @param prenom
- * @param email
- * @param telephone
- * @param rue
- * @param codePostal
- * @param ville
- * @param motDePasse
- * @param credit
- */
-public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email,String motDePasse, String telephone,
-		String rue, String codePostal, String ville, int credit) {
-	this.noUtilisateur = noUtilisateur;
-	this.pseudo = pseudo;
-	this.nom = nom;
-	this.prenom = prenom;
-	this.email = email;
-	this.telephone = telephone;
-	this.rue = rue;
-	this.codePostal = codePostal;
-	this.ville = ville;
-	this.motDePasse = motDePasse;
-	this.credit = credit;
-}
+	/**
+	 * @param noUtilisateur
+	 * @param pseudo
+	 * @param nom
+	 * @param prenom
+	 * @param email
+	 * @param telephone
+	 * @param rue
+	 * @param codePostal
+	 * @param ville
+	 * @param motDePasse
+	 * @param credit
+	 */
+	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String motDePasse,
+			String telephone, String rue, String codePostal, String ville, int credit) {
+		this.noUtilisateur = noUtilisateur;
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.motDePasse = motDePasse;
+		this.credit = credit;
+	}
 
-/**
- * pour recuperation derniere enchere db
- * @param noUtilisateur
- * @param pseudo
- */
-public Utilisateur(String pseudo, int noUtilisateur, int credit) {
-	this.noUtilisateur = noUtilisateur;
-	this.pseudo = pseudo;
-	this.credit = credit;
-}
+	/**
+	 * pour recuperation derniere enchere db
+	 * 
+	 * @param noUtilisateur
+	 * @param pseudo
+	 */
+	public Utilisateur(String pseudo, int noUtilisateur, int credit) {
+		this.noUtilisateur = noUtilisateur;
+		this.pseudo = pseudo;
+		this.credit = credit;
+	}
 
+	/**
+	 * constructeur pour tri connecté
+	 * 
+	 * @param noUtilisateur
+	 */
+	public Utilisateur(int noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
+	}
 //---------------------------------------METHODE/FUNCTION ZONE---------------------------------------//
-
-
 
 	public void faitUneEnchere(ArticleVendu article, int montant) {
 		if (this.getCredit() > montant && Enchere.enchereValide(article, montant)) {
@@ -283,11 +293,10 @@ public Utilisateur(String pseudo, int noUtilisateur, int credit) {
 		}
 	}
 
-	
 	public void ajoutArticleAchete(ArticleVendu article) {
 		this.articlesAchetes.add(article);
 	}
-	
+
 	public void ajoutArticlesVendus(ArticleVendu article) {
 		this.articlesVendus.add(article);
 	}
@@ -397,21 +406,21 @@ public Utilisateur(String pseudo, int noUtilisateur, int credit) {
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = hashagePwd(motDePasse);
 	}
-	
+
 	/**
 	 * @return the motDePasse
 	 */
 	public String getMotDePasse() {
 		return motDePasse;
 	}
-	
+
 	/**
 	 * @return the encheresEffectuees
 	 */
 	public List<Enchere> getEncheresEffectuees() {
 		return encheresEffectuees;
 	}
-	
+
 	/**
 	 * @return the articlesAchetes
 	 */
@@ -419,29 +428,24 @@ public Utilisateur(String pseudo, int noUtilisateur, int credit) {
 		return articlesAchetes;
 	}
 
-
-
-
-	//--------hashage lachement volé a thierry----------//
+	// --------hashage lachement volé a thierry----------//
 	public static String hashagePwd(String password) {
-		MessageDigest md=null;
-		StringBuffer sb=new StringBuffer();
+		MessageDigest md = null;
+		StringBuffer sb = new StringBuffer();
 		byte[] reponse;
 		try {
-			md=MessageDigest.getInstance("SHA");
-			reponse=md.digest(password.getBytes());
-			for(int i:reponse)
-			{
-				sb.append((Integer.toString((i&0xff)+0x100, 16).substring(1)));
+			md = MessageDigest.getInstance("SHA");
+			reponse = md.digest(password.getBytes());
+			for (int i : reponse) {
+				sb.append((Integer.toString((i & 0xff) + 0x100, 16).substring(1)));
 			}
-			
+
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return sb.toString();
 	}
-
 
 	@Override
 	public String toString() {
@@ -451,12 +455,7 @@ public Utilisateur(String pseudo, int noUtilisateur, int credit) {
 				+ ", administrateur=" + administrateur + ", articlesVendus=" + articlesVendus + ", articlesAchetes="
 				+ articlesAchetes + ", encheresEffectuees=" + encheresEffectuees + "]";
 	}
-	
 
 	// --------------------------------------------------------------------------------------------------------------//
-
-
-
-	
 
 }

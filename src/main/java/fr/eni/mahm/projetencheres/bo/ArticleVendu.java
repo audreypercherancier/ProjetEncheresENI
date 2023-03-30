@@ -33,8 +33,9 @@ public class ArticleVendu {
 	// -------------------- CONSTRUCTOR ZONE --------------------//
 
 	/**
-	 * PIOUPIOU pour recuperation avec objet special AUDREY 
-	 * constructeur a modifie dans le futur avec les enchere
+	 * PIOUPIOU pour recuperation avec objet special AUDREY constructeur a modifie
+	 * dans le futur avec les enchere
+	 * 
 	 * @param noArticle
 	 * @param nomArticle
 	 * @param description
@@ -46,8 +47,8 @@ public class ArticleVendu {
 	 * @param lieuRetrait
 	 */
 	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
-			Date dateFinEncheres, int miseAPrix, int prixVente, 
-			int noVendeur, Retrait lieuRetrait, Categorie categorie) {
+			Date dateFinEncheres, int miseAPrix, int prixVente, int noVendeur, Retrait lieuRetrait,
+			Categorie categorie) {
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -59,10 +60,11 @@ public class ArticleVendu {
 		this.lieuRetrait = lieuRetrait;
 		this.categorie = categorie;
 	}
-	
+
 	/**
-	 * PIOUPIOU2 pour recuperation avec objet special AUDREY 
-	 * constructeur a modifie dans le futur avec les enchere
+	 * PIOUPIOU2 pour recuperation avec objet special AUDREY constructeur a modifie
+	 * dans le futur avec les enchere
+	 * 
 	 * @param noArticle
 	 * @param nomArticle
 	 * @param description
@@ -73,9 +75,9 @@ public class ArticleVendu {
 	 * @param vendeur
 	 * @param lieuRetrait
 	 */
-	public ArticleVendu(String Pseudo,int noArticle, String nomArticle, String description, Date dateDebutEncheres,
-			Date dateFinEncheres, int miseAPrix, int prixVente, 
-			int noVendeur, Retrait lieuRetrait, Categorie categorie, int noAcquereur) {
+	public ArticleVendu(String Pseudo, int noArticle, String nomArticle, String description, Date dateDebutEncheres,
+			Date dateFinEncheres, int miseAPrix, int prixVente, int noVendeur, Retrait lieuRetrait, Categorie categorie,
+			int noAcquereur) {
 		this.Pseudo = Pseudo;
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -89,9 +91,10 @@ public class ArticleVendu {
 		this.categorie = categorie;
 		this.noAcquereur = noAcquereur;
 	}
-	
+
 	/**
 	 * Constructeur pour MATHIEU P je bosse dessus
+	 * 
 	 * @param noArticle
 	 * @param nomArticle
 	 * @param description
@@ -101,9 +104,8 @@ public class ArticleVendu {
 	 * @param vendeur
 	 * @param lieuRetrait
 	 */
-	public ArticleVendu( String nomArticle, String description, Date dateDebutEncheres,
-			Date dateFinEncheres, int miseAPrix,  
-			int noVendeur, Retrait lieuRetrait , Categorie categorie) {
+	public ArticleVendu(String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres,
+			int miseAPrix, int noVendeur, Retrait lieuRetrait, Categorie categorie) {
 		this.nomArticle = nomArticle.toLowerCase();
 		this.description = description;
 		this.dateDebutEncheres = dateDebutEncheres;
@@ -116,13 +118,22 @@ public class ArticleVendu {
 	}
 
 	/**
+	 * Constructeur pour tri connecté
+	 * 
+	 * @param noArticle
+	 */
+	public ArticleVendu(int noArticle) {
+		this.noArticle = noArticle;
+	}
+
+	/**
 	 * @description constructeur
 	 */
 	public ArticleVendu() {
 	}
-	
 
-	// -----------------------------------------GETTER SETTER ZONE----------------------------------------//
+	// -----------------------------------------GETTER SETTER
+	// ZONE----------------------------------------//
 	/**
 	 * @return the noArticle
 	 */
@@ -250,7 +261,6 @@ public class ArticleVendu {
 		this.setPrixVente(enchereGagnante.getMontantEnchere());
 	}
 
-
 	/**
 	 * @return the lieuRetrait
 	 */
@@ -264,7 +274,6 @@ public class ArticleVendu {
 	public void setLieuRetrait(Retrait lieuRetrait) {
 		this.lieuRetrait = lieuRetrait;
 	}
-	
 
 	/**
 	 * @return the noVendeur
@@ -329,7 +338,8 @@ public class ArticleVendu {
 	public String toString() {
 		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
 				+ ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres + ", miseAPrix="
-				+ miseAPrix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + ",no_vendeur="+ noVendeur+"]";
+				+ miseAPrix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + ",no_vendeur=" + noVendeur
+				+ "]";
 	}
 
 }

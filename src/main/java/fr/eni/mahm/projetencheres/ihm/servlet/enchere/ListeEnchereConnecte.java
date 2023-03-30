@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.mahm.projetencheres.bll.ArticleManager;
+import fr.eni.mahm.projetencheres.bll.EnchereManager;
 import fr.eni.mahm.projetencheres.bo.ArticleVendu;
+import fr.eni.mahm.projetencheres.bo.Enchere;
 import fr.eni.mahm.projetencheres.bo.Utilisateur;
 
 /**
@@ -40,12 +41,12 @@ public class ListeEnchereConnecte extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		HttpSession session = request.getSession();
 		Utilisateur utilisateurConnecte = (Utilisateur) session.getAttribute("userConnected");
 
 		List<ArticleVendu> listeArticleVendu = new ArrayList<>();
-		ArticleManager articleMgr = new ArticleManager();
+		EnchereManager enchereMgr = new EnchereManager();
 		int idUtilisateurConnecte;
 		Date dateDujour;
 		String optionsRadios, achatsEncheresOuvertes, achatsDejaEncherie, achatsEncheresGagnantes, ventesEnCours,
@@ -63,62 +64,85 @@ public class ListeEnchereConnecte extends HttpServlet {
 		dateDujour = new Date(System.currentTimeMillis());
 		System.out.println(dateDujour);
 
-		
-		//---------------------------recherche pour achat-------------------------------//
+		// ---------------------------recherche pour
+		// achat-------------------------------//
 		if (achatsEncheresOuvertes != null) {
-			listeArticleVendu = verifierArticles(request);
+			listeArticleVendu.addAll(verifierArticles(request));
 
 			Iterator<ArticleVendu> ouvertureOk = listeArticleVendu.iterator();
 			while (ouvertureOk.hasNext()) {
 				ArticleVendu articleAVerifie = ouvertureOk.next();
-				if (articleAVerifie.getDateDebutEncheres().after(dateDujour)) {
+				if (articleAVerifie.getDateDebutEncheres().after(dateDujour) || articleAVerifie.getNoVendeur() == utilisateurConnecte.getNoUtilisateur()) {
 					ouvertureOk.remove();
 				}
 			}
 		}
 		if (achatsDejaEncherie != null) {
-			// tout les articles ou il ya une enchere dans la tabvle enchere ou le
-			// noutilisaeut = user connected
-			// SELECT DISTINCT av.* FROM encheres.encheres e INNER JOIN articles_vendus av
-			// ON e.no_article=av.no_article where e.no_utilisateur=idUtilisateurConnecte
-			System.out.println("affiche param2 " + achatsDejaEncherie);
+			List<Enchere> verifEnchere = enchereMgr.recupererMesEncheres(utilisateurConnecte.getNoUtilisateur());
+			if(listeArticleVendu.isEmpty()) {
+				listeArticleVendu.addAll(verifierArticles(request));
+			}
+			
+			
+			Iterator<ArticleVendu> articleEncherieOk = listeArticleVendu.iterator();
+			while (articleEncherieOk.hasNext()) {
+				Boolean nonContenue = true;
+				ArticleVendu articleAVerif = articleEncherieOk.next();
+				for (Enchere enchere : verifEnchere) {
+					if(enchere.getArticle().getNoArticle() == articleAVerif.getNoArticle() ) {
+						nonContenue = false;
+					}
+				}
+				if(nonContenue) {
+					articleEncherieOk.remove();
+				}
+				
+			}
+			
 		}
 		if (achatsEncheresGagnantes != null) {
 			for (ArticleVendu articleGagne : utilisateurConnecte.getArticlesAchetes()) {
 				listeArticleVendu.add(articleGagne);
 			}
 		}
-		
-		//-----------------------------recherche vente -----------------------------------//
+
+		// -----------------------------recherche vente -----------------------------------//
 		if (ventesEnCours != null) {
 			listeArticleVendu.addAll(verifierArticles(request));
 
 			Iterator<ArticleVendu> idVendeurOk = listeArticleVendu.iterator();
 			while (idVendeurOk.hasNext()) {
 				ArticleVendu articleAVerifie = idVendeurOk.next();
-				if (articleAVerifie.getNoVendeur() != utilisateurConnecte.getNoUtilisateur() || articleAVerifie.getDateDebutEncheres().after(dateDujour)) {
-					idVendeurOk.remove();
+				if (ventesNonCommences == null) {
+					if (articleAVerifie.getNoVendeur() != utilisateurConnecte.getNoUtilisateur()
+							|| articleAVerifie.getDateDebutEncheres().after(dateDujour)) {
+						idVendeurOk.remove();
+					}
+				} else {
+					if (articleAVerifie.getNoVendeur() != utilisateurConnecte.getNoUtilisateur()) {
+						idVendeurOk.remove();
+					}
 				}
 			}
 		}
 		if (ventesNonCommences != null) {
-			if(listeArticleVendu.isEmpty()) {
+			if (ventesEnCours == null) {
 			listeArticleVendu.addAll(verifierArticles(request));
-			}
+
 			Iterator<ArticleVendu> idVendeurOk = listeArticleVendu.iterator();
 			while (idVendeurOk.hasNext()) {
 				ArticleVendu articleAVerifie = idVendeurOk.next();
-				if (articleAVerifie.getNoVendeur() != utilisateurConnecte.getNoUtilisateur() || articleAVerifie.getDateDebutEncheres().after(dateDujour)) {
-					idVendeurOk.remove();
-				}
+					if (articleAVerifie.getNoVendeur() != utilisateurConnecte.getNoUtilisateur()
+							|| articleAVerifie.getDateDebutEncheres().before(dateDujour)) {
+						idVendeurOk.remove();
+					}
+				} 
 			}
 		}
 		if (ventesTerminees != null) {
-			// tout les articles ou no_utilisateur=userconnected et la date de fin > date du
-			// jour
-			// SELECT * FROM encheres.articles_vendus where
-			// no_utilisateur=idUtilisateurConnecte and "dateDujour"> date_fin_encheres
-			System.out.println("affiche param6 " + ventesTerminees);
+			for (ArticleVendu articleVendu : utilisateurConnecte.getArticlesVendus()) {
+				listeArticleVendu.add(articleVendu);
+			}
 		}
 
 		request.setAttribute("listeArticleVendu", listeArticleVendu);

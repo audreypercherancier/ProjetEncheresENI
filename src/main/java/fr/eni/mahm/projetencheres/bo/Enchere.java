@@ -51,6 +51,16 @@ public class Enchere {
 	}
 
 	/**
+	 * pour tri connecté
+	 * @param utilisateur
+	 * @param articleVendu
+	 */
+	public Enchere(Utilisateur utilisateur, ArticleVendu articleVendu) {
+		this.encherisseur = utilisateur;
+		this.article = articleVendu;
+	}
+
+	/**
 	 * verifie la validité de l'enchere
 	 * 
 	 * @param article

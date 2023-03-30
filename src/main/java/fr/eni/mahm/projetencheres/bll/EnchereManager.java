@@ -3,6 +3,9 @@
  */
 package fr.eni.mahm.projetencheres.bll;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import fr.eni.mahm.projetencheres.bo.ArticleVendu;
 import fr.eni.mahm.projetencheres.bo.Enchere;
 import fr.eni.mahm.projetencheres.dal.DAOFactory;
@@ -50,6 +53,13 @@ public class EnchereManager {
 
 	public Enchere recupererDerniereEnchere(ArticleVendu articleVendu) {
 		return enchereDAO.recupererDerniereEnchere(articleVendu.getNoArticle());
+	}
+	
+	public List<Enchere> recupererMesEncheres(int noEncherisseur){
+		List<Enchere> mesEncheres = new ArrayList<>();
+		 mesEncheres = enchereDAO.recupererMesEncheres(noEncherisseur);
+		return mesEncheres;
+		
 	}
 
 }
