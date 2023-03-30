@@ -1,6 +1,8 @@
 package fr.eni.mahm.projetencheres.ihm.servlet.article;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -45,6 +47,9 @@ public class detailsArticle extends HttpServlet {
 		
 		session.setAttribute("article", article);
 		
+		//Date  date = (article.getDateFinEncheres())-(new Date (System.currentTimeMillis()));
+		
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/detailsArticle.jsp");
 		rd.forward(request, response);
 		
@@ -79,7 +84,9 @@ public class detailsArticle extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
+		
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/detailsArticle.jsp");
 		rd.forward(request, response);
 	}
