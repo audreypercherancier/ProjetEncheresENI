@@ -24,7 +24,7 @@ Les technologies utilisées pour ce projet sont :
 - Bootstrap 4 : framework CSS utilisé pour le développement de l'interface utilisateur de l'application.
 - MySQL : système de gestion de base de données relationnelles utilisé pour stocker les données de l'application.
 - Tomcat 8.5 : serveur local
-- Eclipse : environnement de Developpement
+- Eclipse : environnement de développement
 
 Ces technologies ont été choisies pour leur fiabilité, leur popularité et leur compatibilité avec les besoins du projet.
 
@@ -38,7 +38,7 @@ Pour cloner le projet, suivez les étapes suivantes :
 
 Pour faire fonctionner le projet, suivez les étapes suivantes :
 
-- Ouvrez votre editeur de code et cliquez sur "RUN AS" puis "Run on server"
+- Ouvrez votre éditeur de code et cliquez sur "RUN AS" puis "Run on server"
 - Choissisez votre serveur local
 - Appuyez sur Entrée pour lancer l'application.
 - Ouvrez un navigateur et tapez l'adresse suivante : http://localhost:8080, où 8080 est le port sur lequel l'application est lancée.
