@@ -105,14 +105,9 @@ public class RechercheArticle extends HttpServlet {
 				
 				listeVide = false;
 				for (ArticleVendu articleGagne : utilisateurConnecte.getArticlesAchetes()) {
-					System.out.println(articleGagne.getNomArticle());
 					listeArticleVendu.add(articleGagne);
 				}
 				
-				System.out.println("liste : ");
-				for (ArticleVendu articleVendu : listeArticleVendu) {
-					System.out.println(articleVendu.getNomArticle());
-				}
 			}
 
 			// -----------------------------recherche vente
@@ -154,7 +149,6 @@ public class RechercheArticle extends HttpServlet {
 			if (ventesTerminees != null) {
 				listeVide = false;
 				for (ArticleVendu articleVendu : utilisateurConnecte.getArticlesVendus()) {
-					System.out.println("wow j'ai des ventes !!!");
 					listeArticleVendu.add(articleVendu);
 				}
 			}
@@ -165,16 +159,10 @@ public class RechercheArticle extends HttpServlet {
 		// --------------------------fonctionne meme en deco------------------------//
 
 		String nomArticle = request.getParameter("nomArticle");
-		System.out.println("nom article :");
-		System.out.println(nomArticle);
 		int categorie = 0;
 		if (nomArticle != null && !nomArticle.isBlank() && !nomArticle.isEmpty()) {
 			listeVide = false;
 			listeArticleVendu = verifierArticlesContient(nomArticle, request);
-		}
-		System.out.println("liste avant insertion :");
-		for (ArticleVendu articleVendu : listeArticleVendu) {
-			System.out.println(articleVendu.getNomArticle());
 		}
 		if (request.getParameter("categories") != null) {
 			categorie = Integer.parseInt(request.getParameter("categories"));
@@ -242,7 +230,7 @@ public class RechercheArticle extends HttpServlet {
 		ArticleManager articleMgr = new ArticleManager();
 
 		if (listeArticleVendu.isEmpty()) {
-			listeArticleVendu = articleMgr.articlesEnVente();
+			listeArticleVendu = verifierArticles(request);
 		}
 		// -----------------boucle de tri ------------------//
 		/*
@@ -257,22 +245,7 @@ public class RechercheArticle extends HttpServlet {
 		}
 		while (success.hasNext()) {
 			ArticleVendu article = success.next();
-			if (article.getDateFinEncheres().before(now)) {
-				if (article.getNoAcquereur() == 0) {
-					article = articleMgr.assignerAcquereur(article);
-				}
-				if (utilisateurConnecte != null && utilisateurConnecte.getNoUtilisateur() == article.getNoAcquereur()) {
-					utilisateurConnecte.ajoutArticleAchete(article);
-				}
-				if (utilisateurConnecte != null && utilisateurConnecte.getNoUtilisateur() == article.getNoVendeur()) {
-					utilisateurConnecte.ajoutArticlesVendus(article);
-					int credit = utilisateurConnecte.getCredit();
-					utilisateurConnecte.setCredit(credit + article.getPrixVente());
-				}
-
-				success.remove();
-
-			}
+				
 			if (article.getCategorie().getNoCategorie() != noCategorie && listeArticleVendu.contains(article)) {
 				success.remove();
 			}
@@ -292,7 +265,7 @@ public class RechercheArticle extends HttpServlet {
 		ArticleManager articleMgr = new ArticleManager();
 
 		if (listeArticleVendu.isEmpty()) {
-			listeArticleVendu = articleMgr.articlesEnVente();
+			listeArticleVendu = verifierArticles(request);
 		}
 		// -----------------boucle de tri ------------------//
 		/*
@@ -307,22 +280,8 @@ public class RechercheArticle extends HttpServlet {
 		}
 		while (success.hasNext()) {
 			ArticleVendu article = success.next();
-			if (article.getDateFinEncheres().before(now)) {
-				if (article.getNoAcquereur() == 0) {
-					article = articleMgr.assignerAcquereur(article);
-				}
-				if (utilisateurConnecte != null && utilisateurConnecte.getNoUtilisateur() == article.getNoAcquereur()) {
-					utilisateurConnecte.ajoutArticleAchete(article);
-				}
-				if (utilisateurConnecte != null && utilisateurConnecte.getNoUtilisateur() == article.getNoVendeur()) {
-					utilisateurConnecte.ajoutArticlesVendus(article);
-					int credit = utilisateurConnecte.getCredit();
-					utilisateurConnecte.setCredit(credit + article.getPrixVente());
-				}
 
-				success.remove();
 
-			}
 			if (!article.getNomArticle().contains(nomArticle.toLowerCase()) && listeArticleVendu.contains(article)) {
 				success.remove();
 			}
