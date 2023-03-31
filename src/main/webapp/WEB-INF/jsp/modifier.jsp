@@ -88,8 +88,8 @@
 			</div>
 			<!-- Password input -->
 			<div class="form-outline mb-4">
-				<label class="form-label" for="form3Example6">Ancien Mot de
-					passe</label> <input type="password" name="ancienMotDePasse"
+				<label class="form-label" for="form3Example6"> Mot de
+					passe actuel</label> <input type="password" name="ancienMotDePasse"
 					id="form3Example6" class="form-control" required />
 				<div class="invalid-feedback">Les mots de passe ne
 					correspondent pas</div>
