@@ -9,7 +9,7 @@
 <title>Inscription</title>
 <%@ include file="/WEB-INF/html/link.html"%>
 </head>
-<body style="background-color: #eee;">
+<body >
 	<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
 	<section class="background-radial-gradient overflow-hidden">
 		<div
