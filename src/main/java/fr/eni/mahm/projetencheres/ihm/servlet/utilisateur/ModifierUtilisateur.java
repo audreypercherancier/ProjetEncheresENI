@@ -63,25 +63,25 @@ public class ModifierUtilisateur extends HttpServlet {
 							request.getParameter("rue"),
 							request.getParameter("codePostal"),
 							request.getParameter("ville"),
-							nouveauMotDePasse);
+							ancienMotDePasseEcrit);
 		
 					utilisateurModifie.setNoUtilisateur(u.getNoUtilisateur());
 					
 
 					
-					if(nouveauMotDePasse != null && !nouveauMotDePasse.isEmpty() &&
-					   nouveauMotDePasseconfirme != null && !nouveauMotDePasseconfirme.isEmpty() && 
+					if(nouveauMotDePasse != null && !nouveauMotDePasse.isEmpty() && !nouveauMotDePasse.isBlank() &&
+					   nouveauMotDePasseconfirme != null && !nouveauMotDePasseconfirme.isEmpty() && !nouveauMotDePasseconfirme.isBlank() &&
 					   nouveauMotDePasse.equals(nouveauMotDePasseconfirme)){
 						
 						
-						utilisateurModifie.setMotDePasse(Utilisateur.hashagePwd(nouveauMotDePasseconfirme));
+						utilisateurModifie.setMotDePasse(nouveauMotDePasseconfirme);
 						userMgr.modifier(utilisateurModifie); 
 						session.setAttribute("userConnected", utilisateurModifie);
 						response.sendRedirect("/ProjetEncheresENI/monCompte"); 
 						
 						
-					}else if(nouveauMotDePasse != null && !nouveauMotDePasse.isEmpty() &&
-							   nouveauMotDePasseconfirme != null && !nouveauMotDePasseconfirme.isEmpty() && 
+					}else if(nouveauMotDePasse != null && !nouveauMotDePasse.isEmpty() && !nouveauMotDePasse.isBlank() &&
+							   nouveauMotDePasseconfirme != null && !nouveauMotDePasseconfirme.isEmpty() && !nouveauMotDePasseconfirme.isBlank() &&
 							   !nouveauMotDePasse.equals(nouveauMotDePasseconfirme)) {
 						request.setAttribute("nosimilairesmdp", "Les nouveaux mots de passe ne sont pas exactes, veuillez recommencer."); 
 						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modifier.jsp");
