@@ -20,6 +20,7 @@ public class Retrait {
 	//---------lien interclasse---------//
 	private int noArticle;
 
+	//------------------------------------- CONSTRUCTEUR ----------------------------------//
 	/**
 	 * pour recuperation en BDD
 	 * @param noRetrait

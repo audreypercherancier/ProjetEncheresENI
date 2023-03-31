@@ -76,36 +76,7 @@ public class Utilisateur {
 	}
 
 	/**
-	 * Constructeur inscription et modification,
-	 * 
-	 * @param pseudo
-	 * @param nom
-	 * @param prenom
-	 * @param email
-	 * @param telephone
-	 * @param rue
-	 * @param codePostal
-	 * @param ville
-	 * @param motDePasse
-	 * @param administrateur
-	 */
-	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville, String motDePasse, boolean administrateur) {
-		super();
-		this.pseudo = pseudo;
-		this.nom = nom;
-		this.setPrenom(prenom);
-		this.email = email;
-		this.telephone = telephone;
-		this.rue = rue;
-		this.codePostal = codePostal;
-		this.ville = ville;
-		this.setMotDePasse(motDePasse);
-		this.administrateur = administrateur;
-	}
-
-	/**
-	 * Constructeur surchargé sans id et sans admin pour inscription
+	 * pour inscription et modification
 	 * 
 	 * @param pseudo
 	 * @param nom
@@ -133,37 +104,8 @@ public class Utilisateur {
 	}
 
 	/**
-	 * CONSTRUCTEUR SPECIALEMENT CONCU POUR AUDREY
-	 * 
-	 * @param pseudo
-	 * @param nom
-	 * @param prenom
-	 * @param email
-	 * @param telephone
-	 * @param rue
-	 * @param codePostal
-	 * @param ville
-	 * @param credit
-	 * @param articlesAVendre
-	 * @param articleAchete
-	 * @param encheresEffectuees
-	 */
-	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville, int credit) {
-		super();
-		this.pseudo = pseudo;
-		this.nom = nom;
-		this.setPrenom(prenom);
-		this.email = email;
-		this.telephone = telephone;
-		this.rue = rue;
-		this.codePostal = codePostal;
-		this.ville = ville;
-		this.credit = credit;
-	}
-
-	/**
-	 * CONSTRUCTEUR ENCORE POUR AUDREY
+	 * Constructeur pour recuperation liste utilisateur ou utilisateur public pour
+	 * admin
 	 * 
 	 * @param pseudo
 	 * @param nom
@@ -188,55 +130,8 @@ public class Utilisateur {
 	}
 
 	/**
-	 * CONSTRUCTEUR ENCORE ET TOUJOURS POUR AUDREY
+	 * Constructeur pour DAO rsToUtilisateur (audrey)
 	 * 
-	 * @param noUtilisateur
-	 * @param pseudo
-	 * @param nom
-	 * @param prenom
-	 * @param email
-	 * @param motDePasse
-	 */
-	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String motDePasse) {
-		super();
-		this.noUtilisateur = noUtilisateur;
-		this.pseudo = pseudo;
-		this.nom = nom;
-		this.setPrenom(prenom);
-		this.email = email;
-		this.motDePasse = motDePasse;
-	}
-
-	/**
-	 * Constructeur pour Audrey modification profil
-	 * 
-	 * @param noUtilisateur
-	 * @param pseudo
-	 * @param nom
-	 * @param prenom
-	 * @param email
-	 * @param telephone
-	 * @param rue
-	 * @param codePostal
-	 * @param ville
-	 * @param motDePasse
-	 */
-	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String codePostal, String ville, String motDePasse) {
-		super();
-		this.noUtilisateur = noUtilisateur;
-		this.pseudo = pseudo;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.telephone = telephone;
-		this.rue = rue;
-		this.codePostal = codePostal;
-		this.ville = ville;
-		this.motDePasse = motDePasse;
-	}
-
-	/**
 	 * @param noUtilisateur
 	 * @param pseudo
 	 * @param nom
@@ -284,6 +179,7 @@ public class Utilisateur {
 	public Utilisateur(int noUtilisateur) {
 		this.noUtilisateur = noUtilisateur;
 	}
+
 //---------------------------------------METHODE/FUNCTION ZONE---------------------------------------//
 
 	public void faitUneEnchere(ArticleVendu article, int montant) {
@@ -441,7 +337,6 @@ public class Utilisateur {
 			}
 
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return sb.toString();

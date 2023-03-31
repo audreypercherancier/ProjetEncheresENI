@@ -24,8 +24,7 @@
 								alt="avatar" class="rounded-circle img-fluid"
 								style="width: 150px" />
 							<h5 class="my-3">${utilisateur.pseudo }</h5>
-							<p class="text-muted mb-1">${utilisateur.nom}
-								${utilisateur.prenom}</p>
+							<p class="text-muted mb-1">${utilisateur.nom} ${utilisateur.prenom}</p>
 							<p class="text-muted mb-4">Credit : ${utilisateur.credit}</p>
 							<div class="d-flex justify-content-center mb-2"></div>
 						</div>

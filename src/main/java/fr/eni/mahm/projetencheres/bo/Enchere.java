@@ -59,6 +59,9 @@ public class Enchere {
 		this.encherisseur = utilisateur;
 		this.article = articleVendu;
 	}
+	
+	
+	//------------------------- FUNCTION ZONE------------------------//
 
 	/**
 	 * verifie la validité de l'enchere

@@ -29,42 +29,11 @@ public class ArticleVendu {
 	private Retrait lieuRetrait;
 	private Categorie categorie;
 	private String Pseudo;
-	private Date tempRestant;
 
 	// -------------------- CONSTRUCTOR ZONE --------------------//
 
 	/**
-	 * PIOUPIOU pour recuperation avec objet special AUDREY constructeur a modifie
-	 * dans le futur avec les enchere
-	 * 
-	 * @param noArticle
-	 * @param nomArticle
-	 * @param description
-	 * @param dateDebutEncheres
-	 * @param dateFinEncheres
-	 * @param miseAPrix
-	 * @param prixVente
-	 * @param vendeur
-	 * @param lieuRetrait
-	 */
-	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
-			Date dateFinEncheres, int miseAPrix, int prixVente, int noVendeur, Retrait lieuRetrait,
-			Categorie categorie) {
-		this.noArticle = noArticle;
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.miseAPrix = miseAPrix;
-		this.prixVente = prixVente;
-		this.noVendeur = noVendeur;
-		this.lieuRetrait = lieuRetrait;
-		this.categorie = categorie;
-	}
-
-	/**
-	 * PIOUPIOU2 pour recuperation avec objet special AUDREY constructeur a modifie
-	 * dans le futur avec les enchere
+	 * Constructeur pour recuperation base de donnee
 	 * 
 	 * @param noArticle
 	 * @param nomArticle
@@ -94,7 +63,7 @@ public class ArticleVendu {
 	}
 
 	/**
-	 * Constructeur pour MATHIEU P je bosse dessus
+	 * Constructeur pour Base De Donnée
 	 * 
 	 * @param noArticle
 	 * @param nomArticle
@@ -332,20 +301,6 @@ public class ArticleVendu {
 
 	public void setNoAcquereur(int noAcquereur) {
 		this.noAcquereur = noAcquereur;
-	}
-	
-	/**
-	 * @return the tempRestant
-	 */
-	public Date getTempRestant() {
-		return tempRestant;
-	}
-
-	/**
-	 * @param tempRestant th tempRestant to set
-	 */
-	public void setTempRestant(Date tempRestant) {
-		this.tempRestant = tempRestant;
 	}
 
 	// --------------------------------------------------------------------------------------------------------------//

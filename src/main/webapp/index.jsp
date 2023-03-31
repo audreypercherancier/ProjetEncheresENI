@@ -171,7 +171,7 @@
 						</div>
 						<c:if test="${ArticleVendu.dateFinEncheres}>LocalDate.now" >
 						</c:if>
-						<div class="card-footer text-muted">${ArticleVendu.tempRestant} </div>
+						<div class="card-footer text-muted"><%-- ${ArticleVendu.tempRestant} a finir  --%></div>
 					</div>
 				</c:forEach>
 			</div>
