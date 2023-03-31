@@ -46,7 +46,7 @@ public class ModifierUtilisateur extends HttpServlet {
 		try {
 			request.setCharacterEncoding("UTF-8");
 			id=Integer.parseInt(request.getParameter("id"));
-			String ancienMotDePasseEcrit = Utilisateur.hashagePwd(request.getParameter("ancienMotDePasse")); 
+			String ancienMotDePasseEcrit =request.getParameter("ancienMotDePasse"); 
 			String nouveauMotDePasse = request.getParameter("nouveauMotDePasse"); 
 			String nouveauMotDePasseconfirme = request.getParameter("nouveauMotDePasseConfirme"); 
 			Utilisateur u = new Utilisateur(); 
@@ -54,7 +54,7 @@ public class ModifierUtilisateur extends HttpServlet {
 			
 			if (u!=null) {
 					
-				if(u.getMotDePasse().equals(ancienMotDePasseEcrit)) {
+				if(u.getMotDePasse().equals(Utilisateur.hashagePwd(ancienMotDePasseEcrit))) {
 					Utilisateur	 utilisateurModifie = new Utilisateur(request.getParameter("pseudo"),
 							request.getParameter("nom"), 
 							request.getParameter("prenom"),
@@ -74,7 +74,7 @@ public class ModifierUtilisateur extends HttpServlet {
 					   nouveauMotDePasse.equals(nouveauMotDePasseconfirme)){
 						
 						
-						utilisateurModifie.setMotDePasse(nouveauMotDePasseconfirme);
+						utilisateurModifie.setMotDePasse(Utilisateur.hashagePwd(nouveauMotDePasseconfirme));
 						userMgr.modifier(utilisateurModifie); 
 						session.setAttribute("userConnected", utilisateurModifie);
 						response.sendRedirect("/ProjetEncheresENI/monCompte"); 
