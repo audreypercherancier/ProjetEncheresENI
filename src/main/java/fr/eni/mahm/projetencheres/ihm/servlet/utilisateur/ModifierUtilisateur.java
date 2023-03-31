@@ -63,7 +63,7 @@ public class ModifierUtilisateur extends HttpServlet {
 							request.getParameter("rue"),
 							request.getParameter("codePostal"),
 							request.getParameter("ville"),
-							u.getMotDePasse());
+							nouveauMotDePasse);
 		
 					utilisateurModifie.setNoUtilisateur(u.getNoUtilisateur());
 					
