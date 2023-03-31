@@ -10,14 +10,17 @@
 <title>Modifier l'article</title>
 <%@ include file="/WEB-INF/html/link.html"%>
 </head>
-<body>
+<body style="background-color: #eee;">
 		<%@ include file="/WEB-INF/jsp/insertion/entete.jsp"%>
+		<br>
+		<form action="/ProjetEncheresENI/modifierArticle" method="post">
+		<c:if test="${!empty validation} "> 
+			<h2 class="text-success text-center">${article.validation}</h2>
+		</c:if>
 		
 		<h1 class="text-center">Modification de l'article</h1>
-		<c:if test="${!empty validation} "> 
-		<h2 class="text-success text-center">${validation}</h2>
-		</c:if>
-		<form action="/ProjetEncheresENI/modifierArticle" method="post">
+		
+		
 		<div class="container py-5">
 			<div class="row">
 				<div class="col-md-6 mb-4">
@@ -81,14 +84,15 @@
 						<div class="invalid-feedback">Veuillez saisir la date du début des encheres</div>
 					</div>
 				</div>
-				<div class="row">
+				
 				<div class="card-body text-center">
-					<input type="submit" class="btn btn-primary btn-block mb-4" value="Modifier"> 
-					<a class="btn btn-secondary m-2 my-sm-0" href="/ProjetEncheresENI/accueil" role="button">Retour</a>
+					<div class="row">
+						<input type="submit" class="btn btn-primary btn-block mb-4"  value="Modifier"> 
+						<a class="btn btn-secondary btn-block mb-4" href="/ProjetEncheresENI/accueil" role="button">Retour</a>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	</form>
 	<%@ include file="/WEB-INF/html/piedDePage.html"%>
 </body>

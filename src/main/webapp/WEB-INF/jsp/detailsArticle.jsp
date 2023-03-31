@@ -116,10 +116,12 @@
 							</div>
 						</div>
 						<c:if test="${ article.noVendeur == userConnected.noUtilisateur}">
+																
 									<div class="d-flex justify-content-center mb-2">
 									<a type="button" class="btn btn-secondary my-2 my-sm-0"
 										href="/ProjetEncheresENI/modifierArticle" role="button">modifier Article</a>
 									</div>
+							
 						</c:if>
 					</div>
 					<div class="card mb-5">
